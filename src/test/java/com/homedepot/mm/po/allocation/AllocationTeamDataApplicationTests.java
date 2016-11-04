@@ -11,6 +11,7 @@ public class AllocationTeamDataApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
 	}
 
 }
