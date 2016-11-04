@@ -23,7 +23,7 @@ public class DcmUploadsUiDAO {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:teradata://dcmqa.homedepot.com/LOGMECH=LDAP", "_SVC_DFUPLD", "pA55w0rd_upld");
-			log.info("**** Established Connection: " + conn.toString());
+			log.debug("**** Established Connection: " + conn.toString());
 			stmt = conn.prepareStatement(String.format(AllocationTeamDataConstants.READ_TLD_ALLOC_ONBRD_PARM, 2, 5));
 			rs = stmt.executeQuery();
 			
