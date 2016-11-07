@@ -22,7 +22,7 @@ public class DcmUploadsUiDAO {
 		ResultSet rs = null;
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:teradata://dcmqa.homedepot.com/LOGMECH=LDAP", "_SVC_DFUPLD", "pA55w0rd_upld");
+			conn = DriverManager.getConnection("jdbc:teradata://dcmqa.homedepot.com/LOGMECH=LDAP", "_SVC_COREUPLD", "pA55w0rd_upld");
 			log.debug("**** Established Connection: " + conn.toString());
 			stmt = conn.prepareStatement(String.format(AllocationTeamDataConstants.READ_TLD_ALLOC_ONBRD_PARM, 2, 5));
 			rs = stmt.executeQuery();
@@ -42,9 +42,7 @@ public class DcmUploadsUiDAO {
 				
 				bayParmList.add(bayParm);
 			}
-			
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

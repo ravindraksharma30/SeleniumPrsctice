@@ -10,7 +10,7 @@ class AllocationTeamDataApplicationGroovyTests extends Specification {
 		
 	}
 	
-	def "Creating a new DcmUploadsUiDAO object will produce a list of BayParmDTO's." () {
+	/*def "Creating a new DcmUploadsUiDAO object will produce a list of BayParmDTO's." () {
 		given: "A DcmUploadsUiDAO object is instantiated."
 			dcmUploadsDAO = new DcmUploadsUiDAO()
 			
@@ -18,5 +18,5 @@ class AllocationTeamDataApplicationGroovyTests extends Specification {
 			
 		then: "A list of BayParmDTO's will be populated."
 			dcmUploadsDAO.bayParmList != null
-	}
+	}*/
 }
