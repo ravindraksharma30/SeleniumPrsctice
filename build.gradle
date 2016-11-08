@@ -1,21 +1,9 @@
-buildscript {
-	ext {
-		springBootVersion = '1.4.1.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 apply plugin: 'groovy'
-
+apply plugin: 'com.jfrog.artifactory'
 
 war {
 	baseName = 'AllocationTeamData'
@@ -24,31 +12,54 @@ war {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-repositories {
-	mavenCentral()
-	
-	maven {
-		url 'http://artifactory.homedepot.com/libs-release-local/'
-		credentials {
+configurations { providedRuntime }
+
+buildscript {
+	ext { springBootVersion = '1.4.1.RELEASE' }
+	repositories {
+		mavenCentral()
+
+		maven {
+			url 'https://maven.artifactory.homedepot.com/artifactory/plugins-release'
+			credentials {
+				username = "${artifactory_user}"
+				password = "${artifactory_password}"
+			}
+		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.jfrog.buildinfo:build-info-extractor-gradle:+")
+	}
+}
+
+artifactory {
+	contextUrl = "https://maven.artifactory.homedepot.com/artifactory/"   //The base Artifactory URL if not overridden by the publisher/resolver
+
+	resolve {
+		repository {
+			repoKey = 'libs-release'
 			username = "${artifactory_user}"
 			password = "${artifactory_password}"
+			maven = true
 		}
 	}
 }
 
-configurations {
-	providedRuntime
-}
-
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-jdbc')
-	compile('org.projectlombok:lombok')
-	compile('org.springframework.boot:spring-boot-starter-security')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.4.1.RELEASE')
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.4.1.RELEASE')
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.1.RELEASE')
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '1.4.1.RELEASE')
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.4.1.RELEASE')
 	
-	testCompile('org.codehaus.groovy:groovy-all:2.4.4')
-	testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
-	testCompile(group: 'com.homedepot', name: 'spock-reports', version: '1.2.7')
+	compile(group: 'org.springframework.cloud', name: 'spring-cloud-cloudfoundry-connector', version: '1.2.3.RELEASE')
+	
+	compile('org.projectlombok:lombok')
+
+	compile(group: 'org.codehaus.groovy', name: 'groovy', version: '2.4.7')
+	compile(group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4')
+
+	compile(group: 'com.teradata', name: 'terajdbc4', version: '15.10.00.22')
+	compile(group: 'com.teradata', name: 'tdgssconfig', version: '15.10.00.22')
 }
