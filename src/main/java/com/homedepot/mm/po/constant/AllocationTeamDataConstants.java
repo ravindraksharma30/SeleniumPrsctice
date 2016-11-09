@@ -1,9 +1,14 @@
-package com.homedepot.com.mm.po.constant;
+package com.homedepot.mm.po.constant;
 
 public class AllocationTeamDataConstants {
-
-	public static final String READ_TLD_ALLOC_ONBRD_PARM = "SELECT * FROM QA4_TLALLOC_CSTM_VIEWS.TLD_ALLOC_ONBRD_PARM"
-			+ " WHERE TLD_ALLOC_PARM_TYP_CD = %1$s"
-			+ " AND TLD_ALLOC_ONBRD_PARM_ID = %2$s";
+	
+	public static final String READ_TLD_ALLOC_ONBRD_PARM = "SELECT * FROM QA_TLALLOCCSTM_EXE.TLALLOC_BAYPARM_STG"
+			+ " WHERE LOCATIONID = %s"
+			+ " AND PRODUCTCODE IN %s"
+			+ " AND ACTIVEFLAG = 'Y'";
+	
+	public static final String TL_ALLOC_QA_USERNAME = "";
+	public static final String TL_ALLOC_QA_PASSWORD = "";
+	
 	
 }

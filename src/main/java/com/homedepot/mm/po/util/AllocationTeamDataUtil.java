@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.homedepot.mm.po.allocation.DcmUploadsUiDAO;
+import com.homedepot.mm.po.dao.DcmUploadsUiDAO;
 
 import java.sql.PreparedStatement;
 

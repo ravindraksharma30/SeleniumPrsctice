@@ -56,6 +56,8 @@ dependencies {
 	compile(group: 'org.springframework.cloud', name: 'spring-cloud-cloudfoundry-connector', version: '1.2.3.RELEASE')
 	
 	compile('org.projectlombok:lombok')
+	
+	compile(group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2')
 
 	compile(group: 'org.codehaus.groovy', name: 'groovy', version: '2.4.7')
 	compile(group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4')
