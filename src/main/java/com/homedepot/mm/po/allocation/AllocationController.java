@@ -17,15 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class AllocationController {
 
 	@Autowired
-	AllocationRepository allocationRepository;
+	// AllocationRepository allocationRepository;
+	AllocationJpaRepository allocationJpaRepository;
 
 	@RequestMapping("/find")
-	public String findAll() {
+	public List<BayParmJpa> findAll() {
 
-		System.out.println("Inside ");
-		List<BayParm> list = allocationRepository.findAll();
+		System.out.println("Inside Controller");
+		// List<BayParmJpa> list = allocationJpaRepository.findAll();
+		// List<BayParmJpa> list =
+		// allocationJpaRepository.findByLocationid(357);
 
-		return "Hello";
+		List<BayParmJpa> list = allocationJpaRepository.findByLocationidAndActiveflag("0551", "Y");
+		// allocationJpaRepository.delete();
+
+		return list;
 	}
 
 }
