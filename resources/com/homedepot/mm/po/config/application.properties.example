@@ -1,3 +1,0 @@
-jdbc.qa.url = DATABASE_URL
-jdbc.qa.username = USERNAME
-jdbc.qa.password = PASSWORD
