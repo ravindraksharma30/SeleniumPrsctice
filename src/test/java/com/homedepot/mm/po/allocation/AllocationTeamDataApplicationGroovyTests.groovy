@@ -1,7 +1,5 @@
 package com.homedepot.mm.po.allocation
 
-import com.homedepot.mm.po.dao.DcmUploadsUiDAO;
-
 import spock.lang.Specification
 
 class AllocationTeamDataApplicationGroovyTests extends Specification {
@@ -19,7 +17,7 @@ class AllocationTeamDataApplicationGroovyTests extends Specification {
 		skuList.add(894169)
 	}
 	
-	def "A Connection, PreparedStatement, and ResultSet are able to be established." () {
+	/*def "A Connection, PreparedStatement, and ResultSet are able to be established." () {
 		given: "A DcmUploadsUiDAO object is instantiated."
 			dcmUploadsDAO = new DcmUploadsUiDAO()
 		
@@ -38,7 +36,7 @@ class AllocationTeamDataApplicationGroovyTests extends Specification {
 			
 		then: "A HashMap will be created with the SKU as the key and the DTO as the value."
 			dcmUploadsDAO.bayParmMap.size() == 3
-	}
+	}*/
 	
 	/*def "Adding an invalid SKU to the list for the Location ID 0357 should still return a HashMap of size 3." () {
 		given: "A DcmUploadsUiDAO object is instantiated."
