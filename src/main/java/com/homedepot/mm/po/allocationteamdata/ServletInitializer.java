@@ -1,4 +1,4 @@
-package com.homedepot.mm.po.allocation;
+package com.homedepot.mm.po.allocationteamdata;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;

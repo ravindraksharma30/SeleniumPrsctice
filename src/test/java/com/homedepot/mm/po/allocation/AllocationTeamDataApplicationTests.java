@@ -5,10 +5,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 //@RunWith(SpringRunner.class)
 @SpringBootTest
+//@SpringBootTest
 public class AllocationTeamDataApplicationTests {
 
-	@Test
+	/*@Test
 	public void contextLoads() {
-	}
+		
+	}*/
 
 }
