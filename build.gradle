@@ -48,7 +48,6 @@ artifactory {
 
 dependencies {
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.4.1.RELEASE')
-	//compile(group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.4.1.RELEASE')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.1.RELEASE')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '1.4.1.RELEASE')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.4.1.RELEASE')
@@ -57,13 +56,13 @@ dependencies {
 
 	compile('org.projectlombok:lombok')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.1.RELEASE')
-	
+
 	compile (group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1')
-	
+
 	compile(group: 'org.springframework.cloud', name: 'spring-cloud-cloudfoundry-connector', version: '1.2.3.RELEASE')
-	
+
 	compile('org.projectlombok:lombok')
-	
+
 	compile(group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2')
 
 	compile(group: 'org.codehaus.groovy', name: 'groovy', version: '2.4.7')
