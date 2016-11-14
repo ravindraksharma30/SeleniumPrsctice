@@ -73,7 +73,14 @@ dependencies {
 	compile (group: 'org.springframework', name: 'spring-test', version: '2.5')
 	compile (group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1')
 	compile (group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.1.RELEASE')
+	compile (group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0')
+	compile (group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0')
+
+	compile (group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.21.0.RELEASE')
+
+
+
 
 
 }
-}
+

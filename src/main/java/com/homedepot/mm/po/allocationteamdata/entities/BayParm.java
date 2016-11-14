@@ -9,10 +9,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TLALLOC_BAYPARM_STG")
-public class BayParmJPA {
+public class BayParm {
 	@Id
 	private Long sequencenumber;
-	
+
 	private int uploadid;
 	private String locationid;
 	private String productcode;

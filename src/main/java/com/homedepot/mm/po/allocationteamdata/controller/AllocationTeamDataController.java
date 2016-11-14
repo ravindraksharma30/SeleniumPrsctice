@@ -2,23 +2,52 @@ package com.homedepot.mm.po.allocationteamdata.controller;
 
 import java.util.List;
 
+import javax.ws.rs.QueryParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.homedepot.mm.po.allocationteamdata.entities.BayParmJPA;
-import com.homedepot.mm.po.allocationteamdata.repository.AllocationJpaRepository;
+import com.homedepot.mm.po.allocationteamdata.assembler.BayParmResourceAssembler;
+import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
+import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
+import com.homedepot.mm.po.allocationteamdata.exception.BayParmNotFoundException;
+import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class AllocationTeamDataController {
 
 	@Autowired
-	AllocationJpaRepository allocationJpaRepository;
+	BayParmService bayParmService;
 
-	@RequestMapping("/find")
-	public List<BayParmJPA> findAll() {
-		List<BayParmJPA> list = allocationJpaRepository.findByLocationidAndActiveflag("0551", "Y");
-		return list;
+	@Autowired
+	BayParmResourceAssembler bayParmResourceAssembler;
+
+	@GetMapping(value = "/find", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Retrieve Bayparm based on location and activeflag", nickname = "bayparm")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "locationId", value = "DC Location Id", required = false, dataType = "string", paramType = "query", defaultValue = "Smyrna"),
+			@ApiImplicitParam(name = "activeFlag", value = "Active Flag", required = false, dataType = "string", paramType = "query", defaultValue = "Y") })
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Success", response = AllocationTeamDataController.class),
+			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
+			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
+	public ResponseEntity<List<BayParmResource>> getBayParm(@QueryParam("locationId") String locationId,
+			@QueryParam("activeFlag") String activeFlag) throws BayParmNotFoundException {
+
+		List<BayParm> bayParms = bayParmService.getBayParm(locationId, activeFlag);
+		final List<BayParmResource> resources = bayParmResourceAssembler.toResources(bayParms);
+
+		return new ResponseEntity<List<BayParmResource>>(resources, HttpStatus.OK);
 	}
 
 }
