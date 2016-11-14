@@ -23,8 +23,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+/**
+ * 
+ * @author axd8472
+ *
+ */
 @RestController
-public class AllocationTeamDataController {
+public class BayParmController {
 
 	@Autowired
 	BayParmService bayParmService;
@@ -32,19 +37,25 @@ public class AllocationTeamDataController {
 	@Autowired
 	BayParmResourceAssembler bayParmResourceAssembler;
 
-	@GetMapping(value = "/find", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/findBayParm", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Retrieve Bayparm based on location and activeflag", nickname = "bayparm")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "locationId", value = "DC Location Id", required = false, dataType = "string", paramType = "query", defaultValue = "Smyrna"),
 			@ApiImplicitParam(name = "activeFlag", value = "Active Flag", required = false, dataType = "string", paramType = "query", defaultValue = "Y") })
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Success", response = AllocationTeamDataController.class),
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
+	/**
+	 * 
+	 * @param locationId
+	 * @param activeFlag
+	 * @return
+	 * @throws BayParmNotFoundException
+	 */
 	public ResponseEntity<List<BayParmResource>> getBayParm(@QueryParam("locationId") String locationId,
 			@QueryParam("activeFlag") String activeFlag) throws BayParmNotFoundException {
 
-		List<BayParm> bayParms = bayParmService.getBayParm(locationId, activeFlag);
+		final List<BayParm> bayParms = bayParmService.getBayParm(locationId, activeFlag);
 		final List<BayParmResource> resources = bayParmResourceAssembler.toResources(bayParms);
 
 		return new ResponseEntity<List<BayParmResource>>(resources, HttpStatus.OK);

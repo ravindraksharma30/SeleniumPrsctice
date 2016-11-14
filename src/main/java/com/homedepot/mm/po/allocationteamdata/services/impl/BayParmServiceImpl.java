@@ -26,7 +26,7 @@ public class BayParmServiceImpl implements BayParmService {
 	@Override
 	public List<BayParm> getBayParm(final String locationId, final String activeFlag) throws BayParmNotFoundException {
 
-		List<BayParm> bayparms = bayParmRepository.findByLocationidAndActiveflag(locationId, activeFlag);
+		final List<BayParm> bayparms = bayParmRepository.findByLocationidAndActiveflag(locationId, activeFlag);
 
 		if (bayparms.isEmpty())
 			throw new BayParmNotFoundException("Bay Parm Not Found");

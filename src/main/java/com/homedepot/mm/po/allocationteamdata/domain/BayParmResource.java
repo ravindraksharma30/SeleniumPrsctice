@@ -6,12 +6,14 @@ package com.homedepot.mm.po.allocationteamdata.domain;
 import org.springframework.hateoas.ResourceSupport;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author axd8472
  *
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class BayParmResource extends ResourceSupport {
 
 	private Long sequencenumber;
@@ -22,6 +24,7 @@ public class BayParmResource extends ResourceSupport {
 	private double bayParmVal;
 	private String activeFlag;
 
+	
 	public BayParmResource(Long sequencenumber, int uploadId, String locationId, String productCode, double bayParmVal,
 			String activeFlag) {
 		this.sequencenumber = sequencenumber;
@@ -32,5 +35,6 @@ public class BayParmResource extends ResourceSupport {
 		this.activeFlag = activeFlag;
 
 	}
+	
 
 }

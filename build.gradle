@@ -34,7 +34,8 @@ buildscript {
 }
 
 artifactory {
-	contextUrl = "https://maven.artifactory.homedepot.com/artifactory/"   //The base Artifactory URL if not overridden by the publisher/resolver
+	//The base Artifactory URL if not overridden by the publisher/resolver
+	contextUrl = "https://maven.artifactory.homedepot.com/artifactory/"
 
 	resolve {
 		repository {
@@ -47,37 +48,39 @@ artifactory {
 }
 
 dependencies {
+
+	//Spring dependencies
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.4.1.RELEASE')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.1.RELEASE')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '1.4.1.RELEASE')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.4.1.RELEASE')
-
 	compile(group: 'org.springframework.cloud', name: 'spring-cloud-cloudfoundry-connector', version: '1.2.3.RELEASE')
-
-	compile('org.projectlombok:lombok')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.1.RELEASE')
+	{
+		exclude(group:'org.hibernate.javax.persistence', module:'hibernate-jpa-2.1-api')
 
-	compile (group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1')
-
-	compile(group: 'org.springframework.cloud', name: 'spring-cloud-cloudfoundry-connector', version: '1.2.3.RELEASE')
-
-	compile('org.projectlombok:lombok')
-
-	compile(group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2')
-
-	compile(group: 'org.codehaus.groovy', name: 'groovy', version: '2.4.7')
-	compile(group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4')
-
-	compile(group: 'com.teradata', name: 'terajdbc4', version: '15.10.00.22')
-	compile(group: 'com.teradata', name: 'tdgssconfig', version: '15.10.00.22')
-	compile (group: 'org.springframework', name: 'spring-test', version: '2.5')
-	compile (group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1')
-	compile (group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.1.RELEASE')
+	}
 	compile (group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0')
 	compile (group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0')
-
 	compile (group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.21.0.RELEASE')
 
+	compile(group: 'org.springframework.cloud', name: 'spring-cloud-cloudfoundry-connector', version: '1.2.3.RELEASE')
+
+	//JPA dependencies
+	compile (group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1')
+
+	//Teradata dependencies
+	compile(group: 'com.teradata', name: 'terajdbc4', version: '15.10.00.22')
+	compile(group: 'com.teradata', name: 'tdgssconfig', version: '15.10.00.22')
+	compile(group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2')
+
+	//Lombok dependencies
+	compile('org.projectlombok:lombok')
+
+	//Testing framework dependencies
+	compile (group: 'org.springframework', name: 'spring-test', version: '2.5')
+	compile(group: 'org.codehaus.groovy', name: 'groovy', version: '2.4.7')
+	compile(group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4')
 
 
 

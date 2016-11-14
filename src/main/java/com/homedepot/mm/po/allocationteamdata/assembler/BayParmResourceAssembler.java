@@ -11,11 +11,13 @@ import java.util.List;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.homedepot.mm.po.allocationteamdata.controller.AllocationTeamDataController;
+import com.homedepot.mm.po.allocationteamdata.controller.BayParmController;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
 
 /**
+ * BayParmResourceAssembler is for implementing HATEOAS design
+ * 
  * @author axd8472
  *
  */
@@ -26,7 +28,7 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 	 * 
 	 */
 	BayParmResourceAssembler() {
-		super(AllocationTeamDataController.class, BayParmResource.class);
+		super(BayParmController.class, BayParmResource.class);
 	}
 
 	/**
@@ -36,21 +38,23 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 	public List<BayParmResource> toResources(Iterable<? extends BayParm> arg0) {
 		List<BayParmResource> bayParmResources = new ArrayList<>();
 
-		for (BayParm bayParm : arg0) {
+		arg0.forEach(bayParm -> {
 			BayParmResource bayParmResource = new BayParmResource(bayParm.getSequencenumber(), bayParm.getUploadid(),
 					bayParm.getLocationid(), bayParm.getProductcode(), bayParm.getBay_parm_val(),
 					bayParm.getActiveflag());
 
-			bayParmResource.add(linkTo(AllocationTeamDataController.class).slash("find").withSelfRel());
+			bayParmResource.add(linkTo(BayParmController.class).slash("find").withSelfRel());
 			bayParmResources.add(bayParmResource);
-		}
+		});
 
 		return bayParmResources;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public BayParmResource toResource(BayParm entity) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
