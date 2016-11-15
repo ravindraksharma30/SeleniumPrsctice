@@ -8,19 +8,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "TLALLOC_BAYPARM_STG")
+@Table(name = "TLALLOC_SDCINV_STG")
 /**
  * 
  * @author axd8472 & @author spv5283
  *
  */
-public class BayParm {
+public class SDCTargetInventory {
+
 	@Id
 	private Long sequencenumber;
 
 	private int uploadid;
 	private String locationid;
 	private String productcode;
-	private double bay_parm_val;
+	private double tgt_inv_qty;
 	private String activeflag;
+	
+	
 }

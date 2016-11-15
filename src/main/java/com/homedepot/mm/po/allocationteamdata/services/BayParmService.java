@@ -6,14 +6,25 @@ package com.homedepot.mm.po.allocationteamdata.services;
 import java.util.List;
 
 import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
-import com.homedepot.mm.po.allocationteamdata.exception.BayParmNotFoundException;
+import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 
 /**
- * @author axd8472
+ * BayParmService is to do CRUD operations on the data retrieved from
+ * BayParmRepository
+ * 
+ * @author axd8472 & @author spv5283
  *
  */
 public interface BayParmService {
 
-	public List<BayParm> getBayParm(final String locationId, final String activeFlag) throws BayParmNotFoundException;
+	/**
+	 * Retrieves list of BayParm using LocationId and ActiveFlag
+	 * 
+	 * @param locationId
+	 * @param activeFlag
+	 * @return
+	 * @throws DataNotFoundException
+	 */
+	public List<BayParm> getBayParm(final String locationId, final String activeFlag) throws DataNotFoundException;
 
 }

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
 
 /**
- * AllocationBayParmRepository retrieves data from the table
+ * BayParmRepository retrieves data from the view TLALLOC_BAYPARM_STG
  * 
- * @author axd8472
+ * @author axd8472 & @author spv5283
  *
  */
 @Repository("BayParmRepository")

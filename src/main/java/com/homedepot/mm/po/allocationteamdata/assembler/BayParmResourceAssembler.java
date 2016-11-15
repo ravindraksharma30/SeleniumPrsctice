@@ -18,27 +18,30 @@ import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
 /**
  * BayParmResourceAssembler is for implementing HATEOAS design
  * 
- * @author axd8472
+ * @author axd8472 & @author spv5283
  *
  */
 @Component
 public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, BayParmResource> {
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	BayParmResourceAssembler() {
 		super(BayParmController.class, BayParmResource.class);
 	}
 
 	/**
+	 * Returns bayParmResources with HATEOAS reference selRel link in JSON
+	 * response
 	 * 
+	 * @param bayParms
+	 * @return
 	 */
-	@Override
-	public List<BayParmResource> toResources(Iterable<? extends BayParm> arg0) {
+	public List<BayParmResource> toResources(List<BayParm> bayParms) {
 		List<BayParmResource> bayParmResources = new ArrayList<>();
 
-		arg0.forEach(bayParm -> {
+		bayParms.forEach(bayParm -> {
 			BayParmResource bayParmResource = new BayParmResource(bayParm.getSequencenumber(), bayParm.getUploadid(),
 					bayParm.getLocationid(), bayParm.getProductcode(), bayParm.getBay_parm_val(),
 					bayParm.getActiveflag());
