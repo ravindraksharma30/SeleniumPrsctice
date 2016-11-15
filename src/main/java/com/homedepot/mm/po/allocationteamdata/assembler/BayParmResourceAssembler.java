@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.homedepot.mm.po.allocationteamdata.controller.BayParmController;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
-import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParmEntityDTO;
 
 /**
  * BayParmResourceAssembler is for implementing HATEOAS design
@@ -22,7 +22,7 @@ import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
  *
  */
 @Component
-public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, BayParmResource> {
+public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParmEntityDTO, BayParmResource> {
 
 	/**
 	 * 
@@ -35,13 +35,13 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 	 * 
 	 */
 	@Override
-	public List<BayParmResource> toResources(Iterable<? extends BayParm> arg0) {
+	public List<BayParmResource> toResources(Iterable<? extends BayParmEntityDTO> arg0) {
 		List<BayParmResource> bayParmResources = new ArrayList<>();
 
-		arg0.forEach(bayParm -> {
-			BayParmResource bayParmResource = new BayParmResource(bayParm.getSequencenumber(), bayParm.getUploadid(),
-					bayParm.getLocationid(), bayParm.getProductcode(), bayParm.getBay_parm_val(),
-					bayParm.getActiveflag());
+		arg0.forEach(BayParmEntityDTO -> {
+			BayParmResource bayParmResource = new BayParmResource(BayParmEntityDTO.getSequencenumber(), BayParmEntityDTO.getUploadid(),
+					BayParmEntityDTO.getLocationid(), BayParmEntityDTO.getProductcode(), BayParmEntityDTO.getBay_parm_val(),
+					BayParmEntityDTO.getActiveflag());
 
 			bayParmResource.add(linkTo(BayParmController.class).slash("find").withSelfRel());
 			bayParmResources.add(bayParmResource);
@@ -54,7 +54,7 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 	 * 
 	 */
 	@Override
-	public BayParmResource toResource(BayParm entity) {
+	public BayParmResource toResource(BayParmEntityDTO entity) {
 		return null;
 	}
 

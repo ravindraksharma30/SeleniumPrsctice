@@ -5,7 +5,7 @@ package com.homedepot.mm.po.allocationteamdata.services;
 
 import java.util.List;
 
-import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParmEntityDTO;
 import com.homedepot.mm.po.allocationteamdata.exception.BayParmNotFoundException;
 
 /**
@@ -14,6 +14,6 @@ import com.homedepot.mm.po.allocationteamdata.exception.BayParmNotFoundException
  */
 public interface BayParmService {
 
-	public List<BayParm> getBayParm(final String locationId, final String activeFlag) throws BayParmNotFoundException;
+	public List<BayParmEntityDTO> getBayParm(final String locationId, final String activeFlag) throws BayParmNotFoundException;
 
 }

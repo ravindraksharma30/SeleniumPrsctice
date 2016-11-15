@@ -1,4 +1,4 @@
-package com.homedepot.mm.po.allocationteamdata.entities;
+package com.homedepot.mm.po.allocationteamdata.entities.teradata;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,10 +9,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TLALLOC_BAYPARM_STG")
-public class BayParm {
+public class BayParmEntityDTO {
 	@Id
 	private Long sequencenumber;
-
+	
 	private int uploadid;
 	private String locationid;
 	private String productcode;

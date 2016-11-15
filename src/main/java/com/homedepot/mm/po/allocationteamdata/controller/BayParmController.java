@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.BayParmResourceAssembler;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
-import com.homedepot.mm.po.allocationteamdata.entities.BayParm;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParmEntityDTO;
 import com.homedepot.mm.po.allocationteamdata.exception.BayParmNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 
@@ -38,7 +38,7 @@ public class BayParmController {
 	BayParmResourceAssembler bayParmResourceAssembler;
 
 	@GetMapping(value = "/findBayParm", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Retrieve Bayparm based on location and activeflag", nickname = "bayparm")
+	@ApiOperation(value = "Retrieve BayParmEntityDTO based on location and activeflag", nickname = "BayParmEntityDTO")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "locationId", value = "DC Location Id", required = false, dataType = "string", paramType = "query", defaultValue = "Smyrna"),
 			@ApiImplicitParam(name = "activeFlag", value = "Active Flag", required = false, dataType = "string", paramType = "query", defaultValue = "Y") })
@@ -55,7 +55,7 @@ public class BayParmController {
 	public ResponseEntity<List<BayParmResource>> getBayParm(@QueryParam("locationId") String locationId,
 			@QueryParam("activeFlag") String activeFlag) throws BayParmNotFoundException {
 
-		final List<BayParm> bayParms = bayParmService.getBayParm(locationId, activeFlag);
+		final List<BayParmEntityDTO> bayParms = bayParmService.getBayParm(locationId, activeFlag);
 		final List<BayParmResource> resources = bayParmResourceAssembler.toResources(bayParms);
 
 		return new ResponseEntity<List<BayParmResource>>(resources, HttpStatus.OK);
