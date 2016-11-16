@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.SDCTargetInventoryAssembler;
 import com.homedepot.mm.po.allocationteamdata.domain.SDCTargetInventoryResource;
+import com.homedepot.mm.po.allocationteamdata.dto.ErrorDTO;
 import com.homedepot.mm.po.allocationteamdata.entities.SDCTargetInventory;
 import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService;
@@ -46,8 +47,7 @@ public class SDCTargetInventoryController {
 			@ApiResponse(code = 200, message = "Success", response = SDCTargetInventoryController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"),
-			@ApiResponse(code = 500, message = "Internal server error"),
-			@ApiResponse(code = 700, message = "Data Not Found") })
+			@ApiResponse(code = 500, message = "Internal server error") })
 	/**
 	 * 
 	 * @param lacationId

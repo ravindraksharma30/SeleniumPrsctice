@@ -49,6 +49,7 @@ artifactory {
 
 dependencies {
 
+
 	//Spring dependencies
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.4.1.RELEASE')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.1.RELEASE')
@@ -81,6 +82,8 @@ dependencies {
 	compile (group: 'org.springframework', name: 'spring-test', version: '2.5')
 	compile(group: 'org.codehaus.groovy', name: 'groovy', version: '2.4.7')
 	compile(group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4')
+
+
 
 
 
