@@ -35,8 +35,6 @@ public class BayParmServiceImpl implements BayParmService {
 
 		final List<BayParm> bayparms = bayParmRepository.findByLocationidAndActiveflag(locationId, activeFlag);
 
-		if (bayparms.isEmpty())
-			throw new DataNotFoundException("BayParm Records Not Found");
 		return bayparms;
 	}
 

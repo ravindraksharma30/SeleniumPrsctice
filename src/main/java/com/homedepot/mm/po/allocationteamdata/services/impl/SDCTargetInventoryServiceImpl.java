@@ -34,8 +34,6 @@ public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService 
 
 		final List<SDCTargetInventory> sdcTargetInventories = sdcTargetInventoryRepository
 				.findByLocationidAndActiveflag(locationId, activeFlag);
-		if (sdcTargetInventories.isEmpty())
-			throw new DataNotFoundException("SDCTargetInventory Records Not Found");
 
 		return sdcTargetInventories;
 	}
