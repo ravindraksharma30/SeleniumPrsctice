@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.homedepot.mm.po.allocationteamdata.assembler.BayParmResourceAssembler;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
-import com.homedepot.mm.po.allocationteamdata.exception.BayParmNotFoundException;
+import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiResponses;
 
 /**
  * 
- * @author axd8472
+ * @author axd8472 & @author spv5283
  *
  */
 @RestController
@@ -45,15 +45,16 @@ public class BayParmController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
+
 	/**
 	 * 
 	 * @param locationId
 	 * @param activeFlag
 	 * @return
-	 * @throws BayParmNotFoundException
+	 * @throws DataNotFoundException
 	 */
 	public ResponseEntity<List<BayParmResource>> getBayParm(@QueryParam("locationId") String locationId,
-			@QueryParam("activeFlag") String activeFlag) throws BayParmNotFoundException {
+			@QueryParam("activeFlag") String activeFlag) throws DataNotFoundException {
 
 		final List<BayParm> bayParms = bayParmService.getBayParm(locationId, activeFlag);
 		final List<BayParmResource> resources = bayParmResourceAssembler.toResources(bayParms);

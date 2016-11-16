@@ -15,12 +15,22 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.homedepot.mm.po.allocationteamdata" })
 @EnableSwagger2
+
 public class AllocationTeamDataApplication {
 
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(AllocationTeamDataApplication.class, args);
 	}
 
+	/**
+	 * api method is for Swagger configuration
+	 * 
+	 * @return
+	 */
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
