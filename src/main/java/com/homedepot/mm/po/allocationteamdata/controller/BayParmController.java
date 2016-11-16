@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.BayParmResourceAssembler;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParmEntityDTO;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 import com.homedepot.mm.po.allocationteamdata.exception.BayParmNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 
@@ -55,7 +55,7 @@ public class BayParmController {
 	public ResponseEntity<List<BayParmResource>> getBayParm(@QueryParam("locationId") String locationId,
 			@QueryParam("activeFlag") String activeFlag) throws BayParmNotFoundException {
 
-		final List<BayParmEntityDTO> bayParms = bayParmService.getBayParm(locationId, activeFlag);
+		final List<BayParm> bayParms = bayParmService.getBayParm(locationId, activeFlag);
 		final List<BayParmResource> resources = bayParmResourceAssembler.toResources(bayParms);
 
 		return new ResponseEntity<List<BayParmResource>>(resources, HttpStatus.OK);

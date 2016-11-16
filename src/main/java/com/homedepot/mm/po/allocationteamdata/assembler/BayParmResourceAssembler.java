@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.homedepot.mm.po.allocationteamdata.controller.BayParmController;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParmEntityDTO;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 
 /**
  * BayParmResourceAssembler is for implementing HATEOAS design
@@ -22,7 +22,7 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParmEntityDTO
  *
  */
 @Component
-public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParmEntityDTO, BayParmResource> {
+public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, BayParmResource> {
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParmEn
 	 * 
 	 */
 	@Override
-	public List<BayParmResource> toResources(Iterable<? extends BayParmEntityDTO> arg0) {
+	public List<BayParmResource> toResources(Iterable<? extends BayParm> arg0) {
 		List<BayParmResource> bayParmResources = new ArrayList<>();
 
 		arg0.forEach(BayParmEntityDTO -> {
@@ -50,11 +50,11 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParmEn
 		return bayParmResources;
 	}
 
-	/**
-	 * 
-	 */
+	
+
 	@Override
-	public BayParmResource toResource(BayParmEntityDTO entity) {
+	public BayParmResource toResource(BayParm entity) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -1,4 +1,4 @@
-package com.homedepot.mm.po.allocationteamdata.repository.teradata;
+package com.homedepot.mm.po.allocationteamdata.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,7 +15,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.homedepot.mm.po.allocationteamdata.AllocationTeamDataApplication;
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParmEntityDTO;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
+import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmRepository;
 
 
 
@@ -23,16 +24,16 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParmEntityDTO
 @SpringBootTest(classes = {AllocationTeamDataApplication.class})
 @TestPropertySource("/application.properties")
 
-public class TeradataRepositoryTest {
+public class BayParmRepositoryTest {
 
-    private static Logger log = LoggerFactory.getLogger(TeradataRepositoryTest.class);
+    private static Logger log = LoggerFactory.getLogger(BayParmRepositoryTest.class);
     
     @Autowired
-    TeradataAllocationJpaRepository barRepo;
+    BayParmRepository barRepo;
     
     @Test
     public void test() {
-    	List<BayParmEntityDTO> bayParmEntityDTOs = null;
+    	List<BayParm> bayParmEntityDTOs = null;
         try {
         	bayParmEntityDTOs = barRepo.findByLocationidAndActiveflag("0357","Y");
         } catch (Exception e) {
@@ -40,7 +41,7 @@ public class TeradataRepositoryTest {
             throw e;
         }
         
-        for(BayParmEntityDTO dto: bayParmEntityDTOs){
+        for(BayParm dto: bayParmEntityDTOs){
 			switch (dto.getSequencenumber().intValue()) {
 			case 491:
 				assertEquals((double)4910, dto.getBay_parm_val(),.00000001);

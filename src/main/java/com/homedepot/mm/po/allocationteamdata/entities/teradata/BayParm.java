@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TLALLOC_BAYPARM_STG")
-public class BayParmEntityDTO {
+public class BayParm {
 	@Id
 	private Long sequencenumber;
 	
