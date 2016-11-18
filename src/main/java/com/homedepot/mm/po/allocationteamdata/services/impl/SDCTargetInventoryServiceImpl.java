@@ -10,12 +10,15 @@ import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.SDCTargetInventoryRepository;
 import com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService;
 
+import lombok.Data;
+
 @Service("SDCTargetInventoryServiceImpl")
 /**
  * 
  * @author axd8472 & @author spv5283
  *
  */
+@Data
 public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService {
 
 	@Autowired

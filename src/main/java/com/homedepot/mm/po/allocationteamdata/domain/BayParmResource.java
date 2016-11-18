@@ -14,6 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+
 public class BayParmResource extends ResourceSupport {
 
 	private Long sequencenumber;

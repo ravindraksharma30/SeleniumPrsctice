@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.Data;
 
 /**
  * 
@@ -29,6 +30,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @RestController
+@Data
 public class SDCTargetInventoryController {
 
 	@Autowired

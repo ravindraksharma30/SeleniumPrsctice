@@ -1,4 +1,4 @@
-package com.homedepot.mm.po.allocationteamdata.repository;
+package com.homedepot.mm.po.allocationteamdata.teradata.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
