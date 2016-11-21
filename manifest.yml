@@ -1,0 +1,13 @@
+---
+path: .
+disk_quota: 768M
+memory: 768M
+
+# app-specific configuration
+applications:
+  - name: AllocationTeamData
+    buildpack: https://github.com/cloudfoundry/java-buildpack.git
+    instances: 1
+    health-check-type: none
+    path: build/libs/AllocationTeamData-0.0.1-SNAPSHOT.war
+    timeout: 120
