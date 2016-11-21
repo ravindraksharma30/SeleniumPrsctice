@@ -50,7 +50,7 @@ public class TeradataDatabaseConfig {
 	@Bean(name = "teradataVendorAdapter")
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adaptor = new HibernateJpaVendorAdapter();
-        adaptor.setShowSql(false);
+        adaptor.setShowSql(true);
         adaptor.setGenerateDdl(false);
         //adaptor.setDatabase(Da);
         adaptor.setDatabasePlatform("org.hibernate.dialect.TeradataDialect");

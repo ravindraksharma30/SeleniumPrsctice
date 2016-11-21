@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.AllocationOnBoardAssembler;
 import com.homedepot.mm.po.allocationteamdata.domain.AllocationOnBoardResource;
-import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoard;
 import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
@@ -31,33 +30,31 @@ import io.swagger.annotations.ApiResponses;
  */
 @RestController
 public class AllocationOnBoardController {
-	
+
 	@Autowired
 	AllocationOnBoardService allocationOnBoardService;
-	
+
 	@Autowired
 	AllocationOnBoardAssembler allocationOnBoardAssembler;
 
 	@GetMapping(value = "/findAllocationOnBoard", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Retrieve System Parm and Transload ETA Days based on location and activeflag", nickname = "AllocationOnBoard")
+	@ApiOperation(value = "Retrieve System Parm and Transload ETA Days based on parmTypeCode", nickname = "AllocationOnBoard")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "parm_loc_id", value = "DC Location Id", required = false, dataType = "integer", paramType = "query", defaultValue = "Smyrna"),
-			@ApiImplicitParam(name = "actv_flg", value = "Active Flag", required = false, dataType = "string", paramType = "query", defaultValue = "Y") })
+			@ApiImplicitParam(name = "parmTypeCode", value = "Parm TypeCode", required = false, dataType = "string", paramType = "query", defaultValue = "1") })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
 
 	/**
 	 * 
-	 * @param locationId
-	 * @param activeFlag
+	 * @param parmTypeCode
 	 * @return
 	 * @throws DataNotFoundException
 	 */
-	public ResponseEntity<List<AllocationOnBoardResource>> getBayParm(@QueryParam("locationId") Integer locationId,
-			@QueryParam("activeFlag") String activeFlag) throws DataNotFoundException {
+	public ResponseEntity<List<AllocationOnBoardResource>> getBayParm(@QueryParam("parmTypeCode") Integer parmTypeCode)
+			throws DataNotFoundException {
 
-		final List<AllocationOnBoard> allocationOnBoard = allocationOnBoardService.getAllocationOnBoard(locationId, activeFlag);
+		final List<AllocationOnBoard> allocationOnBoard = allocationOnBoardService.getAllocationOnBoard(parmTypeCode);
 		final List<AllocationOnBoardResource> resources = allocationOnBoardAssembler.toResources(allocationOnBoard);
 
 		return new ResponseEntity<List<AllocationOnBoardResource>>(resources, HttpStatus.OK);

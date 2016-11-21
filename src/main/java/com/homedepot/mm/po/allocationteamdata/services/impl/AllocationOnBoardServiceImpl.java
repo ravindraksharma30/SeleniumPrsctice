@@ -17,13 +17,16 @@ import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
  */
 @Service("AllocationOnBoardServiceImpl")
 public class AllocationOnBoardServiceImpl implements AllocationOnBoardService {
-	
+
 	@Autowired
 	AllocationOnBoardRepository allocationOnBoardRepository;
-	
+
 	@Override
-	public List<AllocationOnBoard> getAllocationOnBoard(final Integer locationId, final String activeFlag) throws DataNotFoundException {
-		final List<AllocationOnBoard> allocationOnBoard = allocationOnBoardRepository.findByParm_loc_idAndActv_flg(locationId, activeFlag);
-		return allocationOnBoard;
+	public List<AllocationOnBoard> getAllocationOnBoard(final Integer transloadAllocationParmTypeCode)
+			throws DataNotFoundException {
+
+		List<AllocationOnBoard> allocationOnBoards = allocationOnBoardRepository
+				.findByTransloadAllocationParmTypeCode(transloadAllocationParmTypeCode);
+		return allocationOnBoards;
 	}
 }
