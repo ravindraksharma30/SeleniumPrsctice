@@ -33,19 +33,22 @@ public class AllocationOnBoardAssembler extends ResourceAssemblerSupport<Allocat
 	public List<AllocationOnBoardResource> toResources(List<AllocationOnBoard> allocationsOnBoard) {
 		List<AllocationOnBoardResource> allocationOnBoardResources = new ArrayList<>();
 
-		allocationsOnBoard.forEach(allocationOnBoard -> {
-			AllocationOnBoardResource allocationOnBoardResource = new AllocationOnBoardResource(
-					allocationOnBoard.getId().getTld_alloc_onbrd_parm_id(),
-					allocationOnBoard.getId().getTld_alloc_parm_typ_cd(), allocationOnBoard.getParm_mvndr_prty_id(),
-					allocationOnBoard.getParm_item_id(), allocationOnBoard.getParm_loc_id(),
-					allocationOnBoard.getParm_loc_typ_cd(), allocationOnBoard.getParm_flg_val(),
-					allocationOnBoard.getParm_intg_val(), allocationOnBoard.getParm_dt_val(),
-					allocationOnBoard.getParm_char_val(), allocationOnBoard.getParm_dec_val(),
-					allocationOnBoard.getActv_flg());
+		if (!allocationsOnBoard.isEmpty()) {
 
-			allocationOnBoardResource.add(linkTo(AllocationOnBoardController.class).slash("find").withSelfRel());
-			allocationOnBoardResources.add(allocationOnBoardResource);
-		});
+			allocationsOnBoard.forEach(allocationOnBoard -> {
+				AllocationOnBoardResource allocationOnBoardResource = new AllocationOnBoardResource(
+						allocationOnBoard.getId().getTld_alloc_onbrd_parm_id(),
+						allocationOnBoard.getId().getTld_alloc_parm_typ_cd(), allocationOnBoard.getParm_mvndr_prty_id(),
+						allocationOnBoard.getParm_item_id(), allocationOnBoard.getParm_loc_id(),
+						allocationOnBoard.getParm_loc_typ_cd(), allocationOnBoard.getParm_flg_val(),
+						allocationOnBoard.getParm_intg_val(), allocationOnBoard.getParm_dt_val(),
+						allocationOnBoard.getParm_char_val(), allocationOnBoard.getParm_dec_val(),
+						allocationOnBoard.getActv_flg());
+
+				allocationOnBoardResource.add(linkTo(AllocationOnBoardController.class).slash("find").withSelfRel());
+				allocationOnBoardResources.add(allocationOnBoardResource);
+			});
+		}
 
 		return allocationOnBoardResources;
 	}
