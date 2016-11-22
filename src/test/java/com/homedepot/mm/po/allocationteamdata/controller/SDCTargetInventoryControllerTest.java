@@ -18,13 +18,21 @@ import io.restassured.RestAssured;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { AllocationTeamDataApplication.class }, webEnvironment = WebEnvironment.RANDOM_PORT)
-
+/**
+ * 
+ * @author gxk8870
+ *
+ */
 public class SDCTargetInventoryControllerTest {
 
 	@LocalServerPort
 	int port;
 
 	@Test
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	public void testFindSDCTargetInventory_StatusCode_200() throws Exception {
 
 		given().when().get("/findSDCTargetInventory?locationId=5150&activeFlag=Y").then().statusCode(200);
@@ -32,18 +40,29 @@ public class SDCTargetInventoryControllerTest {
 	}
 
 	@Test
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	public void testFindSDCTargetInventory_JsonRespnse() throws Exception {
 		given().when().get("/findSDCTargetInventory?locationId=5150&activeFlag=Y").then().assertThat()
 				.body("productCode[0]", equalTo("1000017968"));
 	}
 
 	@Test
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	public void testFindSDCTargetInventory_JsonRespnse_ContainsString() throws Exception {
 		given().when().get("/findSDCTargetInventory?locationId=5150&activeFlag=Y").then().assertThat()
 				.body(containsString("1000017968"));
 	}
 
 	@Before
+	/**
+	 * 
+	 */
 	public void setUp() {
 
 		RestAssured.basePath = "/AllocationTeamData";

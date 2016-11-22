@@ -5,9 +5,11 @@ package com.homedepot.mm.po.allocationteamdata.assembler;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +21,11 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
  * BayParmResourceAssembler is for implementing HATEOAS design
  * 
  * @author axd8472 & @author spv5283
- *
+ *         
  */
 @Component
 public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, BayParmResource> {
-
+	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	/**
 	 * Constructor
 	 */
@@ -49,8 +51,11 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 			bayParmResource.add(linkTo(BayParmController.class).slash("find").withSelfRel());
 			bayParmResources.add(bayParmResource);
 		});
-
+		
+ 
 		return bayParmResources;
+		
+		
 	}
 
 	@Override

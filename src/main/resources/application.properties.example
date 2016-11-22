@@ -1,7 +1,0 @@
-spring.datasource.url = jdbc:teradata://dcmqa.homedepot.com/LOGMECH=LDAP
-spring.datasource.username = SVC_QA_TLALLOCCSTM
-spring.datasource.password = 
-spring.datasource.driverClassName = com.teradata.jdbc.TeraDriver
-spring.jpa.database-platform = org.hibernate.dialect.TeradataDialect
-spring.jpa.show-sql = true
-security.basic.enabled = false
