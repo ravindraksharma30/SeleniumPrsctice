@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.homedepot.mm.po.allocationteamdata.assembler.OverageDaysResourceAssembler;
 import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
-import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.services.OverageDaysService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -28,10 +27,10 @@ public class OverageDaysController {
 
 	@Autowired
 	OverageDaysService overageDaysService;
-	
+
 	@Autowired
 	OverageDaysResourceAssembler overageDaysResourceAssembler;
-	
+
 	@GetMapping(value = "/findOverageDays", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Retrieve Overage Days based on location and activeflag", nickname = "OverageDays")
 	@ApiImplicitParams({
@@ -40,10 +39,9 @@ public class OverageDaysController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-	
-	
+
 	public ResponseEntity<List<OverageDaysResource>> getOverageDays(@QueryParam("locationId") String locationId,
-			@QueryParam("activeFlag") String activeFlag) throws DataNotFoundException {
+			@QueryParam("activeFlag") String activeFlag) {
 
 		final List<OverageDays> overageDays = overageDaysService.getOverageDays(locationId, activeFlag);
 		final List<OverageDaysResource> resources = overageDaysResourceAssembler.toResources(overageDays);

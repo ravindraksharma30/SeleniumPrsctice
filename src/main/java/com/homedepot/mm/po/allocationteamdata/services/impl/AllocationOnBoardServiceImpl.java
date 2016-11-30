@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoard;
-import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.AllocationOnBoardRepository;
 import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
 
@@ -22,8 +21,7 @@ public class AllocationOnBoardServiceImpl implements AllocationOnBoardService {
 	AllocationOnBoardRepository allocationOnBoardRepository;
 
 	@Override
-	public List<AllocationOnBoard> getAllocationOnBoard(final Integer transloadAllocationParmTypeCode)
-			throws DataNotFoundException {
+	public List<AllocationOnBoard> getAllocationOnBoard(final Integer transloadAllocationParmTypeCode) {
 
 		List<AllocationOnBoard> allocationOnBoards = allocationOnBoardRepository
 				.findByTransloadAllocationParmTypeCode(transloadAllocationParmTypeCode);

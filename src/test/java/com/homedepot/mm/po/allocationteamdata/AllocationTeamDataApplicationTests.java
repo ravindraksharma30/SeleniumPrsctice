@@ -1,4 +1,4 @@
-package com.homedepot.mm.po.allocation;
+package com.homedepot.mm.po.allocationteamdata;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;

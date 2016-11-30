@@ -9,20 +9,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.homedepot.mm.po.allocationteamdata.AllocationTeamDataApplication;
+import com.homedepot.mm.po.allocationteamdata.configuration.H2Configuration;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmRepository;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = { AllocationTeamDataApplication.class })
 
 /**
  * 
  * @author gxk8870
  *
  */
+//@ActiveProfiles("test")
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = { H2Configuration.class })
 public class BayParmRepositoryTest {
 
 	@Autowired
@@ -34,7 +35,7 @@ public class BayParmRepositoryTest {
 	 */
 	public void testBayParmRepository() {
 		List<BayParm> bayParms = null;
-		bayParms = barRepo.findByLocationidAndActiveflag("0357", "Y");
+		bayParms = barRepo.findByLocationidAndActiveflag("5068", "Y");
 
 		for (BayParm bayParm : bayParms) {
 			switch (bayParm.getSequencenumber().intValue()) {

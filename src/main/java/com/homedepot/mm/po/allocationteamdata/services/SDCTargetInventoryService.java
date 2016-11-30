@@ -24,6 +24,5 @@ public interface SDCTargetInventoryService {
 	 * @throws DataNotFoundException
 	 */
 
-	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String activeFlag)
-			throws DataNotFoundException;
+	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String activeFlag);
 }

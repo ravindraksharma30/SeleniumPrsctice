@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.homedepot.mm.po.allocationteamdata.assembler.AllocationOnBoardAssembler;
 import com.homedepot.mm.po.allocationteamdata.domain.AllocationOnBoardResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoard;
-import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -51,8 +50,7 @@ public class AllocationOnBoardController {
 	 * @return
 	 * @throws DataNotFoundException
 	 */
-	public ResponseEntity<List<AllocationOnBoardResource>> getBayParm(@QueryParam("parmTypeCode") Integer parmTypeCode)
-			throws DataNotFoundException {
+	public ResponseEntity<List<AllocationOnBoardResource>> getBayParm(@QueryParam("parmTypeCode") Integer parmTypeCode) {
 
 		final List<AllocationOnBoard> allocationOnBoard = allocationOnBoardService.getAllocationOnBoard(parmTypeCode);
 		final List<AllocationOnBoardResource> resources = allocationOnBoardAssembler.toResources(allocationOnBoard);

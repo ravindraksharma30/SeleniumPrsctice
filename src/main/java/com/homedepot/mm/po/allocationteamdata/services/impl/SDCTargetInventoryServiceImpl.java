@@ -6,19 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInventory;
-import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.SDCTargetInventoryRepository;
 import com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService;
 
-import lombok.Data;
 
-@Service("SDCTargetInventoryServiceImpl")
 /**
  * 
  * @author axd8472 & @author spv5283
  *
  */
-@Data
+@Service("SDCTargetInventoryServiceImpl")
 public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService {
 
 	@Autowired
@@ -32,8 +29,7 @@ public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService 
 	 * @return
 	 * @throws DataNotFoundException
 	 */
-	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String activeFlag)
-			throws DataNotFoundException {
+	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String activeFlag) {
 
 		final List<SDCTargetInventory> sdcTargetInventories = sdcTargetInventoryRepository
 				.findByLocationidAndActiveflag(locationId, activeFlag);

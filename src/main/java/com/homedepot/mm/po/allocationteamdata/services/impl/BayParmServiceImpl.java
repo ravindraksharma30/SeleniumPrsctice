@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
-import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmRepository;
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 
@@ -29,9 +28,9 @@ public class BayParmServiceImpl implements BayParmService {
 	 * @param locationId
 	 * @param activeFlag
 	 * @return
-	 * @throws DataNotFoundException
+	 * 
 	 */
-	public List<BayParm> getBayParm(final String locationId, final String activeFlag) throws DataNotFoundException {
+	public List<BayParm> getBayParm(final String locationId, final String activeFlag) {
 
 		final List<BayParm> bayparms = bayParmRepository.findByLocationidAndActiveflag(locationId, activeFlag);
 

@@ -5,11 +5,9 @@ package com.homedepot.mm.po.allocationteamdata.assembler;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +23,6 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
  */
 @Component
 public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, BayParmResource> {
-	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	/**
 	 * Constructor
 	 */

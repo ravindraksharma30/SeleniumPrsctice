@@ -25,6 +25,6 @@ public interface BayParmService {
 	 * @return
 	 * @throws DataNotFoundException
 	 */
-	public List<BayParm> getBayParm(final String locationId, final String activeFlag) throws DataNotFoundException;
+	public List<BayParm> getBayParm(final String locationId, final String activeFlag);
 
 }

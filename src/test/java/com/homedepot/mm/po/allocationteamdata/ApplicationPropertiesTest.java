@@ -1,4 +1,4 @@
-package com.homedepot.mm.po.allocation;
+package com.homedepot.mm.po.allocationteamdata;
 
 import org.springframework.beans.factory.annotation.Value;
 
