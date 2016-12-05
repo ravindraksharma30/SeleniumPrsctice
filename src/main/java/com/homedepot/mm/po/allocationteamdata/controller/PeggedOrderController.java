@@ -49,10 +49,9 @@ public class PeggedOrderController {
 
 	/**
 	 * 
-	 * @param locationId
-	 * @param activeFlag
+	 * @param asnNumber
+	 * @param poNumber
 	 * @return
-	 * @throws DataNotFoundException
 	 */
 	public ResponseEntity<List<PeggedOrderResource>> findPeggedOrders(@QueryParam("asnNumber") String asnNumber,
 			@QueryParam("poNumber") String poNumber) {
