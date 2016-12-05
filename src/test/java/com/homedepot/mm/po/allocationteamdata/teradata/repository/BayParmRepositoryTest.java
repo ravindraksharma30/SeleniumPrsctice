@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.homedepot.mm.po.allocationteamdata.configuration.H2Configuration;
+import com.homedepot.mm.po.allocationteamdata.AllocationTeamDataApplication;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmRepository;
 
@@ -22,7 +22,7 @@ import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmReposit
  */
 //@ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = { H2Configuration.class })
+@SpringBootTest(classes = { AllocationTeamDataApplication.class })
 public class BayParmRepositoryTest {
 
 	@Autowired
