@@ -10,14 +10,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.homedepot.mm.po.allocationteamdata.AllocationTeamDataApplication;
+import com.homedepot.mm.po.allocationteamdata.configuration.H2Configuration;
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
 import com.homedepot.mm.po.allocationteamdata.repository.oracle.PeggedOrderRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = { AllocationTeamDataApplication.class })
+@SpringBootTest(classes = { H2Configuration.class })
+@SqlGroup({ @Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/PeggedOrderPreTest.sql"),
+		@Sql(executionPhase = ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/PeggedOrderPostTest.sql") })
 public class PeggedOrderRepositoryTest {
 
 	@Autowired
@@ -29,7 +34,7 @@ public class PeggedOrderRepositoryTest {
 
 		for (PeggedOrder peggedOrder : peggedOrders) {
 			switch (peggedOrder.getVirt_peg_ord_id().toString()) {
-			case "67844":
+			/*case "67844":
 				assertEquals(new BigDecimal("36"), peggedOrder.getPeg_ord_qty());
 				break;
 			case "67845":
@@ -40,13 +45,13 @@ public class PeggedOrderRepositoryTest {
 				break;
 			case "68741":
 				assertEquals(new BigDecimal("12"), peggedOrder.getPeg_ord_qty());
-				break;
+				break;*/
 			case "68742":
-				assertEquals(new BigDecimal("12"), peggedOrder.getPeg_ord_qty());
+				assertEquals(new BigDecimal("12.000000"), peggedOrder.getPeg_ord_qty());
 				break;
-			case "68743":
+			/*case "68743":
 				assertEquals(new BigDecimal("12"), peggedOrder.getPeg_ord_qty());
-				break;
+				break;*/
 			}
 			assertNotNull(peggedOrders);
 		}

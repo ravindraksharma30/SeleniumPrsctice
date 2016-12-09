@@ -9,6 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.homedepot.mm.po.allocationteamdata.configuration.H2Configuration;
@@ -20,9 +23,10 @@ import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmReposit
  * @author gxk8870
  *
  */
-//@ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { H2Configuration.class })
+@SqlGroup({ @Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/BayParmPreTest.sql"),
+		@Sql(executionPhase = ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/BayParmPostTest.sql") })
 public class BayParmRepositoryTest {
 
 	@Autowired

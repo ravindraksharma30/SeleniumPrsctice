@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "h2EntityManagerFactory", basePackages = {
-		"com.homedepot.mm.po.allocationteamdata.repository.teradata" })
+		"com.homedepot.mm.po.allocationteamdata.repository" })
 public class H2Configuration {
 
 	@Bean
@@ -35,6 +35,7 @@ public class H2Configuration {
 		dataSource.setUsername("sa");
 		// dataSource.setPassword(qaPassword);
 		dataSource.setDriverClassName("org.h2.Driver");
+		//dataSource.
 		return dataSource;
 
 		// return DataSourceBuilder.create().build();
@@ -54,7 +55,7 @@ public class H2Configuration {
 		LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
 		lef.setDataSource(h2DataDataSource());
 		lef.setJpaVendorAdapter(jpaVendorAdapter());
-		lef.setPackagesToScan("com.homedepot.mm.po.allocationteamdata.entities.teradata");
+		lef.setPackagesToScan("com.homedepot.mm.po.allocationteamdata.entities");
 		lef.setPersistenceUnitName("h2PersistenceUnit");
 		lef.afterPropertiesSet();
 		return lef.getObject();
