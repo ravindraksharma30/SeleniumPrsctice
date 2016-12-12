@@ -9,9 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.homedepot.mm.po.allocationteamdata.AllocationTeamDataApplication;
+import com.homedepot.mm.po.allocationteamdata.configuration.H2Configuration;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmRepository;
 
@@ -20,9 +23,10 @@ import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmReposit
  * @author gxk8870
  *
  */
-//@ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = { AllocationTeamDataApplication.class })
+@SpringBootTest(classes = { H2Configuration.class })
+@SqlGroup({ @Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/BayParmPreTest.sql"),
+		@Sql(executionPhase = ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/BayParmPostTest.sql") })
 public class BayParmRepositoryTest {
 
 	@Autowired
@@ -34,7 +38,7 @@ public class BayParmRepositoryTest {
 	 */
 	public void testBayParmRepository() {
 		List<BayParm> bayParms = null;
-		bayParms = barRepo.findByLocationidAndProductcodeAndActiveflag("5068","", "Y");
+		bayParms = barRepo.findByLocationidAndProductcodeAndActiveflag("5068","cd", "Y");
 
 		for (BayParm bayParm : bayParms) {
 			switch (bayParm.getSequencenumber().intValue()) {

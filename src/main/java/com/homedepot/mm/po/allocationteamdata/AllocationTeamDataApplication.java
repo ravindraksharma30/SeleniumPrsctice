@@ -29,7 +29,7 @@ public class AllocationTeamDataApplication {
 	}
 
 	@Bean
-		public HibernateExceptionTranslator hibernateExceptionTranslator() {
+	public HibernateExceptionTranslator hibernateExceptionTranslator() {
 		return new HibernateExceptionTranslator();
 	}
 }

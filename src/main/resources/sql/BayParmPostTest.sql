@@ -1,0 +1,1 @@
+Drop table TLALLOC_BAYPARM_STG;

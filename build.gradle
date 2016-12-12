@@ -92,7 +92,7 @@ dependencies {
 	//Testing framework dependencies
 	testCompile(group: 'org.codehaus.groovy', name: 'groovy', version: '2.4.7')
 	testCompile(group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4')
-	//testCompile(group: 'com.h2database', name: 'h2', version: '1.4.193')
+	testCompile(group: 'com.h2database', name: 'h2', version: '1.4.193')
 
 }
 task jenkinsTest{
