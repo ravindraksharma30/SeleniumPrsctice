@@ -15,5 +15,6 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
  */
 @Repository("BayParmRepository")
 public interface BayParmRepository extends JpaRepository<BayParm, Long> {
-	public List<BayParm> findByLocationidAndActiveflag(String locationId, String activeFlag);
+	public List<BayParm> findByLocationidAndProductcodeAndActiveflag(String locationId, String skuNumber,
+			String activeFlag);
 }

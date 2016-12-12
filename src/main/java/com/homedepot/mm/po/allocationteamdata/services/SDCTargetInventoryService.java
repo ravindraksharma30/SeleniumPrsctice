@@ -3,7 +3,6 @@ package com.homedepot.mm.po.allocationteamdata.services;
 import java.util.List;
 
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInventory;
-import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 
 /**
  * 
@@ -19,10 +18,10 @@ public interface SDCTargetInventoryService {
 	 * Retrieves list of SDCTargetInventory using LocationId and ActiveFlag
 	 * 
 	 * @param locationId
+	 * @param skuNumber
 	 * @param activeFlag
 	 * @return
-	 * @throws DataNotFoundException
 	 */
-
-	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String activeFlag);
+	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String skuNumber,
+			final String activeFlag);
 }

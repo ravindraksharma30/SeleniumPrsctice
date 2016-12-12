@@ -1,12 +1,11 @@
-	/**
- * 
- */
+/**
+* 
+*/
 package com.homedepot.mm.po.allocationteamdata.services;
 
 import java.util.List;
 
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
-import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 
 /**
  * BayParmService is to do CRUD operations on the data retrieved from
@@ -18,13 +17,13 @@ import com.homedepot.mm.po.allocationteamdata.exception.DataNotFoundException;
 public interface BayParmService {
 
 	/**
-	 * Retrieves list of BayParm using LocationId and ActiveFlag
+	 * Retrieves list of BayParm using LocationId, SkuNumber and ActiveFlag
 	 * 
 	 * @param locationId
+	 * @param skuNumber
 	 * @param activeFlag
 	 * @return
-	 * @throws DataNotFoundException
 	 */
-	public List<BayParm> getBayParm(final String locationId, final String activeFlag);
+	public List<BayParm> getBayParm(final String locationId, final String skuNumber, final String activeFlag);
 
 }

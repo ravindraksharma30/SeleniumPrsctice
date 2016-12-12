@@ -32,7 +32,7 @@ public class OverageDaysRepositoryTest {
 	 * 
 	 */
 	public void testOverageDaysRepository() {
-		List<OverageDays> overageDays = overageDaysRepository.findByLocationidAndActiveflag("5098", "Y");
+		List<OverageDays> overageDays = overageDaysRepository.findByLocationidAndProductcodeAndActiveflag("5098","", "Y");
 
 		for (OverageDays overageDay : overageDays) {
 			switch (overageDay.getSequencenumber().intValue()) {

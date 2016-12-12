@@ -40,6 +40,7 @@ public class BayParmController {
 	@ApiOperation(value = "Retrieve BayParm based on location and activeflag", nickname = "BayParm")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "locationId", value = "DC Location Id", required = false, dataType = "string", paramType = "query", defaultValue = "Smyrna"),
+			@ApiImplicitParam(name = "skuNumber", value = "SKU Number", required = false, dataType = "string", paramType = "query", defaultValue = "100000"),
 			@ApiImplicitParam(name = "activeFlag", value = "Active Flag", required = false, dataType = "string", paramType = "query", defaultValue = "Y") })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
@@ -53,9 +54,9 @@ public class BayParmController {
 	 * @throws DataNotFoundException
 	 */
 	public ResponseEntity<List<BayParmResource>> getBayParm(@QueryParam("locationId") String locationId,
-			@QueryParam("activeFlag") String activeFlag) {
+			@QueryParam("skuNumber") String skuNumber, @QueryParam("activeFlag") String activeFlag) {
 
-		final List<BayParm> bayParms = bayParmService.getBayParm(locationId, activeFlag);
+		final List<BayParm> bayParms = bayParmService.getBayParm(locationId,skuNumber, activeFlag);
 		final List<BayParmResource> resources = bayParmResourceAssembler.toResources(bayParms);
 
 		return new ResponseEntity<List<BayParmResource>>(resources, HttpStatus.OK);

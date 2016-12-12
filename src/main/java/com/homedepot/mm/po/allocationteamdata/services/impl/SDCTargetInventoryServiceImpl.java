@@ -9,7 +9,6 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInvento
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.SDCTargetInventoryRepository;
 import com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService;
 
-
 /**
  * 
  * @author axd8472 & @author spv5283
@@ -26,13 +25,15 @@ public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService 
 	 * 
 	 * @param locationId
 	 * @param activeFlag
+	 * @param skuNumber
 	 * @return
-	 * @throws DataNotFoundException
+	 * 
 	 */
-	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String activeFlag) {
+	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String skuNumber,
+			final String activeFlag) {
 
 		final List<SDCTargetInventory> sdcTargetInventories = sdcTargetInventoryRepository
-				.findByLocationidAndActiveflag(locationId, activeFlag);
+				.findByLocationidAndProductcodeAndActiveflag(locationId, skuNumber, activeFlag);
 
 		return sdcTargetInventories;
 	}

@@ -16,5 +16,5 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInvento
 @Repository("SDCTargetInventoryRepository")
 public interface SDCTargetInventoryRepository extends JpaRepository<SDCTargetInventory, Long> {
 
-	public List<SDCTargetInventory> findByLocationidAndActiveflag(final String loacationid, final String activeflag);
+	public List<SDCTargetInventory> findByLocationidAndProductcodeAndActiveflag(final String loacationid, final String skuNumber, final String activeflag);
 }

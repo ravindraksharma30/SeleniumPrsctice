@@ -9,5 +9,6 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
 
 @Repository("OverageDaysRepository")
 public interface OverageDaysRepository extends JpaRepository<OverageDays, Long> {
-	public List<OverageDays> findByLocationidAndActiveflag(String locationId, String activeFlag);
-}	
+	public List<OverageDays> findByLocationidAndProductcodeAndActiveflag(String locationId, String skuNumber,
+			String activeFlag);
+}

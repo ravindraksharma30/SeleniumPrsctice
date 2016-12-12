@@ -27,12 +27,14 @@ public class BayParmServiceImpl implements BayParmService {
 	 * 
 	 * @param locationId
 	 * @param activeFlag
+	 * @param skuNumber
 	 * @return
 	 * 
 	 */
-	public List<BayParm> getBayParm(final String locationId, final String activeFlag) {
 
-		final List<BayParm> bayparms = bayParmRepository.findByLocationidAndActiveflag(locationId, activeFlag);
+	public List<BayParm> getBayParm(final String locationId, final String skuNumber, final String activeFlag) {
+
+		final List<BayParm> bayparms = bayParmRepository.findByLocationidAndProductcodeAndActiveflag(locationId,skuNumber, activeFlag);
 
 		return bayparms;
 	}

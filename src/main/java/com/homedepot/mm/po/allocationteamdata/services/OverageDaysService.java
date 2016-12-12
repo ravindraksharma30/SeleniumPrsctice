@@ -12,5 +12,5 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
  */
 public interface OverageDaysService {
 
-	public List<OverageDays> getOverageDays(final String locationId, final String activeFlag);
+	public List<OverageDays> getOverageDays(final String locationId, final String skuNumber, final String activeFlag);
 }

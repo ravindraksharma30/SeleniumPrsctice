@@ -16,9 +16,9 @@ public class OverageDaysServiceImpl implements OverageDaysService {
 	OverageDaysRepository overageDaysRepository;
 
 	@Override
-	public List<OverageDays> getOverageDays(final String locationId, final String activeFlag) {
-		final List<OverageDays> overageDays = overageDaysRepository.findByLocationidAndActiveflag(locationId,
-				activeFlag);
+	public List<OverageDays> getOverageDays(final String locationId, final String skuNumber, final String activeFlag) {
+		final List<OverageDays> overageDays = overageDaysRepository
+				.findByLocationidAndProductcodeAndActiveflag(locationId, skuNumber, activeFlag);
 		return overageDays;
 	}
 }

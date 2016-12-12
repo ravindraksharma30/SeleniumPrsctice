@@ -32,7 +32,7 @@ public class SDCTargetInventoryTest {
 	 */
 	public void testSDCTargetInventoryRepository() {
 		List<SDCTargetInventory> sdcTargetInventories = sDCTargetInventoryRepository
-				.findByLocationidAndActiveflag("5150", "Y");
+				.findByLocationidAndProductcodeAndActiveflag("5150", "", "Y");
 		for (SDCTargetInventory sdcTargetInventory : sdcTargetInventories) {
 			switch (sdcTargetInventory.getSequencenumber().intValue()) {
 			case 618:
@@ -55,7 +55,7 @@ public class SDCTargetInventoryTest {
 	 */
 	public void sdcTargetInventory_NotNull() {
 		List<SDCTargetInventory> sdcTargetInventories = sDCTargetInventoryRepository
-				.findByLocationidAndActiveflag("5150", "Y");
+				.findByLocationidAndProductcodeAndActiveflag("5150", "", "Y");
 		assertNotNull(sdcTargetInventories);
 
 	}

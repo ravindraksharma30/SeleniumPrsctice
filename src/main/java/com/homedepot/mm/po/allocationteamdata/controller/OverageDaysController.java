@@ -35,15 +35,16 @@ public class OverageDaysController {
 	@ApiOperation(value = "Retrieve Overage Days based on location and activeflag", nickname = "OverageDays")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "locationId", value = "DC Location Id", required = false, dataType = "string", paramType = "query", defaultValue = "Smyrna"),
+			@ApiImplicitParam(name = "skuNumber", value = "SKU Number", required = false, dataType = "string", paramType = "query", defaultValue = "100000"),
 			@ApiImplicitParam(name = "activeFlag", value = "Active Flag", required = false, dataType = "string", paramType = "query", defaultValue = "Y") })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
 
 	public ResponseEntity<List<OverageDaysResource>> getOverageDays(@QueryParam("locationId") String locationId,
-			@QueryParam("activeFlag") String activeFlag) {
+			@QueryParam("skuNumber") String skuNumber, @QueryParam("activeFlag") String activeFlag) {
 
-		final List<OverageDays> overageDays = overageDaysService.getOverageDays(locationId, activeFlag);
+		final List<OverageDays> overageDays = overageDaysService.getOverageDays(locationId, skuNumber, activeFlag);
 		final List<OverageDaysResource> resources = overageDaysResourceAssembler.toResources(overageDays);
 
 		return new ResponseEntity<List<OverageDaysResource>>(resources, HttpStatus.OK);

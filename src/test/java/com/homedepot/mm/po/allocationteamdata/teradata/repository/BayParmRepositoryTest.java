@@ -34,7 +34,7 @@ public class BayParmRepositoryTest {
 	 */
 	public void testBayParmRepository() {
 		List<BayParm> bayParms = null;
-		bayParms = barRepo.findByLocationidAndActiveflag("5068", "Y");
+		bayParms = barRepo.findByLocationidAndProductcodeAndActiveflag("5068","", "Y");
 
 		for (BayParm bayParm : bayParms) {
 			switch (bayParm.getSequencenumber().intValue()) {
