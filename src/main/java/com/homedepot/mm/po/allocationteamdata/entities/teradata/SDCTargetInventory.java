@@ -1,5 +1,7 @@
 package com.homedepot.mm.po.allocationteamdata.entities.teradata;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -22,7 +24,7 @@ public class SDCTargetInventory {
 	private int uploadid;
 	private String locationid;
 	private String productcode;
-	private double tgt_inv_qty;
+	private BigDecimal tgt_inv_qty;
 	private String activeflag;
 	
 	

@@ -8,6 +8,6 @@ package com.homedepot.mm.po.allocationteamdata.enums;
  *
  */
 public enum LocationType {
-	S, D
+	S, D,WS
 
 }

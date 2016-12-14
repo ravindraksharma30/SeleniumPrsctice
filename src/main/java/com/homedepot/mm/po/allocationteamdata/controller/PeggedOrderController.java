@@ -74,12 +74,11 @@ public class PeggedOrderController {
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
 
+	
 	/**
 	 * 
-	 * @param locationId
-	 * @param activeFlag
+	 * @param transloadSkuDTO
 	 * @return
-	 * @throws DataNotFoundException
 	 */
 	public ResponseEntity<?> createPeggedOrders(@RequestBody TransloadSkuDTO transloadSkuDTO) {
 

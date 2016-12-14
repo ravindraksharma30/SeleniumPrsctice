@@ -1,5 +1,7 @@
 package com.homedepot.mm.po.allocationteamdata.domain;
 
+import java.math.BigDecimal;
+
 import org.springframework.hateoas.ResourceSupport;
 
 import lombok.Data;
@@ -19,10 +21,10 @@ public class SDCTargetInventoryResource extends ResourceSupport{
 	private int uploadId;
 	private String locationId;
 	private String productCode;
-	private double tgtInvQty;
+	private BigDecimal tgtInvQty;
 	private String activeFlag;
 	
-	public SDCTargetInventoryResource(Long sequencenumber, int uploadId, String locationId, String productCode, double tgtInvQty,
+	public SDCTargetInventoryResource(Long sequencenumber, int uploadId, String locationId, String productCode, BigDecimal tgtInvQty,
 			String activeFlag) {
 		this.sequencenumber = sequencenumber;
 		this.uploadId = uploadId;

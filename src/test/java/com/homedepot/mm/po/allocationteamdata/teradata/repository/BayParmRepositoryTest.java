@@ -3,6 +3,7 @@ package com.homedepot.mm.po.allocationteamdata.teradata.repository;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
@@ -30,7 +31,7 @@ import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmReposit
 public class BayParmRepositoryTest {
 
 	@Autowired
-	BayParmRepository barRepo;
+	BayParmRepository bayParmRepo;
 
 	@Test
 	/**
@@ -38,22 +39,18 @@ public class BayParmRepositoryTest {
 	 */
 	public void testBayParmRepository() {
 		List<BayParm> bayParms = null;
-		bayParms = barRepo.findByLocationidAndProductcodeAndActiveflag("5068","cd", "Y");
+		bayParms = bayParmRepo.findByLocationidAndProductcodeAndActiveflag("0551", "1000005316", "Y");
+		assertEquals(1, bayParms.size());
+		assertNotNull(bayParms);
 
 		for (BayParm bayParm : bayParms) {
 			switch (bayParm.getSequencenumber().intValue()) {
-			case 491:
-				assertEquals((double) 4910, bayParm.getBay_parm_val(), .00000001);
+			case 149:
+				assertEquals(new BigDecimal("1490.000"), bayParm.getBay_parm_val());
 				break;
-			case 429:
-				assertEquals((double) 4290, bayParm.getBay_parm_val(), .00000001);
-				break;
-			case 310:
-				assertEquals((double) 3100, bayParm.getBay_parm_val(), .00000001);
-				break;
+
 			}
 		}
-		assertNotNull(bayParms);
 	}
 
 }

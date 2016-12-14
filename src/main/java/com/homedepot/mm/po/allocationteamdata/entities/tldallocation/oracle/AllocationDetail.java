@@ -41,12 +41,11 @@ public class AllocationDetail implements Serializable {
 
 	@Column(name = "LOCATION_ID")
 	private String locationID;
-	
+
 	@Column(name = "DC_NUMBER")
 	private String dcNumber;
-	
+
 	@Column(name = "ETA_DATE")
-	//@Temporal(TemporalType.DATE)
 	private Date etaDate;
 
 	@Column(name = "PACK_SIZE")

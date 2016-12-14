@@ -3,6 +3,8 @@
  */
 package com.homedepot.mm.po.allocationteamdata.domain;
 
+import java.math.BigDecimal;
+
 import org.springframework.hateoas.ResourceSupport;
 
 import lombok.Data;
@@ -22,7 +24,7 @@ public class BayParmResource extends ResourceSupport {
 	private int uploadId;
 	private String locationId;
 	private String productCode;
-	private double bayParmVal;
+	private BigDecimal bayParmVal;
 	private String activeFlag;
 
 	/**
@@ -35,8 +37,8 @@ public class BayParmResource extends ResourceSupport {
 	 * @param activeFlag
 	 */
 
-	public BayParmResource(Long sequencenumber, int uploadId, String locationId, String productCode, double bayParmVal,
-			String activeFlag) {
+	public BayParmResource(Long sequencenumber, int uploadId, String locationId, String productCode,
+			BigDecimal bayParmVal, String activeFlag) {
 		this.sequencenumber = sequencenumber;
 		this.uploadId = uploadId;
 		this.locationId = locationId;

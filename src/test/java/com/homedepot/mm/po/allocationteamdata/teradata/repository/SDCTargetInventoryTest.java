@@ -3,20 +3,27 @@ package com.homedepot.mm.po.allocationteamdata.teradata.repository;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.homedepot.mm.po.allocationteamdata.AllocationTeamDataApplication;
+import com.homedepot.mm.po.allocationteamdata.configuration.H2Configuration;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInventory;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.SDCTargetInventoryRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = { AllocationTeamDataApplication.class })
+@SpringBootTest(classes = { H2Configuration.class })
+@SqlGroup({
+		@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/SDCTargetInventoryPreTest.sql"),
+		@Sql(executionPhase = ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/SDCTargetInventoryPostTest.sql") })
 /**
  * @author axd8472 and @author spv5283
  *
@@ -32,31 +39,19 @@ public class SDCTargetInventoryTest {
 	 */
 	public void testSDCTargetInventoryRepository() {
 		List<SDCTargetInventory> sdcTargetInventories = sDCTargetInventoryRepository
-				.findByLocationidAndProductcodeAndActiveflag("5150", "", "Y");
+				.findByLocationidAndProductcodeAndActiveflag("0551", "5965", "Y");
+
+		assertEquals(1, sdcTargetInventories.size());
+		assertNotNull(sdcTargetInventories);
+
 		for (SDCTargetInventory sdcTargetInventory : sdcTargetInventories) {
 			switch (sdcTargetInventory.getSequencenumber().intValue()) {
-			case 618:
-				assertEquals((double) 10, sdcTargetInventory.getTgt_inv_qty(), .00000001);
+			case 651:
+				assertEquals(new BigDecimal("10.000"), sdcTargetInventory.getTgt_inv_qty());
 				break;
-			case 625:
-				assertEquals((double) 10, sdcTargetInventory.getTgt_inv_qty(), .00000001);
-				break;
-			case 727:
-				assertEquals((double) 10, sdcTargetInventory.getTgt_inv_qty(), .00000001);
-				break;
+
 			}
 		}
-
-	}
-
-	@Test
-	/**
-	 * 
-	 */
-	public void sdcTargetInventory_NotNull() {
-		List<SDCTargetInventory> sdcTargetInventories = sDCTargetInventoryRepository
-				.findByLocationidAndProductcodeAndActiveflag("5150", "", "Y");
-		assertNotNull(sdcTargetInventories);
 
 	}
 

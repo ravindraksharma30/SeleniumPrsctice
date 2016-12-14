@@ -7,13 +7,16 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -23,28 +26,24 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Component
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "h2EntityManagerFactory", basePackages = {
+@EnableJpaRepositories(entityManagerFactoryRef = "h2EntityManagerFactory", transactionManagerRef = "h2TransactionManager", basePackages = {
 		"com.homedepot.mm.po.allocationteamdata.repository" })
 public class H2Configuration {
 
 	@Bean
-	// @ConfigurationProperties(prefix = "spring.datasource")
 	public DataSource h2DataDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setUrl("jdbc:h2:~/test;DB_CLOSE_DELAY=-1");
+		dataSource.setUrl("jdbc:h2:mem:test;MODE=Oracle;DB_CLOSE_DELAY=-1");
 		dataSource.setUsername("sa");
-		// dataSource.setPassword(qaPassword);
 		dataSource.setDriverClassName("org.h2.Driver");
-		// dataSource.
 		return dataSource;
 
-		// return DataSourceBuilder.create().build();
 	}
 
 	@Bean(name = "h2VendorAdapter")
 	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter adaptor = new HibernateJpaVendorAdapter();
-		adaptor.setShowSql(true);
+		adaptor.setShowSql(false);
 		adaptor.setGenerateDdl(false);
 		adaptor.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
 		return adaptor;
@@ -59,6 +58,12 @@ public class H2Configuration {
 		lef.setPersistenceUnitName("h2PersistenceUnit");
 		lef.afterPropertiesSet();
 		return lef.getObject();
+	}
+
+	@Bean(name = "h2TransactionManager")
+	public PlatformTransactionManager barTransactionManager(
+			@Qualifier("h2EntityManagerFactory") EntityManagerFactory h2EntityManagerFactory) {
+		return new JpaTransactionManager(h2EntityManagerFactory);
 	}
 
 }
