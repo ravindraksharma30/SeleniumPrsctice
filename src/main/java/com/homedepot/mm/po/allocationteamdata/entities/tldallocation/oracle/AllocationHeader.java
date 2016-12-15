@@ -38,7 +38,8 @@ public class AllocationHeader implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ALLOCATION_HEADER_SEQ")
 	@SequenceGenerator(name = "ALLOCATION_HEADER_SEQ", sequenceName = "ALLOCATION_HEADER_SEQ", allocationSize = 1)
 	private Integer allocationID;
-
+	@Column(name = "TRANSLOAD_NUMBER")// New column
+	private Integer transloadNumber;
 	@Column(name = "ALLOCATION_TYPE_ID")
 	private Integer allocationTypeID;
 	@Column(name = "ALLOCATION_DATE")

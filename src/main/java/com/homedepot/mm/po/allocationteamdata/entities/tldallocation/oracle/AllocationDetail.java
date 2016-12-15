@@ -55,4 +55,7 @@ public class AllocationDetail implements Serializable {
 	@Column(name = "ADJUSTED_QUANTITY")
 	private BigDecimal adjustedQty;
 
+	@Column(name = "SHIPPED_QUANTITY")
+	private BigDecimal shippedQty;
+
 }

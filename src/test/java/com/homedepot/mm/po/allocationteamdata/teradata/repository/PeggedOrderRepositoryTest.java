@@ -30,7 +30,7 @@ public class PeggedOrderRepositoryTest {
 
 	@Test
 	public void testPeggedOrderRepository() {
-		List<PeggedOrder> peggedOrders = peggedOrderRepository.findPeggedOrders("58158922");
+		List<PeggedOrder> peggedOrders = peggedOrderRepository.findPeggedOrders("10", "58158922", new BigDecimal("1000014724"));
 		assertEquals(1, peggedOrders.size());
 		assertNotNull(peggedOrders);
 		for (PeggedOrder peggedOrder : peggedOrders) {
@@ -41,7 +41,6 @@ public class PeggedOrderRepositoryTest {
 				break;
 
 			}
-			assertNotNull(peggedOrders);
 		}
 
 	}
