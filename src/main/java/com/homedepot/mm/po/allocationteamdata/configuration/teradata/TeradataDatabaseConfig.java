@@ -24,7 +24,7 @@ public class TeradataDatabaseConfig {
 	@Primary
 	@ConfigurationProperties(prefix = "spring.datasource.teradata")
 	public DataSource teraDataDataSource() {
-		return DataSourceBuilder.create().build();
+		return DataSourceBuilder.create().password(System.getProperty("TeradataPassword")).build();
 	}
 
 	@Bean(name = "teradataVendorAdapter")
