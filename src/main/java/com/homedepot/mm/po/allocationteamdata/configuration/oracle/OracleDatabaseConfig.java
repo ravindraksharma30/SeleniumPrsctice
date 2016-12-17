@@ -8,8 +8,8 @@ import java.util.TimeZone;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -17,8 +17,6 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.homedepot.mm.po.allocationteamdata.configuration.teradata.TeradataDatabaseConfig;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,25 +36,13 @@ public class OracleDatabaseConfig {
         TimeZone.setDefault(TimeZone.getTimeZone(TIMEZONE_STR));
 	}
 	
-	@Value("${spring.datasource.oracle.url}")
-	private String url;
-	@Value("${spring.datasource.oracle.username}")
-	private String username;
-	@Value("${spring.datasource.oracle.driverClassName}")
-	private String driverClassName;
-	
 	
 	@Bean(name = "oracleDataSource")
-	//@ConfigurationProperties(prefix = "spring.datasource.oracle")
+	@ConfigurationProperties(prefix = "spring.datasource.oracle")
 	public DataSource oracleDataSource() {
 		try { 
 			setUp();
-		return DataSourceBuilder.create()
-				.url(url)
-				.username(username)
-				.password(System.getenv("OraclePassword"))
-				.driverClassName(driverClassName)
-				.build();
+			return DataSourceBuilder.create().build();
 		} catch (Exception e) {
 			log.error("Exception occured trying to set up oracle connection: " + e.getMessage());
 			return null;

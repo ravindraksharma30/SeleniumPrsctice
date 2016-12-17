@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -22,26 +23,13 @@ import lombok.extern.slf4j.Slf4j;
 		"com.homedepot.mm.po.allocationteamdata.repository.teradata" })
 @Slf4j
 public class TeradataDatabaseConfig {
-	@Value("${spring.datasource.teradata.url}")
-	private String url;
-	@Value("${spring.datasource.teradata.username}")
-	private String username;
-	@Value("${spring.datasource.teradata.driverClassName}")
-	private String driverClassName;
 	
+
 	@Bean
 	@Primary
-	//@ConfigurationProperties(prefix = "spring.datasource.teradata")
+	@ConfigurationProperties(prefix = "spring.datasource.teradata")
 	public DataSource teraDataDataSource() {
-		log.info("HODORRRRR" + System.getenv("TeradataPassword"));
-		log.info("HODORRRRR" + System.getenv());
-
-		return DataSourceBuilder.create()
-				.url(url)
-				.username(username)
-				.password(System.getenv("TeradataPassword"))
-				.driverClassName(driverClassName)
-				.build();
+		return DataSourceBuilder.create().build();
 	}
 
 	@Bean(name = "teradataVendorAdapter")
