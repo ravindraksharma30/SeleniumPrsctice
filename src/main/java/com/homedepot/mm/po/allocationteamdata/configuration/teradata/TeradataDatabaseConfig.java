@@ -3,8 +3,8 @@ package com.homedepot.mm.po.allocationteamdata.configuration.teradata;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -14,17 +14,34 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "teradataEntityManagerFactory", basePackages = {
 		"com.homedepot.mm.po.allocationteamdata.repository.teradata" })
+@Slf4j
 public class TeradataDatabaseConfig {
-
+	@Value("${spring.datasource.teradata.url}")
+	private String url;
+	@Value("${spring.datasource.teradata.username}")
+	private String username;
+	@Value("${spring.datasource.teradata.driverClassName}")
+	private String driverClassName;
+	
 	@Bean
 	@Primary
-	@ConfigurationProperties(prefix = "spring.datasource.teradata")
+	//@ConfigurationProperties(prefix = "spring.datasource.teradata")
 	public DataSource teraDataDataSource() {
-		return DataSourceBuilder.create().password(System.getProperty("TeradataPassword")).build();
+		log.info("HODORRRRR" + System.getenv("TeradataPassword"));
+		log.info("HODORRRRR" + System.getenv());
+
+		return DataSourceBuilder.create()
+				.url(url)
+				.username(username)
+				.password(System.getenv("TeradataPassword"))
+				.driverClassName(driverClassName)
+				.build();
 	}
 
 	@Bean(name = "teradataVendorAdapter")
