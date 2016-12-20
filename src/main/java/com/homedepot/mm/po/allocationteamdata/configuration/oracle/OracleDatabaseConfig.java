@@ -18,7 +18,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import lombok.extern.slf4j.Slf4j;
+import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 
 /**
  * @author gxk8870
@@ -28,25 +28,14 @@ import lombok.extern.slf4j.Slf4j;
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "oracleEntityManagerFactory", basePackages = {
 		"com.homedepot.mm.po.allocationteamdata.repository.oracle" })
-@Slf4j
 public class OracleDatabaseConfig {
 
-	public static final String TIMEZONE_STR = "America/New_York";
-	private static final void setUp() {
-        TimeZone.setDefault(TimeZone.getTimeZone(TIMEZONE_STR));
-	}
-	
-	
 	@Bean(name = "oracleDataSource")
 	@ConfigurationProperties(prefix = "spring.datasource.oracle")
 	public DataSource oracleDataSource() {
-		try { 
-			setUp();
-			return DataSourceBuilder.create().build();
-		} catch (Exception e) {
-			log.error("Exception occured trying to set up oracle connection: " + e.getMessage());
-			return null;
-		}
+		TimeZone.setDefault(TimeZone.getTimeZone(AllocationTeamDataConstants.TIMEZONE_STR));
+		return DataSourceBuilder.create().build();
+
 	}
 
 	@Bean(name = "oracleVendorAdapter")
