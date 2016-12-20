@@ -4,16 +4,18 @@
 package com.homedepot.mm.po.allocationteamdata.exception;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homedepot.mm.po.allocationteamdata.dto.ErrorDTO;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * AllocationDataTeamException is used to handle application specific exceptions
@@ -23,21 +25,21 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @ControllerAdvice
-@Slf4j
 public class AllocationDataTeamException {
 
-	/**
-	 * 
-	 * @param exception
-	 * @return
-	 * @throws IOException
-	 */
-	@ExceptionHandler(value = DataNotFoundException.class)
-	public @ResponseBody ErrorDTO handleException(HttpServletRequest httpRequest, DataNotFoundException exception)
+	@ExceptionHandler(value = ValidationException.class)
+	@ResponseBody
+	public ResponseEntity<List<ErrorDTO>> validateException(ValidationException exception, BindingResult result)
 			throws IOException {
-		log.error(exception.getMessage());
-		ErrorDTO error = new ErrorDTO(exception.getMessage(), 700, httpRequest.getRequestURI());
-		return error;
+		List<ErrorDTO> errors = new ArrayList<>();
+
+		for (FieldError error : result.getFieldErrors()) {
+			ErrorDTO errorDTO = new ErrorDTO();
+			errorDTO.setMessage(error.getCode());
+			errorDTO.setStatusCode(HttpStatus.BAD_REQUEST);
+			errors.add(errorDTO);
+		}
+		return new ResponseEntity<List<ErrorDTO>>(errors, HttpStatus.BAD_REQUEST);
 
 	}
 

@@ -14,8 +14,8 @@ import com.homedepot.mm.po.allocationteamdata.dto.TransloadSkuDTO;
  * @author gxk8870
  *
  */
-@Component("PeggedOrderValidator")
-public class PeggedOrderValidator implements Validator {
+@Component("AllocationValidator")
+public class AllocationValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -24,7 +24,9 @@ public class PeggedOrderValidator implements Validator {
 
 	@Override
 	public void validate(Object arg0, Errors arg1) {
-		ValidationUtils.rejectIfEmpty(arg1, "sku", "SKU cannot be null.");
+		ValidationUtils.rejectIfEmpty(arg1, "sku", "SKU Number cannot be null.");
+		ValidationUtils.rejectIfEmpty(arg1, "tsldNumber", "Transload Number cannot be null.");
+		ValidationUtils.rejectIfEmpty(arg1, "packSize", "Pack Size cannot be null.");
 
 	}
 

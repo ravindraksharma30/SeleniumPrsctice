@@ -28,21 +28,25 @@ public class AllocationDetail implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "ALLOCATION_ID")
+	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ALLOCATION_DETAIL_SEQ")
 	@SequenceGenerator(name = "ALLOCATION_DETAIL_SEQ", sequenceName = "ALLOCATION_DETAIL_SEQ", allocationSize = 1)
-	private Integer allocationID;// DCM unique identifier
+	private Integer id;
+
+	@Column(name = "ALLOCATION_ID", insertable = false, updatable = false)
+	private Integer allocationId;
 
 	@Column(name = "PRODUCT_NUMBER")
 	private Integer productNumber;
 
+	@Column(name = "LOCATION_TYPE")
 	@Enumerated(EnumType.STRING)
 	private LocationType locationType;
 
 	@Column(name = "LOCATION_ID")
-	private String locationID;
+	private String locationId;
 
-	@Column(name = "DC_NUMBER")
+	@Column(name = "DC_NUMBER") // Transload Number
 	private String dcNumber;
 
 	@Column(name = "ETA_DATE")
@@ -54,8 +58,5 @@ public class AllocationDetail implements Serializable {
 	private BigDecimal allocatedQty;
 	@Column(name = "ADJUSTED_QUANTITY")
 	private BigDecimal adjustedQty;
-
-	@Column(name = "SHIPPED_QUANTITY")
-	private BigDecimal shippedQty;
 
 }

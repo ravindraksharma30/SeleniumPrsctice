@@ -25,8 +25,12 @@ public interface PeggedOrderRepository extends JpaRepository<PeggedOrder, BigDec
 	 * @param poNumber
 	 * @return
 	 */
-//	@Query(value = "select a from PeggedOrder a where a.bol_nbr is null and a.inb_ord_nbr = ?1")
-//	public List<PeggedOrder> findPeggedOrders(String poNumber);
+	// @Query(value = "select a from PeggedOrder a where a.bol_nbr is null and
+	// a.inb_ord_nbr = ?1")
+	// public List<PeggedOrder> findPeggedOrders(String poNumber);
+
+	@Query(value = "select a from PeggedOrder a where a.inb_ord_nbr = ?1 and a.sku_nbr = ?2 ")
+	public List<PeggedOrder> findPeggedOrders(String poNumber, BigDecimal skuNumber);
 
 	@Query(value = "select a from PeggedOrder a where a.bol_nbr = ?1 and a.inb_ord_nbr = ?2 and a.sku_nbr = ?3 ")
 	public List<PeggedOrder> findPeggedOrders(String asnNumber, String poNumber, BigDecimal skuNumber);

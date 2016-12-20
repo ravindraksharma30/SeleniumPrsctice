@@ -26,6 +26,7 @@ public class AllocationOnBoardServiceImpl implements AllocationOnBoardService {
 		List<AllocationOnBoard> allocationOnBoards = allocationOnBoardRepository
 				.findByTransloadAllocationParmTypeCode(transloadAllocationParmTypeCode);
 		
+		
 		return allocationOnBoards;
 	}
 }

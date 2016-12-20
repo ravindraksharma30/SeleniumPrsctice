@@ -40,9 +40,8 @@ public class PeggedOrderResourceAssembler extends ResourceAssemblerSupport<Pegge
 		List<PeggedOrderResource> peggedOrderResources = new ArrayList<>();
 
 		peggedOrders.forEach(peggedOrder -> {
-			PeggedOrderResource peggedOrderResource = new PeggedOrderResource(peggedOrder.getVirt_peg_ord_id(),
-					peggedOrder.getBol_nbr(), peggedOrder.getInb_ord_nbr(), peggedOrder.getSku_nbr(),
-					peggedOrder.getDest_loc_nbr(), peggedOrder.getDest_loc_typ_cd(), peggedOrder.getPeg_ord_qty());
+			PeggedOrderResource peggedOrderResource = new PeggedOrderResource(peggedOrder.getDest_loc_nbr(),
+					peggedOrder.getDest_loc_typ_cd(), peggedOrder.getPeg_ord_qty(), peggedOrder.getPeg_typ_cd());
 
 			peggedOrderResource.add(linkTo(PeggedOrderController.class).slash("findPeggedOrders").withSelfRel());
 			peggedOrderResources.add(peggedOrderResource);
@@ -51,45 +50,16 @@ public class PeggedOrderResourceAssembler extends ResourceAssemblerSupport<Pegge
 		return peggedOrderResources;
 	}
 
-	// /**
-	// * Returns peggedOrderResources with HATEOAS reference selRel link in JSON
-	// * response
-	// *
-	// * @param peggedOrders
-	// * @return peggedOrderResources
-	// */
-	// public List<PeggedOrderResource> toResources(List<PeggedOrder>
-	// peggedOrders) {
-	// List<PeggedOrderResource> peggedOrderResources = new ArrayList<>();
-	//
-	// peggedOrders.forEach(peggedOrder -> {
-	// PeggedOrderResource peggedOrderResource = new
-	// PeggedOrderResource(peggedOrder.getVirt_peg_ord_id(),
-	// peggedOrder.getBol_nbr(), peggedOrder.getSrc_loc_nbr(),
-	// peggedOrder.getDest_loc_nbr(),
-	// peggedOrder.getSrc_loc_typ_cd(), peggedOrder.getDest_loc_typ_cd(),
-	// peggedOrder.getMvndr_nbr(),
-	// peggedOrder.getMer_dept_nbr(), peggedOrder.getSku_nbr(),
-	// peggedOrder.getPeg_ord_qty(),
-	// peggedOrder.getInb_ord_nbr(), peggedOrder.getPrnt_peg_ord_id(),
-	// peggedOrder.getPeg_ord_wrk_id(),
-	// peggedOrder.getSoq_ref_id(), peggedOrder.getPeg_ord_stat_cd(),
-	// peggedOrder.getPrcsd_flg(),
-	// peggedOrder.getBuy_uom_qty(), peggedOrder.getPeg_typ_cd(),
-	// peggedOrder.getPeg_ord_rsn_typ_cd(),
-	// peggedOrder.getSku_sub_typ_cd(), peggedOrder.getPort_expctd_arvl_ts());
-	//
-	// peggedOrderResource.add(linkTo(PeggedOrderController.class).slash("findPeggedOrders").withSelfRel());
-	// peggedOrderResources.add(peggedOrderResource);
-	// });
-	//
-	// return peggedOrderResources;
-	// }
-
+	/**
+	 * 
+	 */
 	@Override
-	public PeggedOrderResource toResource(PeggedOrder entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public PeggedOrderResource toResource(PeggedOrder peggedOrder) {
+		PeggedOrderResource peggedOrderResource = new PeggedOrderResource(peggedOrder.getDest_loc_nbr(),
+				peggedOrder.getDest_loc_typ_cd(), peggedOrder.getPeg_ord_qty(), peggedOrder.getPeg_typ_cd());
+
+		peggedOrderResource.add(linkTo(PeggedOrderController.class).slash("findPeggedOrders").withSelfRel());
+		return peggedOrderResource;
 	}
 
 }

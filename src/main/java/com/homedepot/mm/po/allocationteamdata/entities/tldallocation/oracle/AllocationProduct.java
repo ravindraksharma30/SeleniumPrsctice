@@ -3,7 +3,6 @@ package com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,9 +25,12 @@ public class AllocationProduct implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ALLOCATION_ID")
+	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ALLOCATION_PRODUCT_SEQ")
 	@SequenceGenerator(name = "ALLOCATION_PRODUCT_SEQ", sequenceName = "ALLOCATION_PRODUCT_SEQ", allocationSize = 1)
+	private Integer id;
+
+	@Column(name = "ALLOCATION_ID", insertable = false, updatable = false)
 	private Integer allocationId;
 
 	@Column(name = "PRODUCT_NUMBER")
@@ -37,14 +39,22 @@ public class AllocationProduct implements Serializable {
 	private BigDecimal orderQty;
 	@Column(name = "RECEIPT_QTY")
 	private BigDecimal receiptQty;
-	@Column(name = "ORDER_QTY_PCT")
-	private BigDecimal orderQtyPct;
 	@Column(name = "VENDOR_NUMBER")
 	private String vendorNumber;
 	@Column(name = "STATUS_ID")
 	private Integer statusId;
 	@Column(name = "PO_PACK_SIZE")
 	private BigDecimal poPackSize;
+	@Column(name = "QUANTITY_SOURCE") // Always Zero
+	private Integer quantitySource;
+	@Column(name = "METHOD_ID") // The number represents the current pass
+	private Integer methodId;
+	@Column(name = "INCLUDE_EFF_INV") // AL Method id
+	private Integer includeEffectiveInventory;
+	@Column(name = "INCLUDE_PROMO_SALES") // Check data type
+	private Integer includePromoSales;
+	@Column(name = "ALLOCATE_ALL") // Check data type
+	private Integer allocateAll;
 	@Column(name = "DC_TRANSFER_PCT")
 	private BigDecimal dcTransferPct;
 	@Column(name = "USE_MIN_MAX_POLICY")
@@ -57,25 +67,41 @@ public class AllocationProduct implements Serializable {
 										// MinOnhandQty and MaxOnhandQty
 										// 3 - Do Not Use Min/Max On Hands
 										// TBD and Needs to be removed
+	@Column(name = "MIN_SHELF")
+	private BigDecimal minShelf;
+	@Column(name = "MAX_SHELF")
+	private BigDecimal maxShelf;
+	@Column(name = "DC_USE_MIN_MAX_POLICY")
+	private Integer dcUseMinMaxPolicy;
+
 	@Column(name = "ROUND_PACK_SIZE")
 	private Integer roundPackSize; // 1 - Normal Rounding
 									// 2 - Force Rounding Up
 									// 3- Force Rounding Down PO Allocations
 									// populate this field from the
 									// ALMethodDefault table.
-	@Column(name = "BATCH_STATUS")
-	private Integer batchStatus; // Batch status is one (1) if a record needs to
-									// be processes by batch. It will change to
-									// 3 if process complete or 99 if it failed.
-									// PO must be populate it with 0 at first.
-	@Column(name = "BATCH_SUMBIT_DATE")
-	//@Temporal(TemporalType.DATE)
-	private Date batchSumbitDate;
-	@Column(name = "BATCH_COMPLETE_DATE")
-	//@Temporal(TemporalType.DATE)
-	private Date batchCompleteDate;
-	@Column(name = "QUANTITY_ADJUSTED")
-	private Integer quantityAdjusted;
-	@Column(name = "DISTRIBUTION_DATE")
-	private Timestamp distributionDate;
+	@Column(name = "ROUND_FIRST_PACK")
+	private Integer roundFirstPack;
+	@Column(name = "METHOD_CLASS_LEVEL_ID")
+	private Integer methodClassLevelId;
+	@Column(name = "METHOD_TIME_FRAME")
+	private Integer methodTimeFrame;
+	@Column(name = "METHOD_WEEKS")
+	private Integer methodWeeks;// Number of weeks PO Allocations populate this
+								// field from the ALMethodDefault table.
+	@Column(name = "METHOD_DAYS")
+	private Integer methodDays; // Number of days for the supply method PO
+	// Allocations populate this field from the
+	// ALMethodDefault table.
+	@Column(name = "METHOD_START_DATE")
+	private Date methodStartDate;
+	@Column(name = "PRE_DISTRIBUTED")
+	private Integer preDistributed;
+	@Column(name = "PO_INNER_PACK_SIZE")
+	private BigDecimal poInnerPackSize;
+	@Column(name = "SHIP_LEVEL_IND")
+	private Integer shipLevelInd;
+	@Column(name = "METHOD_EFF_INV_IND")
+	private Integer methodEffInvInd;
+
 }

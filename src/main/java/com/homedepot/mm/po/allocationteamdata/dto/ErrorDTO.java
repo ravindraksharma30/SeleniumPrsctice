@@ -3,6 +3,8 @@
  */
 package com.homedepot.mm.po.allocationteamdata.dto;
 
+import org.springframework.http.HttpStatus;
+
 import lombok.Data;
 
 /**
@@ -15,15 +17,19 @@ import lombok.Data;
 public class ErrorDTO {
 
 	private String message;
-	private int statusCode;
+	private HttpStatus statusCode;
 	private String url;
+
+	public ErrorDTO() {
+
+	}
 
 	/**
 	 * 
 	 * @param message
 	 * @param statusCode
 	 */
-	public ErrorDTO(String message, int statusCode, String url) {
+	public ErrorDTO(String message, HttpStatus statusCode, String url) {
 		this.message = message;
 		this.statusCode = statusCode;
 		this.url = url;
