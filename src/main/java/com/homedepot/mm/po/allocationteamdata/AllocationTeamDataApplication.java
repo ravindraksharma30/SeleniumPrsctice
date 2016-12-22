@@ -33,3 +33,4 @@ public class AllocationTeamDataApplication {
 		return new HibernateExceptionTranslator();
 	}
 }
+

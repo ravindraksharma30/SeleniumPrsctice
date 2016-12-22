@@ -56,13 +56,15 @@ public class AllocationController {
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
 	public ResponseEntity<?> createPeggedOrders(@Valid TransloadSkuDTO transloadSkuDTO, BindingResult result)
 			throws ValidationException {
-		// if (result.hasErrors()) {
-		//
-		// throw new ValidationException();
-		//
-		// }
+
+		if (result.hasErrors()) {
+
+			throw new ValidationException("Validation Failed");
+
+		}
 
 		allocationService.createAllocation(transloadSkuDTO);
 		return ResponseEntity.noContent().build();
 	}
+
 }
