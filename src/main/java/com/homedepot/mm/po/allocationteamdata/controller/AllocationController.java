@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.dto.TransloadSkuDTO;
 import com.homedepot.mm.po.allocationteamdata.exception.ValidationException;
@@ -28,6 +29,7 @@ import io.swagger.annotations.ApiResponses;
  * @author axd8472
  *
  */
+@RestController
 public class AllocationController {
 
 	@Autowired
@@ -54,12 +56,12 @@ public class AllocationController {
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = PeggedOrderController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-	public ResponseEntity<?> createPeggedOrders(@Valid TransloadSkuDTO transloadSkuDTO, BindingResult result)
+	public ResponseEntity<?> createAllocation(@Valid TransloadSkuDTO transloadSkuDTO, BindingResult result)
 			throws ValidationException {
 
 		if (result.hasErrors()) {
 
-			throw new ValidationException("Validation Failed");
+			throw new ValidationException();
 
 		}
 

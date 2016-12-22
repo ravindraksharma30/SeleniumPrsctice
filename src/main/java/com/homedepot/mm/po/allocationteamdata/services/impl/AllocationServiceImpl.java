@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.homedepot.mm.po.allocationteamdata.dto.TransloadSkuDTO;
 import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.AllocationDetail;
@@ -21,6 +22,7 @@ import com.homedepot.mm.po.allocationteamdata.services.AllocationService;
  * @author axd8472
  *
  */
+@Service("AllocationServiceImpl")
 public class AllocationServiceImpl implements AllocationService {
 
 	@Autowired
@@ -67,28 +69,28 @@ public class AllocationServiceImpl implements AllocationService {
 			allocationDetails.add(allocationDetail);
 
 			dcDetail.getStores().forEach(store -> {
-				//allocationProduct.setAllocateAll(allocateAll);
-				//allocationProduct.setDcTransferPct(dcTransferPct);
-				//allocationProduct.setDcUseMinMaxPolicy(dcUseMinMaxPolicy);
-				//allocationProduct.setIncludeEffectiveInventory(includeEffectiveInventory);
-				//allocationProduct.setIncludePromoSales(includePromoSales);
-				//allocationProduct.setMaxShelf(maxShelf);
-				//allocationProduct.setMinShelf(minShelf);
-				//allocationProduct.setMethodWeeks(methodWeeks);
-				//allocationProduct.setMethodDays(methodDays);
-				//allocationProduct.setMethodClassLevelId(methodClassLevelId);
-				//allocationProduct.setMethodEffInvInd(methodEffInvInd);
-				//allocationProduct.setMethodId(methodId);
-				//allocationProduct.setMethodStartDate(methodStartDate);
-				//allocationProduct.setMethodTimeFrame(methodTimeFrame);
-				//allocationProduct.setPoInnerPackSize(poInnerPackSize);
-				//allocationProduct.setQuantitySource(quantitySource);
-				//allocationProduct.setRoundFirstPack(roundFirstPack);
-				//allocationProduct.setRoundPackSize(roundPackSize);
-				//allocationProduct.setShipLevelInd(shipLevelInd);
-				//allocationProduct.setStatusId(statusId);
-				//allocationProduct.setUseMinMaxPolicy(useMinMaxPolicy);
-				//allocationProduct.setVendorNumber(vendorNumber);
+				// allocationProduct.setAllocateAll(allocateAll);
+				// allocationProduct.setDcTransferPct(dcTransferPct);
+				// allocationProduct.setDcUseMinMaxPolicy(dcUseMinMaxPolicy);
+				// allocationProduct.setIncludeEffectiveInventory(includeEffectiveInventory);
+				// allocationProduct.setIncludePromoSales(includePromoSales);
+				// allocationProduct.setMaxShelf(maxShelf);
+				// allocationProduct.setMinShelf(minShelf);
+				// allocationProduct.setMethodWeeks(methodWeeks);
+				// allocationProduct.setMethodDays(methodDays);
+				// allocationProduct.setMethodClassLevelId(methodClassLevelId);
+				// allocationProduct.setMethodEffInvInd(methodEffInvInd);
+				// allocationProduct.setMethodId(methodId);
+				// allocationProduct.setMethodStartDate(methodStartDate);
+				// allocationProduct.setMethodTimeFrame(methodTimeFrame);
+				// allocationProduct.setPoInnerPackSize(poInnerPackSize);
+				// allocationProduct.setQuantitySource(quantitySource);
+				// allocationProduct.setRoundFirstPack(roundFirstPack);
+				// allocationProduct.setRoundPackSize(roundPackSize);
+				// allocationProduct.setShipLevelInd(shipLevelInd);
+				// allocationProduct.setStatusId(statusId);
+				// allocationProduct.setUseMinMaxPolicy(useMinMaxPolicy);
+				// allocationProduct.setVendorNumber(vendorNumber);
 				allocationProducts.add(allocationProduct);
 			});
 		});
