@@ -56,7 +56,7 @@ public class AllocationController {
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = PeggedOrderController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-	public ResponseEntity<?> createAllocation(@Valid TransloadSkuDTO transloadSkuDTO, BindingResult result)
+	public ResponseEntity<?> performAllocation(@Valid TransloadSkuDTO transloadSkuDTO, BindingResult result)
 			throws ValidationException {
 
 		if (result.hasErrors()) {

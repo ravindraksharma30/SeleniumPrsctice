@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
@@ -28,6 +29,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @RestController
+@Slf4j
 public class BayParmController {
 
 	@Autowired
@@ -55,11 +57,13 @@ public class BayParmController {
 	 */
 	public ResponseEntity<List<BayParmResource>> getBayParm(@QueryParam("locationId") String locationId,
 			@QueryParam("skuNumber") String skuNumber, @QueryParam("activeFlag") String activeFlag) {
+		log.info("Inside getBayParm");
 
-		final List<BayParm> bayParms = bayParmService.getBayParm(locationId,skuNumber, activeFlag);
+		final List<BayParm> bayParms = bayParmService.getBayParm(locationId, skuNumber, activeFlag);
 		final List<BayParmResource> resources = bayParmResourceAssembler.toResources(bayParms);
-
+		log.info("Exiting getBayParm");
 		return new ResponseEntity<List<BayParmResource>>(resources, HttpStatus.OK);
+
 	}
 
 }

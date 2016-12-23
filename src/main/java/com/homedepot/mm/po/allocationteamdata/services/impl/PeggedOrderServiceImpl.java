@@ -3,18 +3,16 @@
  */
 package com.homedepot.mm.po.allocationteamdata.services.impl;
 
-import java.math.BigDecimal;
-import java.util.Comparator;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
 import com.homedepot.mm.po.allocationteamdata.repository.oracle.PeggedOrderRepository;
-import com.homedepot.mm.po.allocationteamdata.repository.tldallocation.oracle.AllocationHeaderRepository;
 import com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * @author axd8472
@@ -26,8 +24,7 @@ public class PeggedOrderServiceImpl implements PeggedOrderService {
 	@Autowired
 	PeggedOrderRepository peggedOrderRepository;
 
-	@Autowired
-	AllocationHeaderRepository allocationHeaderRepository;
+
 
 	/**
 	 * 

@@ -13,12 +13,12 @@ public class StoreDTO {
 	private Integer onHand;
 	private Integer onOrder;
 	private String locationTypeCode;
-	private int locationNumber;
-	private int futureDistTypeCode;
-	private int futureDcLocationNumber;
-	private int rdcLocationNumber;
+	private Integer locationNumber;
+	private Integer futureDistTypeCode;
+	private Integer futureDcLocationNumber;
+	private Integer rdcLocationNumber;
 	private BigDecimal storeOverageQty;
 	private Integer storeDemandQty;
-	private int dcLocationNumber;
+	private Integer dcLocationNumber;
 
 }

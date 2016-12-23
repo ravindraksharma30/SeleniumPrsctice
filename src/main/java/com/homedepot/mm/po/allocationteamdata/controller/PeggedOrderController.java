@@ -24,12 +24,14 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author axd8472
  *
  */
 @RestController
+@Slf4j
 public class PeggedOrderController {
 
 	@Autowired
@@ -38,15 +40,13 @@ public class PeggedOrderController {
 	@Autowired
 	PeggedOrderResourceAssembler peggedOrderResourceAssembler;
 
-	
-
 	/**
 	 * 
 	 * @param asnNumber
 	 * @param poNumber
 	 * @return
 	 */
-	@GetMapping(value = "/findPeggedOrders", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/findPeggedOrder", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Retrieve Pegging data based on ASN/PO combination", nickname = "Pegging")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "asnNumber", value = "ASN Number", required = false, dataType = "string", paramType = "query", defaultValue = "0"),
@@ -55,15 +55,13 @@ public class PeggedOrderController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = PeggedOrderController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-	public ResponseEntity<PeggedOrderResource> findPeggedOrders(@QueryParam("asnNumber") String asnNumber,
+	public ResponseEntity<PeggedOrderResource> findPeggedOrder(@QueryParam("asnNumber") String asnNumber,
 			@QueryParam("poNumber") String poNumber, @QueryParam("skuNumber") BigDecimal skuNumber) {
-
+		log.info("Inside findPeggedOrder");
 		final PeggedOrder peggedOrder = peggedOrderService.findPeggedOrder(asnNumber, poNumber, skuNumber);
 		final PeggedOrderResource resources = peggedOrderResourceAssembler.toResource(peggedOrder);
-
+		log.info("Exiting findPeggedOrder");
 		return new ResponseEntity<PeggedOrderResource>(resources, HttpStatus.OK);
 	}
-
-	
 
 }

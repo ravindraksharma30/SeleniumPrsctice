@@ -5,14 +5,13 @@ package com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Calendar;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,10 +20,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.homedepot.mm.po.allocationteamdata.enums.LocationType;
 
 import lombok.Data;
 
@@ -33,7 +31,7 @@ import lombok.Data;
  *
  */
 @Entity
-@Table(name = "AL_HEADER")
+@Table(name = "TLD_ALLOC_HDR")
 @Data
 public class AllocationHeader implements Serializable {
 	/**
@@ -42,61 +40,64 @@ public class AllocationHeader implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ALLOCATION_ID")
+	@Column(name = "ALLOC_ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ALLOCATION_HEADER_SEQ")
 	@SequenceGenerator(name = "ALLOCATION_HEADER_SEQ", sequenceName = "ALLOCATION_HEADER_SEQ", allocationSize = 1)
 	private Integer allocationId;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "ALLOCATION_ID", nullable = false, updatable = false)
-	private Set<AllocationDetail> allocationDetails;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "ALLOCATION_ID", nullable = false, updatable = false)
-	private Set<AllocationProduct> allocationProducts;
+	@JoinColumn(name = "ALLOC_ID", nullable = false, updatable = false)
+	private List<AllocationDetail> allocationDetails;
 
-	@Column(name = "ALLOCATION_TYPE_ID")
-	private Integer allocationTypeID;
-	@Column(name = "ALLOCATION_DATE")
+	@Column(name = "LAST_UPD_SYSUSR_ID")
+	private String userId;
+
+	@Column(name = "LAST_UPD_TS")
+	private Timestamp lastUpdatedTimestamp;
+
+	@Column(name = "ALLOC_DT")
 	private Date allocationDate;
-	@Column(name = "LAST_EDIT_DATE")
-	private Date lastEditDate;
-	@Column(name = "SHIP_ON_DATE")
-	private Date shipOnDate;
-	@Column(name = "ETA_DATE")
-	private Date etaDate;
-	@Column(name = "STATUS_ID")
-	private Integer statusID;
-	@Column(name = "VENDOR_NUMBER")
-	private String vendorNumber;
-	@Column(name = "PO_NUMBER")
-	private Integer poNumber;
-	@Column(name = "CLASS1_ID")
-	private Integer class1ID;
-	@Column(name = "LOCATION_TYPE")
-	@Enumerated(EnumType.STRING)
-	private LocationType locationType;
-	@Column(name = "LOCATION_ID")
-	private String locationId;
+
+	@Column(name = "PO_NBR")
+	private String poNumber;
+
+	@Column(name = "PO_CRT_DT")
+	private Date poCreationDate;
+
+	@Column(name = "PO_TYP_CD")
+	private Integer poTypeCode;
+
+	@Column(name = "MVNDR_NBR")
+	private Integer vendorNumber;
+
+	@Column(name = "EXPCTD_ARVL_DT")
+	private Date expectedArrivalDate;
+
+	@Column(name = "TSLD_NBR")
+	private String transloadNumber;
+
+	@Column(name = "BOL_NBR")
+	private String asnNumber;
+
+	@Column(name = "TLD_ALLOC_STAT_CD")
+	private Integer statusCode;
+
+	@Column(name = "DEPARTMENT_NBR")
+	private Integer departmentNumber;
 
 	/**
 	 * 
 	 */
 	@PrePersist
-	public void prePersist() {
-
-		Calendar calendar = Calendar.getInstance();
-		java.util.Date now = calendar.getTime();
-
-		java.sql.Date sqlDate = new java.sql.Date(now.getTime());
-		this.setAllocationDate(sqlDate);
-		this.setLastEditDate(sqlDate);
+	private void prePersist() {
+		this.setAllocationDate(java.sql.Date.valueOf(LocalDate.now()));
 	}
 
 	/**
 	 * 
 	 */
 	@PostPersist
-	public void postPersist() {
+	private void postPersist() {
 
 		if (null != allocationDetails && !allocationDetails.isEmpty() && allocationDetails.size() > 0) {
 
@@ -105,13 +106,15 @@ public class AllocationHeader implements Serializable {
 			});
 
 		}
-		if (null != allocationProducts && !allocationProducts.isEmpty() && allocationProducts.size() > 0) {
 
-			this.allocationProducts.forEach(allocationProduct -> {
-				allocationProduct.setAllocationId(allocationId);
-			});
-		}
+	}
 
+	/**
+	 * 
+	 */
+	@PreUpdate
+	private void preUpdate() {
+		this.setLastUpdatedTimestamp(new Timestamp(System.currentTimeMillis()));
 	}
 
 }
