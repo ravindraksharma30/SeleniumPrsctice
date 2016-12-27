@@ -91,11 +91,12 @@ public class BigDecimalUtil {
 	}
 
 	/**
-	 * Method to Divide Big Decimal values.
-	 * 
-	 * @param inputs
-	 *            The BigDecimal values to be divided.
-	 * @return The result of the divided BigDecimal values.
+	 * Will divide the first value by the second value, while taking into account the number of decimal places and how the result should be rounded.
+	 * @param value1 The first value to divide from.
+	 * @param value2 The value you are dividing.
+	 * @param decimalPlaces The number of decimal places for the result.
+	 * @param rounding The method of rounding. Please see BigDecimal's rounding methods for more details.
+	 * @return A BigDecimal with the result.
 	 */
 	public static BigDecimal divide(BigDecimal value1, BigDecimal value2, int decimalPlaces, int rounding) {
 		if (value1 == null || BigDecimal.ZERO.equals(value1))
@@ -150,4 +151,6 @@ public class BigDecimalUtil {
 			return BigDecimal.ZERO.compareTo(value2);
 		}
 	}
+
+	
 }

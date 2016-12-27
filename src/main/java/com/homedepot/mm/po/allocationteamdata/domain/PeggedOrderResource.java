@@ -24,23 +24,12 @@ public class PeggedOrderResource extends ResourceSupport {
 	private String destLocationTypeCode;
 	private BigDecimal peggedTypeCode;
 
-	// private String poNumber;
-	// private BigDecimal virtualPegOrderId;
-	// private String asnNumber;
-	// private BigDecimal skuNumber;
-	// private String srcLocationNumber;
-	// private String srcLocationTypeCode;
-	// private BigDecimal mvndrNumber;
-	// private BigDecimal merDeptNumber;
-	// private BigDecimal prntPeggedOrderId;
-	// private BigDecimal peggedOrderWorkId;
-	// private BigDecimal soqRefId;
-	// private BigDecimal peggedOrderStatusCode;
-	// private String prcsdFlag;
-	// private BigDecimal packSize;
-	// private BigDecimal peggedOrderReasonTypeCode;
-	// private BigDecimal skuSubTypeCode;
-	// private Timestamp portExpectedArrival;
+	/**
+	 *
+	 */
+	public PeggedOrderResource(){
+
+	}
 
 	/**
 	 * 

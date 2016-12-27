@@ -17,9 +17,14 @@ import lombok.Data;
 public class ErrorDTO {
 
 	private String message;
-	private HttpStatus statusCode;
-	private String url;
+	private HttpStatus error;
+	private String path;
+	private int status;
+	private String exception;
 
+	/**
+	 * 
+	 */
 	public ErrorDTO() {
 
 	}
@@ -27,13 +32,19 @@ public class ErrorDTO {
 	/**
 	 * 
 	 * @param message
+	 * @param error
+	 * @param path
 	 * @param statusCode
+	 * @param exception
 	 */
-	public ErrorDTO(String message, HttpStatus statusCode, String url) {
+	public ErrorDTO(String message, HttpStatus error, String path , int status, String exception) {
 		this.message = message;
-		this.statusCode = statusCode;
-		this.url = url;
+		this.error = error;
+		this.path = path;
+		this.status = status;
+		this.exception=exception;
 
 	}
+
 
 }

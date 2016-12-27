@@ -29,6 +29,28 @@ public class AllocationOnBoardResource extends ResourceSupport {
 	private BigDecimal parmDecimalValue;
 	private String activeFlag;
 
+	/**
+	 *
+	 */
+	public AllocationOnBoardResource(){
+
+	}
+
+	/**
+	 *
+	 * @param tld_alloc_onbrd_parm_id
+	 * @param tld_alloc_parm_typ_cd
+	 * @param parm_mvndr_prty_id
+	 * @param parm_item_id
+	 * @param parm_loc_id
+	 * @param parm_loc_type_cd
+	 * @param parm_flg_val
+	 * @param parm_intg_val
+	 * @param parm_dt_val
+	 * @param parm_char_val
+	 * @param parm_dec_val
+	 * @param actv_flg
+	 */
 	public AllocationOnBoardResource(Integer tld_alloc_onbrd_parm_id, Integer tld_alloc_parm_typ_cd,
 			Integer parm_mvndr_prty_id, Integer parm_item_id, Integer parm_loc_id, String parm_loc_type_cd,
 			String parm_flg_val, Integer parm_intg_val, LocalDate parm_dt_val, String parm_char_val,

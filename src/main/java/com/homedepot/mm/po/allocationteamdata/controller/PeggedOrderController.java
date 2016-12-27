@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 import javax.ws.rs.QueryParam;
 
+import org.assertj.core.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.PeggedOrderResourceAssembler;
+import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.domain.PeggedOrderResource;
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
+import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
 import com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -41,10 +44,12 @@ public class PeggedOrderController {
 	PeggedOrderResourceAssembler peggedOrderResourceAssembler;
 
 	/**
-	 * 
+	 *
 	 * @param asnNumber
 	 * @param poNumber
+	 * @param skuNumber
 	 * @return
+	 * @throws InvalidQueryParamException
 	 */
 	@GetMapping(value = "/findPeggedOrder", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Retrieve Pegging data based on ASN/PO combination", nickname = "Pegging")
@@ -56,10 +61,19 @@ public class PeggedOrderController {
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
 	public ResponseEntity<PeggedOrderResource> findPeggedOrder(@QueryParam("asnNumber") String asnNumber,
-			@QueryParam("poNumber") String poNumber, @QueryParam("skuNumber") BigDecimal skuNumber) {
+			@QueryParam("poNumber") String poNumber, @QueryParam("skuNumber") BigDecimal skuNumber)
+			throws InvalidQueryParamException {
 		log.info("Inside findPeggedOrder");
+
+		if (Strings.isNullOrEmpty(asnNumber) || Strings.isNullOrEmpty(poNumber) || null == skuNumber) {
+			throw new InvalidQueryParamException(AllocationTeamDataConstants.INVALID_QUERY_PARAM_MSG);
+		}
+		PeggedOrderResource resources = null;
+
 		final PeggedOrder peggedOrder = peggedOrderService.findPeggedOrder(asnNumber, poNumber, skuNumber);
-		final PeggedOrderResource resources = peggedOrderResourceAssembler.toResource(peggedOrder);
+		if (null != peggedOrder) {
+			resources = peggedOrderResourceAssembler.toResource(peggedOrder);
+		}
 		log.info("Exiting findPeggedOrder");
 		return new ResponseEntity<PeggedOrderResource>(resources, HttpStatus.OK);
 	}

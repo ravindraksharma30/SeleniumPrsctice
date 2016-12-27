@@ -28,6 +28,12 @@ public class BayParmResource extends ResourceSupport {
 	private String activeFlag;
 
 	/**
+	 *
+	 */
+	public BayParmResource(){
+
+	}
+	/**
 	 * 
 	 * @param sequencenumber
 	 * @param uploadId

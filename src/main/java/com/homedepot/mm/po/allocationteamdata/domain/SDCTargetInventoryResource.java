@@ -23,7 +23,23 @@ public class SDCTargetInventoryResource extends ResourceSupport{
 	private String productCode;
 	private BigDecimal tgtInvQty;
 	private String activeFlag;
-	
+
+	/**
+	 *
+	 */
+	public SDCTargetInventoryResource(){
+
+	}
+
+	/**
+	 *
+	 * @param sequencenumber
+	 * @param uploadId
+	 * @param locationId
+	 * @param productCode
+	 * @param tgtInvQty
+	 * @param activeFlag
+	 */
 	public SDCTargetInventoryResource(Long sequencenumber, int uploadId, String locationId, String productCode, BigDecimal tgtInvQty,
 			String activeFlag) {
 		this.sequencenumber = sequencenumber;

@@ -17,6 +17,22 @@ public class OverageDaysResource extends ResourceSupport {
 	private Integer overageDays;
 	private String activeFlag;
 
+	/**
+	 *
+	 */
+	public OverageDaysResource(){
+
+	}
+
+	/**
+	 *
+	 * @param sequencenumber
+	 * @param uploadId
+	 * @param locationId
+	 * @param productCode
+	 * @param overageDays
+	 * @param activeFlag
+	 */
 	public OverageDaysResource(Long sequencenumber, Integer uploadId, String locationId, String productCode, Integer overageDays,
 			String activeFlag) {
 		this.sequencenumber = sequencenumber;

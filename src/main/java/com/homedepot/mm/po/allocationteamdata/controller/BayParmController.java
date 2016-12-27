@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.QueryParam;
 
+import org.assertj.core.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.BayParmResourceAssembler;
+import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
+import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -38,6 +41,14 @@ public class BayParmController {
 	@Autowired
 	BayParmResourceAssembler bayParmResourceAssembler;
 
+	/**
+	 * 
+	 * @param locationId
+	 * @param skuNumber
+	 * @param activeFlag
+	 * @return
+	 * @throws InvalidQueryParamException
+	 */
 	@GetMapping(value = "/findBayParm", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Retrieve BayParm based on location and activeflag", nickname = "BayParm")
 	@ApiImplicitParams({
@@ -47,20 +58,21 @@ public class BayParmController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-
-	/**
-	 * 
-	 * @param locationId
-	 * @param activeFlag
-	 * @return
-	 * @throws DataNotFoundException
-	 */
 	public ResponseEntity<List<BayParmResource>> getBayParm(@QueryParam("locationId") String locationId,
-			@QueryParam("skuNumber") String skuNumber, @QueryParam("activeFlag") String activeFlag) {
+			@QueryParam("skuNumber") String skuNumber, @QueryParam("activeFlag") String activeFlag)
+			throws InvalidQueryParamException {
 		log.info("Inside getBayParm");
 
+		if (Strings.isNullOrEmpty(locationId) || Strings.isNullOrEmpty(skuNumber)
+				|| Strings.isNullOrEmpty(activeFlag)) {
+			throw new InvalidQueryParamException(AllocationTeamDataConstants.INVALID_QUERY_PARAM_MSG);
+		}
+		List<BayParmResource> resources = null;
 		final List<BayParm> bayParms = bayParmService.getBayParm(locationId, skuNumber, activeFlag);
-		final List<BayParmResource> resources = bayParmResourceAssembler.toResources(bayParms);
+		if (null != bayParms && !bayParms.isEmpty() && bayParms.size() > 0) {
+			resources = bayParmResourceAssembler.toResources(bayParms);
+		}
+
 		log.info("Exiting getBayParm");
 		return new ResponseEntity<List<BayParmResource>>(resources, HttpStatus.OK);
 
