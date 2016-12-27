@@ -39,13 +39,13 @@ public class PeggedOrderServiceImpl implements PeggedOrderService {
 				BigDecimal peggedOrdersSum = new BigDecimal(
 						peggedOrders.stream().mapToInt(i -> i.getPeg_ord_qty().intValue()).sum());
 				peggedOrders.get(0).setPeg_ord_qty(peggedOrdersSum);
+				return peggedOrders.get(0);
 			} else {
-
 				return peggedOrders.stream().max(Comparator.comparing(PeggedOrder::getVirt_peg_ord_id)).get();
 			}
-		}
 
-		return peggedOrders.get(0);
+		}
+		return null;
 	}
 
 }

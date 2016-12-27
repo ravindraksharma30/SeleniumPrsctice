@@ -1,16 +1,15 @@
 package com.homedepot.mm.po.allocationteamdata.assembler;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import com.homedepot.mm.po.allocationteamdata.controller.OverageDaysController;
+import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
+import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
-import org.springframework.stereotype.Component;
-
-import com.homedepot.mm.po.allocationteamdata.controller.OverageDaysController;
-import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @Component
 public class OverageDaysResourceAssembler extends ResourceAssemblerSupport<OverageDays, OverageDaysResource> {
@@ -22,8 +21,7 @@ public class OverageDaysResourceAssembler extends ResourceAssemblerSupport<Overa
 	/**
 	 * Returns OverageDaysResource with HATEOAS reference selRel link in JSON
 	 * response
-	 * 
-	 * @param bayParms
+	 * @param overageDays
 	 * @return
 	 */
 	public List<OverageDaysResource> toResources(List<OverageDays> overageDays) {

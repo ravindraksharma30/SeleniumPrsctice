@@ -45,7 +45,7 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 					bayParm.getLocationid(), bayParm.getProductcode(), bayParm.getBay_parm_val(),
 					bayParm.getActiveflag());
 
-			bayParmResource.add(linkTo(BayParmController.class).slash("find").withSelfRel());
+			bayParmResource.add(linkTo(BayParmController.class).slash("findBayParm").withSelfRel());
 			bayParmResources.add(bayParmResource);
 		});
 		

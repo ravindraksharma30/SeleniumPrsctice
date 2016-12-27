@@ -45,7 +45,7 @@ public class AllocationOnBoardAssembler extends ResourceAssemblerSupport<Allocat
 						allocationOnBoard.getParm_char_val(), allocationOnBoard.getParm_dec_val(),
 						allocationOnBoard.getActv_flg());
 
-				allocationOnBoardResource.add(linkTo(AllocationOnBoardController.class).slash("find").withSelfRel());
+				allocationOnBoardResource.add(linkTo(AllocationOnBoardController.class).slash("findAllocationOnBoard").withSelfRel());
 				allocationOnBoardResources.add(allocationOnBoardResource);
 			});
 		}
