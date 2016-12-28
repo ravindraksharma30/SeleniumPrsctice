@@ -17,10 +17,12 @@ import com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService
 @Service("SDCTargetInventoryServiceImpl")
 public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService {
 
+	/**
+	 * 
+	 */
 	@Autowired
-	SDCTargetInventoryRepository sdcTargetInventoryRepository;
+	private SDCTargetInventoryRepository sdcTargetInventoryRepository;
 
-	@Override
 	/**
 	 * 
 	 * @param locationId
@@ -29,6 +31,7 @@ public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService 
 	 * @return
 	 * 
 	 */
+	@Override
 	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String skuNumber,
 			final String activeFlag) {
 

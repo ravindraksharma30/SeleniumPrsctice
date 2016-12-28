@@ -30,6 +30,10 @@ import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConsta
 		"com.homedepot.mm.po.allocationteamdata.repository.oracle" })
 public class OracleDatabaseConfig {
 
+	/**
+	 * 
+	 * @return
+	 */
 	@Bean(name = "oracleDataSource")
 	@ConfigurationProperties(prefix = "spring.datasource.oracle")
 	public DataSource oracleDataSource() {
@@ -37,6 +41,11 @@ public class OracleDatabaseConfig {
 		return DataSourceBuilder.create().build();
 
 	}
+
+	/**
+	 * 
+	 * @return
+	 */
 
 	@Bean(name = "oracleVendorAdapter")
 	public JpaVendorAdapter jpaVendorAdapter() {
@@ -47,6 +56,10 @@ public class OracleDatabaseConfig {
 		return adaptor;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	@Bean(name = "oracleEntityManagerFactory")
 	public EntityManagerFactory entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();

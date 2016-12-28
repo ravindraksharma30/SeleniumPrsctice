@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+package com.homedepot.mm.po.allocationteamdata.controller.api;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
+import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+
+/**
+ * Defines an API for OverageDaysController. This is used to serve an entry
+ * point for OverageDays services.
+ * 
+ * @author axd8472
+ *
+ */
+public interface OverageDaysApi {
+	/**
+	 * 
+	 */
+	public static final String SEARCH_PATH = "/findOverageDays";
+
+	/**
+	 * 
+	 * @param locationId
+	 * @param skuNumber
+	 * @param activeFlag
+	 * @return
+	 * @throws InvalidQueryParamException
+	 */
+	public ResponseEntity<List<OverageDaysResource>> getOverageDays(final String locationId, final String skuNumber,
+			final String activeFlag) throws InvalidQueryParamException;
+
+}

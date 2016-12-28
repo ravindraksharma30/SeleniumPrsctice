@@ -21,13 +21,17 @@ import java.util.List;
 @Service("PeggedOrderServiceImpl")
 public class PeggedOrderServiceImpl implements PeggedOrderService {
 
-	@Autowired
-	PeggedOrderRepository peggedOrderRepository;
-
-
-
 	/**
 	 * 
+	 */
+	@Autowired
+	private PeggedOrderRepository peggedOrderRepository;
+
+	/**
+	 * @param asnNumber
+	 * @param poNumber
+	 * @param skuNumber
+	 * @return peggedOrders.get(0)
 	 */
 	@Override
 	public PeggedOrder findPeggedOrder(final String asnNumber, final String poNumber, final BigDecimal skuNumber) {

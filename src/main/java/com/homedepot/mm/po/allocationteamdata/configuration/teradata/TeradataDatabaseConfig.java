@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(entityManagerFactoryRef = "teradataEntityManagerFactory", basePackages = {
 		"com.homedepot.mm.po.allocationteamdata.repository.teradata" })
 public class TeradataDatabaseConfig {
-	
 
 	@Bean
 	@Primary

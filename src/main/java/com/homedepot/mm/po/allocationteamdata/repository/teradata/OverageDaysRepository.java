@@ -7,8 +7,24 @@ import org.springframework.stereotype.Repository;
 
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
 
+/**
+ * 
+ * @see <a href=
+ *      "http://docs.spring.io/spring-data/jpa/docs/1.4.1.RELEASE/reference/html/jpa.repositories.html">Spring
+ *      Data JPA reference link</a>
+ * 
+ * @author axd8472
+ *
+ */
 @Repository("OverageDaysRepository")
 public interface OverageDaysRepository extends JpaRepository<OverageDays, Long> {
+	/**
+	 * 
+	 * @param locationId
+	 * @param skuNumber
+	 * @param activeFlag
+	 * @return
+	 */
 	public List<OverageDays> findByLocationidAndProductcodeAndActiveflag(String locationId, String skuNumber,
 			String activeFlag);
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.homedepot.mm.po.allocationteamdata.controller;
 
 import javax.validation.Valid;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.homedepot.mm.po.allocationteamdata.controller.api.AllocationApi;
 import com.homedepot.mm.po.allocationteamdata.dto.TransloadSkuDTO;
 import com.homedepot.mm.po.allocationteamdata.exception.ValidationException;
 import com.homedepot.mm.po.allocationteamdata.services.AllocationService;
@@ -30,14 +28,23 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @RestController
-public class AllocationController {
+public class AllocationController implements AllocationApi {
 
+	/**
+	 * 
+	 */
 	@Autowired
 	private AllocationService allocationService;
-
+	/**
+	 * 
+	 */
 	@Autowired
 	private AllocationValidator allocationValidator;
 
+	/**
+	 * 
+	 * @param binder
+	 */
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(allocationValidator);
@@ -49,7 +56,8 @@ public class AllocationController {
 	 * @return
 	 * @throws ValidationException
 	 */
-	@PostMapping(value = "/createAllocation", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@Override
+	@PostMapping(value = AllocationApi.ALLOCATE_PATH, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Create Allocations based on TransloadSkuDTO", nickname = "Allocation")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "asnNumber", value = "ASN Number", required = false, dataType = "string", paramType = "query", defaultValue = "0") })
@@ -58,7 +66,6 @@ public class AllocationController {
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
 	public ResponseEntity<?> performAllocation(@Valid TransloadSkuDTO transloadSkuDTO, BindingResult result)
 			throws ValidationException {
-
 		if (result.hasErrors()) {
 
 			throw new ValidationException();

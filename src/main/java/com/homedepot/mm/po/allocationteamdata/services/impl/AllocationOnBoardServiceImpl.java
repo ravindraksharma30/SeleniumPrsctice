@@ -17,16 +17,22 @@ import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
 @Service("AllocationOnBoardServiceImpl")
 public class AllocationOnBoardServiceImpl implements AllocationOnBoardService {
 
+	/**
+	 * 
+	 */
 	@Autowired
-	AllocationOnBoardRepository allocationOnBoardRepository;
+	private AllocationOnBoardRepository allocationOnBoardRepository;
 
+	/**
+	 * @param transloadAllocationParmTypeCode
+	 * @return allocationOnBoards
+	 */
 	@Override
 	public List<AllocationOnBoard> getAllocationOnBoard(final Integer transloadAllocationParmTypeCode) {
 
 		List<AllocationOnBoard> allocationOnBoards = allocationOnBoardRepository
 				.findByTransloadAllocationParmTypeCode(transloadAllocationParmTypeCode);
-		
-		
+
 		return allocationOnBoards;
 	}
 }

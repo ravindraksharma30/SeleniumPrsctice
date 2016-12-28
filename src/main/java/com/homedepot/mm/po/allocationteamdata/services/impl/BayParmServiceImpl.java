@@ -20,18 +20,17 @@ import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 public class BayParmServiceImpl implements BayParmService {
 
 	@Autowired
-	BayParmRepository bayParmRepository;
+	private BayParmRepository bayParmRepository;
 
-	@Override
 	/**
 	 * 
 	 * @param locationId
 	 * @param activeFlag
 	 * @param skuNumber
-	 * @return
+	 * @return bayparms
 	 * 
 	 */
-
+	@Override
 	public List<BayParm> getBayParm(final String locationId, final String skuNumber, final String activeFlag) {
 
 		final List<BayParm> bayparms = bayParmRepository.findByLocationidAndProductcodeAndActiveflag(locationId,

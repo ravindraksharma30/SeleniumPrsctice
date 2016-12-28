@@ -9,12 +9,26 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.OverageDaysRepository;
 import com.homedepot.mm.po.allocationteamdata.services.OverageDaysService;
 
+/**
+ * 
+ * @author axd8472
+ *
+ */
 @Service("OverageDaysServiceImpl")
 public class OverageDaysServiceImpl implements OverageDaysService {
 
+	/**
+	 * 
+	 */
 	@Autowired
-	OverageDaysRepository overageDaysRepository;
+	private OverageDaysRepository overageDaysRepository;
 
+	/**
+	 * @param locationId
+	 * @param skuNumber
+	 * @param activeFlag
+	 * @return overageDays
+	 */
 	@Override
 	public List<OverageDays> getOverageDays(final String locationId, final String skuNumber, final String activeFlag) {
 		final List<OverageDays> overageDays = overageDaysRepository

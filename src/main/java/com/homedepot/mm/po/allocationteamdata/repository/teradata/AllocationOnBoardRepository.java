@@ -13,12 +13,22 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoar
  * This AllocationOnBoardRepository retrieves data from view
  * TLD_ALLOC_ONBRD_PARM
  * 
+ * @see <a href=
+ *      "http://docs.spring.io/spring-data/jpa/docs/1.4.1.RELEASE/reference/html/jpa.repositories.html">Spring
+ *      Data JPA reference link</a>
+ * 
+ * 
  * @author gxk8870
  *
  */
 @Repository("AllocationOnBoardRepository")
 
 public interface AllocationOnBoardRepository extends JpaRepository<AllocationOnBoard, AllocationOnBoardPK> {
+	/**
+	 * 
+	 * @param typeCode
+	 * @return
+	 */
 	@Query(value = "select a from AllocationOnBoard a where a.id.tld_alloc_parm_typ_cd  = ?1")
 	public List<AllocationOnBoard> findByTransloadAllocationParmTypeCode(Integer typeCode);
 }

@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
 
 /**
+ * 
+ * @see <a href=
+ *      "http://docs.spring.io/spring-data/jpa/docs/1.4.1.RELEASE/reference/html/jpa.repositories.html">Spring
+ *      Data JPA reference link</a>
  * @author axd8472
  *
  */

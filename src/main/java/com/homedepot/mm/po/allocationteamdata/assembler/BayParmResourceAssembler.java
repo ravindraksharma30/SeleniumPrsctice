@@ -11,15 +11,24 @@ import java.util.List;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.BayParmController;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 
 /**
- * BayParmResourceAssembler is for implementing HATEOAS design
+ * BayParmResourceAssembler is for implementing HATEOAS design concept and
+ * converts the resultset/dataset retrieved from database into output JSON
+ * response using BayParmResource.
+ * 
+ * @see <a href= "https://spring.io/guides/gs/rest-hateoas/">Spring-REST HATEOAS
+ *      reference link 1</a>
+ * 
+ * @see <a href= "https://spring.io/understanding/HATEOAS/">Spring-REST HATEOAS
+ *      reference link 2</a>
  * 
  * @author axd8472 & @author spv5283
- *         
+ * 
  */
 @Component
 public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, BayParmResource> {
@@ -31,13 +40,13 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 	}
 
 	/**
-	 * Returns bayParmResources with HATEOAS reference selRel link in JSON
-	 * response
+	 * Returns bayParmResources with HATEOAS selRel reference link in JSON
+	 * response.
 	 * 
 	 * @param bayParms
-	 * @return
+	 * @return bayParmResources
 	 */
-	public List<BayParmResource> toResources(List<BayParm> bayParms) {
+	public List<BayParmResource> toResources(final List<BayParm> bayParms) {
 		List<BayParmResource> bayParmResources = new ArrayList<>();
 
 		bayParms.forEach(bayParm -> {
@@ -45,19 +54,17 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 					bayParm.getLocationid(), bayParm.getProductcode(), bayParm.getBay_parm_val(),
 					bayParm.getActiveflag());
 
-			bayParmResource.add(linkTo(BayParmController.class).slash("findBayParm").withSelfRel());
+			bayParmResource.add(
+					linkTo(BayParmController.class).slash(AllocationTeamDataConstants.BAY_PARM_PATH).withSelfRel());
 			bayParmResources.add(bayParmResource);
 		});
-		
- 
+
 		return bayParmResources;
-		
-		
+
 	}
 
 	@Override
-	public BayParmResource toResource(BayParm entity) {
-		// TODO Auto-generated method stub
+	public BayParmResource toResource(final BayParm entity) {
 		return null;
 	}
 
