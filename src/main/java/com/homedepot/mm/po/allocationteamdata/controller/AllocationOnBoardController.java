@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.AllocationOnBoardAssembler;
-import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.api.AllocationOnBoardApi;
 import com.homedepot.mm.po.allocationteamdata.domain.AllocationOnBoardResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoard;
