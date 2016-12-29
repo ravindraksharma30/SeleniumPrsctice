@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.PeggedOrderResourceAssembler;
-import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.api.PeggedOrderApi;
 import com.homedepot.mm.po.allocationteamdata.domain.PeggedOrderResource;
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 import com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService;
 import com.homedepot.mm.po.allocationteamdata.util.StringUtil;
 
@@ -35,12 +35,21 @@ import io.swagger.annotations.ApiResponses;
  */
 @RestController
 public class PeggedOrderController implements PeggedOrderApi {
-
+	/**
+	 * 
+	 */
 	@Autowired
 	PeggedOrderService peggedOrderService;
-
+	/**
+	 * 
+	 */
 	@Autowired
 	PeggedOrderResourceAssembler peggedOrderResourceAssembler;
+	/**
+	 * 
+	 */
+	@Autowired
+	private MessageByLocaleService messageSource;
 
 	/**
 	 *
@@ -71,7 +80,8 @@ public class PeggedOrderController implements PeggedOrderApi {
 		 * present in the request in-order to retrieve values from database.
 		 */
 		if (StringUtil.isNullOrEmpty(asnNumber, poNumber) || null == skuNumber) {
-			throw new InvalidQueryParamException(AllocationTeamDataConstants.INVALID_QUERY_PARAM_MSG);
+			throw new InvalidQueryParamException(
+					messageSource.getMessage("allocationteamdata.invalid.query.parameter"));
 		}
 
 		// Service call to perform database SELECT operation

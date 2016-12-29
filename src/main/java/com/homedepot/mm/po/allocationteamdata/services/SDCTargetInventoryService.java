@@ -15,13 +15,14 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInvento
 public interface SDCTargetInventoryService {
 
 	/**
-	 * Retrieves list of SDCTargetInventory using LocationId and ActiveFlag
+	 * @see com.homedepot.mm.po.allocationteamdata.services.impl.SDCTargetInventoryServiceImpl#findSDCTargetInventory()
+	 *      Retrieves list of SDCTargetInventory using LocationId and ActiveFlag
 	 * 
 	 * @param locationId
 	 * @param skuNumber
 	 * @param activeFlag
 	 * @return
 	 */
-	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String skuNumber,
+	public List<SDCTargetInventory> findSDCTargetInventory(final String locationId, final String skuNumber,
 			final String activeFlag);
 }

@@ -25,7 +25,7 @@ public interface SDCTargetInventoryApi {
 	public static final String SEARCH_PATH = "/findSDCTargetInventories";
 
 	/**
-	 * 
+	 * @see com.homedepot.mm.po.allocationteamdata.controller.SDCTargetInventoryController#findSdcTargetInventory()
 	 * @param locationId
 	 * @param skuNumber
 	 * @param activeFlag
@@ -33,7 +33,7 @@ public interface SDCTargetInventoryApi {
 	 * @throws InvalidQueryParamException
 	 */
 
-	public ResponseEntity<List<SDCTargetInventoryResource>> getSdcTargetInventory(final String locationId,
+	public ResponseEntity<List<SDCTargetInventoryResource>> findSdcTargetInventory(final String locationId,
 			final String skuNumber, final String activeFlag) throws InvalidQueryParamException;
 
 }

@@ -18,6 +18,7 @@ import com.homedepot.mm.po.allocationteamdata.domain.AllocationOnBoardResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoard;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
 import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
+import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -44,6 +45,12 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 	private AllocationOnBoardAssembler allocationOnBoardAssembler;
 
 	/**
+	 * 
+	 */
+	@Autowired
+	private MessageByLocaleService messageSource;
+
+	/**
 	 *
 	 * @param parmTypeCode
 	 * @return
@@ -57,7 +64,7 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-	public ResponseEntity<List<AllocationOnBoardResource>> getAllocationOnBoards(
+	public ResponseEntity<List<AllocationOnBoardResource>> findAllocationOnBoards(
 			@QueryParam("parmTypeCode") final Integer parmTypeCode) throws InvalidQueryParamException {
 
 		List<AllocationOnBoardResource> resources = null;
@@ -68,11 +75,13 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 		 */
 		if (null == parmTypeCode) {
 
-			throw new InvalidQueryParamException(AllocationTeamDataConstants.INVALID_QUERY_PARAM_MSG);
+			throw new InvalidQueryParamException(
+					messageSource.getMessage("allocationteamdata.invalid.query.parameter"));
 		}
 
 		// Service call to perform database SELECT operation
-		final List<AllocationOnBoard> allocationOnBoards = allocationOnBoardService.getAllocationOnBoard(parmTypeCode);
+		final List<AllocationOnBoard> allocationOnBoards = allocationOnBoardService
+				.findAllocationOnBoards(parmTypeCode);
 
 		// HATEOAS implementation
 		if (null != allocationOnBoards && !allocationOnBoards.isEmpty() && allocationOnBoards.size() > 0) {

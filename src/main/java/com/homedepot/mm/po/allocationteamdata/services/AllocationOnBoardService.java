@@ -10,5 +10,11 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoar
  *
  */
 public interface AllocationOnBoardService {
-	public List<AllocationOnBoard> getAllocationOnBoard(final Integer transloadAllocationParmTypeCode);
+
+	/**
+	 * @see com.homedepot.mm.po.allocationteamdata.services.impl.AllocationOnBoardServiceImpl#findAllocationOnBoards()
+	 * @param transloadAllocationParmTypeCode
+	 */
+
+	public List<AllocationOnBoard> findAllocationOnBoards(final Integer transloadAllocationParmTypeCode);
 }

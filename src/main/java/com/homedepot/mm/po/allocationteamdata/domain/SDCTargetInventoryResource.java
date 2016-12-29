@@ -4,17 +4,20 @@ import java.math.BigDecimal;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
-@EqualsAndHashCode(callSuper=false)
 /**
  * 
  * @author axd8472 & @author spv5283
  *
  */
-public class SDCTargetInventoryResource extends ResourceSupport{
+@Data
+@EqualsAndHashCode(callSuper = false)
+@JsonRootName(value = "SDCTargetInventory")
+public class SDCTargetInventoryResource extends ResourceSupport {
 
 	private Long sequencenumber;
 
@@ -27,7 +30,7 @@ public class SDCTargetInventoryResource extends ResourceSupport{
 	/**
 	 *
 	 */
-	public SDCTargetInventoryResource(){
+	public SDCTargetInventoryResource() {
 
 	}
 
@@ -40,8 +43,8 @@ public class SDCTargetInventoryResource extends ResourceSupport{
 	 * @param tgtInvQty
 	 * @param activeFlag
 	 */
-	public SDCTargetInventoryResource(Long sequencenumber, int uploadId, String locationId, String productCode, BigDecimal tgtInvQty,
-			String activeFlag) {
+	public SDCTargetInventoryResource(Long sequencenumber, int uploadId, String locationId, String productCode,
+			BigDecimal tgtInvQty, String activeFlag) {
 		this.sequencenumber = sequencenumber;
 		this.uploadId = uploadId;
 		this.locationId = locationId;

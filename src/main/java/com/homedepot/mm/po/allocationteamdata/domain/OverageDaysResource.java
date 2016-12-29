@@ -2,11 +2,19 @@ package com.homedepot.mm.po.allocationteamdata.domain;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * 
+ * @author axd8472
+ *
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@JsonRootName(value = "OverageDays")
 public class OverageDaysResource extends ResourceSupport {
 
 	private Long sequencenumber;
@@ -20,7 +28,7 @@ public class OverageDaysResource extends ResourceSupport {
 	/**
 	 *
 	 */
-	public OverageDaysResource(){
+	public OverageDaysResource() {
 
 	}
 
@@ -33,8 +41,8 @@ public class OverageDaysResource extends ResourceSupport {
 	 * @param overageDays
 	 * @param activeFlag
 	 */
-	public OverageDaysResource(Long sequencenumber, Integer uploadId, String locationId, String productCode, Integer overageDays,
-			String activeFlag) {
+	public OverageDaysResource(Long sequencenumber, Integer uploadId, String locationId, String productCode,
+			Integer overageDays, String activeFlag) {
 		this.sequencenumber = sequencenumber;
 		this.uploadId = uploadId;
 		this.locationId = locationId;

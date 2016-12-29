@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,6 +18,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@JsonRootName(value = "PeggedOrder")
 public class PeggedOrderResource extends ResourceSupport {
 
 	private BigDecimal peggedOrderQty;
@@ -27,7 +30,7 @@ public class PeggedOrderResource extends ResourceSupport {
 	/**
 	 *
 	 */
-	public PeggedOrderResource(){
+	public PeggedOrderResource() {
 
 	}
 

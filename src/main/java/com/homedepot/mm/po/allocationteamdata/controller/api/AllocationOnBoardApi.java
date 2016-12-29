@@ -26,12 +26,12 @@ public interface AllocationOnBoardApi {
 	public static final String SEARCH_PATH = "/findAllocationOnBoards";
 
 	/**
-	 * 
+	 * @see com.homedepot.mm.po.allocationteamdata.controller.AllocationOnBoardController#findAllocationOnBoards()
 	 * @param parmTypeCode
 	 * @return
 	 * @throws InvalidQueryParamException
 	 */
 
-	public ResponseEntity<List<AllocationOnBoardResource>> getAllocationOnBoards(final Integer parmTypeCode)
+	public ResponseEntity<List<AllocationOnBoardResource>> findAllocationOnBoards(final Integer parmTypeCode)
 			throws InvalidQueryParamException;
 }

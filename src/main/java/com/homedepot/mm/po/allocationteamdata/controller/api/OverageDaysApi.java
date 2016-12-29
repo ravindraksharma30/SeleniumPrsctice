@@ -24,14 +24,14 @@ public interface OverageDaysApi {
 	public static final String SEARCH_PATH = "/findOverageDays";
 
 	/**
-	 * 
+	 * @see com.homedepot.mm.po.allocationteamdata.controller.OverageDays#findOverageDays()
 	 * @param locationId
 	 * @param skuNumber
 	 * @param activeFlag
 	 * @return
 	 * @throws InvalidQueryParamException
 	 */
-	public ResponseEntity<List<OverageDaysResource>> getOverageDays(final String locationId, final String skuNumber,
+	public ResponseEntity<List<OverageDaysResource>> findOverageDays(final String locationId, final String skuNumber,
 			final String activeFlag) throws InvalidQueryParamException;
 
 }

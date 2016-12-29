@@ -31,7 +31,7 @@ public class BayParmServiceImpl implements BayParmService {
 	 * 
 	 */
 	@Override
-	public List<BayParm> getBayParm(final String locationId, final String skuNumber, final String activeFlag) {
+	public List<BayParm> findBayParms(final String locationId, final String skuNumber, final String activeFlag) {
 
 		final List<BayParm> bayparms = bayParmRepository.findByLocationidAndProductcodeAndActiveflag(locationId,
 				skuNumber, activeFlag);

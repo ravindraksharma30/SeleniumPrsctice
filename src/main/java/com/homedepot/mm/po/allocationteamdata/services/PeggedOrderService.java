@@ -14,10 +14,11 @@ import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
 public interface PeggedOrderService {
 
 	/**
+	 * @see com.homedepot.mm.po.allocationteamdata.services.impl.PeggedOrderServiceImpl#findPeggedOrder()
 	 * 
-	 * This method checks the ASN/PO/SKU combination is pegged or not by
-	 * retrieving a VirtualPegOrder using asnNumber(bol_nbr), skuNumber(sku_nbr)
-	 * and poNumber(inb_ord_nbr)
+	 *      This method checks the ASN/PO/SKU combination is pegged or not by
+	 *      retrieving a VirtualPegOrder using asnNumber(bol_nbr),
+	 *      skuNumber(sku_nbr) and poNumber(inb_ord_nbr)
 	 * 
 	 * @param asnNumber
 	 * @param poNumber

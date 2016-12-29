@@ -1,11 +1,16 @@
 package com.homedepot.mm.po.allocationteamdata;
 
+import java.util.Locale;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -56,5 +61,28 @@ public class AllocationTeamDataApplication {
 	@Bean
 	public HibernateExceptionTranslator hibernateExceptionTranslator() {
 		return new HibernateExceptionTranslator();
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	@Bean
+	public LocaleResolver localeResolver() {
+		SessionLocaleResolver slr = new SessionLocaleResolver();
+		slr.setDefaultLocale(Locale.US);
+		return slr;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	@Bean
+	public ReloadableResourceBundleMessageSource messageSource() {
+		ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
+		source.setBasenames("classpath:i18n/message");
+		source.setUseCodeAsDefaultMessage(true);
+		return source;
 	}
 }

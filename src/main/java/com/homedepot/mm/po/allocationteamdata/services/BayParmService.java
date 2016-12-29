@@ -19,11 +19,14 @@ public interface BayParmService {
 	/**
 	 * Retrieves list of BayParm using LocationId, SkuNumber and ActiveFlag
 	 * 
+	 * @see com.homedepot.mm.po.allocationteamdata.services.impl.BayParmServiceImpl#findBayParms()
+	 *
+	 *
 	 * @param locationId
 	 * @param skuNumber
 	 * @param activeFlag
 	 * @return
 	 */
-	public List<BayParm> getBayParm(final String locationId, final String skuNumber, final String activeFlag);
+	public List<BayParm> findBayParms(final String locationId, final String skuNumber, final String activeFlag);
 
 }

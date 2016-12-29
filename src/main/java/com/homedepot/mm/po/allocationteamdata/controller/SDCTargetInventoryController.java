@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.SDCTargetInventoryAssembler;
-import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.api.SDCTargetInventoryApi;
 import com.homedepot.mm.po.allocationteamdata.domain.SDCTargetInventoryResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInventory;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 import com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService;
 import com.homedepot.mm.po.allocationteamdata.util.StringUtil;
 
@@ -32,14 +32,23 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @RestController
-
 public class SDCTargetInventoryController implements SDCTargetInventoryApi {
 
+	/**
+	 * 
+	 */
 	@Autowired
 	SDCTargetInventoryService sdcTargetInventoryService;
-
+	/**
+	 * 
+	 */
 	@Autowired
 	SDCTargetInventoryAssembler sdcTargetInventoryAssembler;
+	/**
+	 * 
+	 */
+	@Autowired
+	private MessageByLocaleService messageSource;
 
 	/**
 	 *
@@ -61,7 +70,7 @@ public class SDCTargetInventoryController implements SDCTargetInventoryApi {
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"),
 			@ApiResponse(code = 500, message = "Internal server error") })
-	public ResponseEntity<List<SDCTargetInventoryResource>> getSdcTargetInventory(
+	public ResponseEntity<List<SDCTargetInventoryResource>> findSdcTargetInventory(
 			@QueryParam("locationId") final String locationId, @QueryParam("skuNumber") final String skuNumber,
 			@QueryParam("activeFlag") final String activeFlag) throws InvalidQueryParamException {
 		List<SDCTargetInventoryResource> resources = null;
@@ -71,12 +80,13 @@ public class SDCTargetInventoryController implements SDCTargetInventoryApi {
 		 * present in the request in-order to retrieve values from database.
 		 */
 		if (StringUtil.isNullOrEmpty(locationId, skuNumber, activeFlag)) {
-			throw new InvalidQueryParamException(AllocationTeamDataConstants.INVALID_QUERY_PARAM_MSG);
+			throw new InvalidQueryParamException(
+					messageSource.getMessage("allocationteamdata.invalid.query.parameter"));
 		}
 
 		// Service call to perform database SELECT operation
 		final List<SDCTargetInventory> sdcTargetInventories = sdcTargetInventoryService
-				.getSDCTargetInventory(locationId, skuNumber, activeFlag);
+				.findSDCTargetInventory(locationId, skuNumber, activeFlag);
 
 		// HATEOAS implementation
 		if (null != sdcTargetInventories && !sdcTargetInventories.isEmpty() && sdcTargetInventories.size() > 0) {

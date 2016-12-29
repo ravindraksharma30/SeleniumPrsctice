@@ -26,13 +26,13 @@ public interface BayParmApi {
 	public static final String SEARCH_PATH = "/findBayParms";
 
 	/**
-	 * 
+	 * @see com.homedepot.mm.po.allocationteamdata.controller.BayParmController#findBayParms()
 	 * @param locationId
 	 * @param skuNumber
 	 * @param activeFlag
 	 * @return
 	 * @throws InvalidQueryParamException
 	 */
-	public ResponseEntity<List<BayParmResource>> getBayParms(final String locationId, final String skuNumber,
+	public ResponseEntity<List<BayParmResource>> findBayParms(final String locationId, final String skuNumber,
 			final String activeFlag) throws InvalidQueryParamException;
 }

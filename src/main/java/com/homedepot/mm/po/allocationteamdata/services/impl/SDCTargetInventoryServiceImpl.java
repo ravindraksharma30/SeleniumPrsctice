@@ -32,7 +32,7 @@ public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService 
 	 * 
 	 */
 	@Override
-	public List<SDCTargetInventory> getSDCTargetInventory(final String locationId, final String skuNumber,
+	public List<SDCTargetInventory> findSDCTargetInventory(final String locationId, final String skuNumber,
 			final String activeFlag) {
 
 		final List<SDCTargetInventory> sdcTargetInventories = sdcTargetInventoryRepository

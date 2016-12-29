@@ -5,16 +5,19 @@ import java.time.LocalDate;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 /**
  * 
  * @author gxk8870
  *
  */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@JsonRootName(value = "AllocationOnBoard")
 public class AllocationOnBoardResource extends ResourceSupport {
 	private Integer onboardParmId;
 	private Integer parmTypeCode;
@@ -32,7 +35,7 @@ public class AllocationOnBoardResource extends ResourceSupport {
 	/**
 	 *
 	 */
-	public AllocationOnBoardResource(){
+	public AllocationOnBoardResource() {
 
 	}
 

@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.OverageDaysResourceAssembler;
-import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.api.OverageDaysApi;
 import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 import com.homedepot.mm.po.allocationteamdata.services.OverageDaysService;
 import com.homedepot.mm.po.allocationteamdata.util.StringUtil;
 
@@ -43,6 +43,11 @@ public class OverageDaysController implements OverageDaysApi {
 	 */
 	@Autowired
 	private OverageDaysResourceAssembler overageDaysResourceAssembler;
+	/**
+	 * 
+	 */
+	@Autowired
+	private MessageByLocaleService messageSource;
 
 	/**
 	 *
@@ -62,7 +67,7 @@ public class OverageDaysController implements OverageDaysApi {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-	public ResponseEntity<List<OverageDaysResource>> getOverageDays(@QueryParam("locationId") final String locationId,
+	public ResponseEntity<List<OverageDaysResource>> findOverageDays(@QueryParam("locationId") final String locationId,
 			@QueryParam("skuNumber") final String skuNumber, @QueryParam("activeFlag") final String activeFlag)
 			throws InvalidQueryParamException {
 		List<OverageDaysResource> resources = null;
@@ -72,11 +77,12 @@ public class OverageDaysController implements OverageDaysApi {
 		 * present in the request in-order to retrieve values from database.
 		 */
 		if (StringUtil.isNullOrEmpty(locationId, skuNumber, activeFlag)) {
-			throw new InvalidQueryParamException(AllocationTeamDataConstants.INVALID_QUERY_PARAM_MSG);
+			throw new InvalidQueryParamException(
+					messageSource.getMessage("allocationteamdata.invalid.query.parameter"));
 		}
 
 		// Service call to perform database SELECT operation
-		final List<OverageDays> overageDays = overageDaysService.getOverageDays(locationId, skuNumber, activeFlag);
+		final List<OverageDays> overageDays = overageDaysService.findOverageDays(locationId, skuNumber, activeFlag);
 
 		// HATEOAS implementation
 		if (null != overageDays && !overageDays.isEmpty() && overageDays.size() > 0) {

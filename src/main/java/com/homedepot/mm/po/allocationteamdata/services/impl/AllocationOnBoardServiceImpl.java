@@ -28,7 +28,7 @@ public class AllocationOnBoardServiceImpl implements AllocationOnBoardService {
 	 * @return allocationOnBoards
 	 */
 	@Override
-	public List<AllocationOnBoard> getAllocationOnBoard(final Integer transloadAllocationParmTypeCode) {
+	public List<AllocationOnBoard> findAllocationOnBoards(final Integer transloadAllocationParmTypeCode) {
 
 		List<AllocationOnBoard> allocationOnBoards = allocationOnBoardRepository
 				.findByTransloadAllocationParmTypeCode(transloadAllocationParmTypeCode);

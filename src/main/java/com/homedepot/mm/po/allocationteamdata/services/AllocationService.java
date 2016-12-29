@@ -11,7 +11,7 @@ import com.homedepot.mm.po.allocationteamdata.dto.TransloadSkuDTO;
  */
 public interface AllocationService {
 	/**
-	 * 
+	 * @see com.homedepot.mm.po.allocationteamdata.services.impl.AllocationServiceImpl#createAllocation()
 	 * @param transloadSkuDTO
 	 */
 	public void createAllocation(final TransloadSkuDTO transloadSkuDTO);
