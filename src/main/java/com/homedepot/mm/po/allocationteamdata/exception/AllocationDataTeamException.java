@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homedepot.mm.po.allocationteamdata.dto.ErrorDTO;
+import com.homedepot.mm.po.allocationteamdata.response.ErrorResponse;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * AllocationDataTeamException is used to handle application specific exceptions
@@ -27,6 +30,7 @@ import com.homedepot.mm.po.allocationteamdata.dto.ErrorDTO;
  */
 
 @ControllerAdvice
+@Slf4j
 public class AllocationDataTeamException {
 
 	/**
@@ -39,8 +43,9 @@ public class AllocationDataTeamException {
 	 */
 	@ExceptionHandler(value = ValidationException.class)
 	@ResponseBody
-	public ResponseEntity<List<ErrorDTO>> validateException(HttpServletRequest request, ValidationException exception,
+	public ResponseEntity<ErrorResponse> validateException(HttpServletRequest request, ValidationException exception,
 			BindingResult result) throws IOException {
+		ErrorResponse errorResponse = new ErrorResponse();
 		List<ErrorDTO> errors = new ArrayList<>();
 
 		for (FieldError error : result.getFieldErrors()) {
@@ -49,7 +54,9 @@ public class AllocationDataTeamException {
 			errorDTO.setStatus(HttpStatus.BAD_REQUEST.value());
 			errors.add(errorDTO);
 		}
-		return new ResponseEntity<List<ErrorDTO>>(errors, HttpStatus.BAD_REQUEST);
+		errorResponse.setErrors(errors);
+		log.error("Exception Messgae:" + exception.getMessage());
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
 
 	}
 
@@ -62,13 +69,15 @@ public class AllocationDataTeamException {
 	 */
 	@ExceptionHandler(value = InvalidQueryParamException.class)
 	@ResponseBody
-	public ResponseEntity<ErrorDTO> validateQueryParamException(final HttpServletRequest request,
+	public ResponseEntity<ErrorResponse> validateQueryParamException(final HttpServletRequest request,
 			final InvalidQueryParamException exception) throws IOException {
+		ErrorResponse errorResponse = new ErrorResponse();
 		final ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(), HttpStatus.BAD_REQUEST,
 				request.getRequestURI().toString(), HttpStatus.BAD_REQUEST.value(),
 				InvalidQueryParamException.class.getName());
-
-		return new ResponseEntity<ErrorDTO>(errorDTO, HttpStatus.BAD_REQUEST);
+		errorResponse.setError(errorDTO);
+		log.error("Exception Messgae:" + exception.getMessage());
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
 
 	}
 

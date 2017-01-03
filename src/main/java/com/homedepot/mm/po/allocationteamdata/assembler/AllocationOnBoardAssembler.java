@@ -12,6 +12,7 @@ import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConsta
 import com.homedepot.mm.po.allocationteamdata.controller.AllocationOnBoardController;
 import com.homedepot.mm.po.allocationteamdata.domain.AllocationOnBoardResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoard;
+import com.homedepot.mm.po.allocationteamdata.response.AllocationOnBoardResponse;
 
 /**
  * AllocationOnBoardAssembler is for implementing HATEOAS design concept and
@@ -43,7 +44,9 @@ public class AllocationOnBoardAssembler extends ResourceAssemblerSupport<Allocat
 	 * @param allocationsOnBoard
 	 * @return allocationOnBoardResources
 	 */
-	public List<AllocationOnBoardResource> toResources(final List<AllocationOnBoard> allocationsOnBoard) {
+	public AllocationOnBoardResponse toResources(final List<AllocationOnBoard> allocationsOnBoard) {
+		
+		AllocationOnBoardResponse allocationOnBoardResponse = new AllocationOnBoardResponse();
 		List<AllocationOnBoardResource> allocationOnBoardResources = new ArrayList<>();
 
 		if (!allocationsOnBoard.isEmpty()) {
@@ -63,8 +66,10 @@ public class AllocationOnBoardAssembler extends ResourceAssemblerSupport<Allocat
 				allocationOnBoardResources.add(allocationOnBoardResource);
 			});
 		}
+		
+		allocationOnBoardResponse.setAllocationOnBoardResources(allocationOnBoardResources);
 
-		return allocationOnBoardResources;
+		return allocationOnBoardResponse;
 	}
 
 	/**

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.AllocationOnBoardAssembler;
 import com.homedepot.mm.po.allocationteamdata.controller.api.AllocationOnBoardApi;
-import com.homedepot.mm.po.allocationteamdata.domain.AllocationOnBoardResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoard;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.response.AllocationOnBoardResponse;
 import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
 import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 
@@ -63,10 +63,10 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-	public ResponseEntity<List<AllocationOnBoardResource>> findAllocationOnBoards(
+	public ResponseEntity<AllocationOnBoardResponse> findAllocationOnBoards(
 			@QueryParam("parmTypeCode") final Integer parmTypeCode) throws InvalidQueryParamException {
 
-		List<AllocationOnBoardResource> resources = null;
+		AllocationOnBoardResponse allocationOnBoardResponse = null;
 
 		/*
 		 * Validate Query parameter to make sure parmTypeCode is mandatory
@@ -84,9 +84,9 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 
 		// HATEOAS implementation
 		if (null != allocationOnBoards && !allocationOnBoards.isEmpty() && allocationOnBoards.size() > 0) {
-			resources = allocationOnBoardAssembler.toResources(allocationOnBoards);
+			allocationOnBoardResponse = allocationOnBoardAssembler.toResources(allocationOnBoards);
 		}
 
-		return new ResponseEntity<List<AllocationOnBoardResource>>(resources, HttpStatus.OK);
+		return new ResponseEntity<AllocationOnBoardResponse>(allocationOnBoardResponse, HttpStatus.OK);
 	}
 }

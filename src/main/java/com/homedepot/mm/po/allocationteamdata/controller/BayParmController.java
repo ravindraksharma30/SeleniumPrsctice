@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.BayParmResourceAssembler;
 import com.homedepot.mm.po.allocationteamdata.controller.api.BayParmApi;
-import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.response.BayParmResponse;
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 import com.homedepot.mm.po.allocationteamdata.util.StringUtil;
@@ -68,11 +68,11 @@ public class BayParmController implements BayParmApi {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-	public ResponseEntity<List<BayParmResource>> findBayParms(@QueryParam("locationId") final String locationId,
+	public ResponseEntity<BayParmResponse> findBayParms(@QueryParam("locationId") final String locationId,
 			@QueryParam("skuNumber") final String skuNumber, @QueryParam("activeFlag") final String activeFlag)
 			throws InvalidQueryParamException {
 
-		List<BayParmResource> resources = null;
+		BayParmResponse bayParmResponse = null;
 
 		/*
 		 * Validate Query parameters to make sure parameters are mandatorily
@@ -88,10 +88,10 @@ public class BayParmController implements BayParmApi {
 
 		// HATEOAS implementation
 		if (null != bayParms && !bayParms.isEmpty() && bayParms.size() > 0) {
-			resources = bayParmResourceAssembler.toResources(bayParms);
+			bayParmResponse = bayParmResourceAssembler.toResources(bayParms);
 		}
 
-		return new ResponseEntity<List<BayParmResource>>(resources, HttpStatus.OK);
+		return new ResponseEntity<BayParmResponse>(bayParmResponse, HttpStatus.OK);
 
 	}
 

@@ -13,6 +13,7 @@ import com.homedepot.mm.po.allocationteamdata.controller.BayParmController;
 import com.homedepot.mm.po.allocationteamdata.controller.SDCTargetInventoryController;
 import com.homedepot.mm.po.allocationteamdata.domain.SDCTargetInventoryResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInventory;
+import com.homedepot.mm.po.allocationteamdata.response.SDCTargetInventoryResponse;
 
 /**
  * SDCTargetInventoryAssembler is for implementing HATEOAS design concept and
@@ -47,7 +48,8 @@ public class SDCTargetInventoryAssembler
 	 * @param sdcTargetInventorys
 	 * @return sdcTargetInventoryResources
 	 */
-	public List<SDCTargetInventoryResource> toResources(final List<SDCTargetInventory> sdcTargetInventorys) {
+	public SDCTargetInventoryResponse toResources(final List<SDCTargetInventory> sdcTargetInventorys) {
+		SDCTargetInventoryResponse sdcTargetInventoryResponse = new SDCTargetInventoryResponse();
 		List<SDCTargetInventoryResource> sdcTargetInventoryResources = new ArrayList<SDCTargetInventoryResource>();
 		sdcTargetInventorys.forEach(sdc -> {
 			SDCTargetInventoryResource sdcTargetInventoryResource = new SDCTargetInventoryResource(
@@ -58,8 +60,8 @@ public class SDCTargetInventoryAssembler
 
 			sdcTargetInventoryResources.add(sdcTargetInventoryResource);
 		});
-
-		return sdcTargetInventoryResources;
+		sdcTargetInventoryResponse.setSdcTargetInventoryResources(sdcTargetInventoryResources);
+		return sdcTargetInventoryResponse;
 	}
 
 	@Override

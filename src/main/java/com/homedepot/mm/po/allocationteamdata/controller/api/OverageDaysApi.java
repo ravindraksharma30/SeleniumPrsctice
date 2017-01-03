@@ -3,12 +3,10 @@
  */
 package com.homedepot.mm.po.allocationteamdata.controller.api;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 
-import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.response.OverageDaysResponse;
 
 /**
  * Defines an API for OverageDaysController. This is used to serve an entry
@@ -31,7 +29,7 @@ public interface OverageDaysApi {
 	 * @return
 	 * @throws InvalidQueryParamException
 	 */
-	public ResponseEntity<List<OverageDaysResource>> findOverageDays(final String locationId, final String skuNumber,
+	public ResponseEntity<OverageDaysResponse> findOverageDays(final String locationId, final String skuNumber,
 			final String activeFlag) throws InvalidQueryParamException;
 
 }

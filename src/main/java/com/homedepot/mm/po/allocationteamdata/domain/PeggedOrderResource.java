@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@JsonRootName(value = "PeggedOrder")
+@JsonRootName(value = "peggedOrder")
 public class PeggedOrderResource extends ResourceSupport {
 
 	private BigDecimal peggedOrderQty;

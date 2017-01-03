@@ -3,12 +3,10 @@
  */
 package com.homedepot.mm.po.allocationteamdata.controller.api;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 
-import com.homedepot.mm.po.allocationteamdata.domain.SDCTargetInventoryResource;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.response.SDCTargetInventoryResponse;
 
 /**
  * Defines an API for SDCTargetInventoryController. This is used to serve an
@@ -33,7 +31,7 @@ public interface SDCTargetInventoryApi {
 	 * @throws InvalidQueryParamException
 	 */
 
-	public ResponseEntity<List<SDCTargetInventoryResource>> findSdcTargetInventory(final String locationId,
+	public ResponseEntity<SDCTargetInventoryResponse> findSdcTargetInventory(final String locationId,
 			final String skuNumber, final String activeFlag) throws InvalidQueryParamException;
 
 }

@@ -15,6 +15,7 @@ import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConsta
 import com.homedepot.mm.po.allocationteamdata.controller.BayParmController;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
+import com.homedepot.mm.po.allocationteamdata.response.BayParmResponse;
 
 /**
  * BayParmResourceAssembler is for implementing HATEOAS design concept and
@@ -32,6 +33,7 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
  */
 @Component
 public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, BayParmResource> {
+
 	/**
 	 * Constructor
 	 */
@@ -46,7 +48,10 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 	 * @param bayParms
 	 * @return bayParmResources
 	 */
-	public List<BayParmResource> toResources(final List<BayParm> bayParms) {
+	public BayParmResponse toResources(final List<BayParm> bayParms) {
+
+		BayParmResponse bayParmResponse = new BayParmResponse();
+
 		List<BayParmResource> bayParmResources = new ArrayList<>();
 
 		bayParms.forEach(bayParm -> {
@@ -59,7 +64,9 @@ public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, 
 			bayParmResources.add(bayParmResource);
 		});
 
-		return bayParmResources;
+		bayParmResponse.setBayParmResources(bayParmResources);
+
+		return bayParmResponse;
 
 	}
 

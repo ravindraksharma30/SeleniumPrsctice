@@ -6,8 +6,7 @@ package com.homedepot.mm.po.allocationteamdata.domain;
 import java.math.BigDecimal;
 
 import org.springframework.hateoas.ResourceSupport;
-
-import com.fasterxml.jackson.annotation.JsonRootName;
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +17,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@JsonRootName(value = "BayParm")
+@Component
 public class BayParmResource extends ResourceSupport {
 
 	private Long sequencenumber;

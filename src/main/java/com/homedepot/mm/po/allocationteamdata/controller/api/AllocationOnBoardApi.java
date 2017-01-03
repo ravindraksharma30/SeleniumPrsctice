@@ -3,12 +3,10 @@
  */
 package com.homedepot.mm.po.allocationteamdata.controller.api;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 
-import com.homedepot.mm.po.allocationteamdata.domain.AllocationOnBoardResource;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.response.AllocationOnBoardResponse;
 
 /**
  * Defines an API for AllocationOnBoardController. This is used to serve an
@@ -32,6 +30,6 @@ public interface AllocationOnBoardApi {
 	 * @throws InvalidQueryParamException
 	 */
 
-	public ResponseEntity<List<AllocationOnBoardResource>> findAllocationOnBoards(final Integer parmTypeCode)
+	public ResponseEntity<AllocationOnBoardResponse> findAllocationOnBoards(final Integer parmTypeCode)
 			throws InvalidQueryParamException;
 }

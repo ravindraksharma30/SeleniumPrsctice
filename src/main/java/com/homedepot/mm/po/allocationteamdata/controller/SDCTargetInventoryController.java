@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.SDCTargetInventoryAssembler;
 import com.homedepot.mm.po.allocationteamdata.controller.api.SDCTargetInventoryApi;
-import com.homedepot.mm.po.allocationteamdata.domain.SDCTargetInventoryResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInventory;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.response.SDCTargetInventoryResponse;
 import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 import com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService;
 import com.homedepot.mm.po.allocationteamdata.util.StringUtil;
@@ -70,11 +70,11 @@ public class SDCTargetInventoryController implements SDCTargetInventoryApi {
 			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found"),
 			@ApiResponse(code = 500, message = "Internal server error") })
-	public ResponseEntity<List<SDCTargetInventoryResource>> findSdcTargetInventory(
+	public ResponseEntity<SDCTargetInventoryResponse> findSdcTargetInventory(
 			@QueryParam("locationId") final String locationId, @QueryParam("skuNumber") final String skuNumber,
 			@QueryParam("activeFlag") final String activeFlag) throws InvalidQueryParamException {
-		List<SDCTargetInventoryResource> resources = null;
 
+		SDCTargetInventoryResponse sdcTargetInventoryResponse = new SDCTargetInventoryResponse();
 		/*
 		 * Validate Query parameters to make sure parameters are mandatorily
 		 * present in the request in-order to retrieve values from database.
@@ -90,10 +90,10 @@ public class SDCTargetInventoryController implements SDCTargetInventoryApi {
 
 		// HATEOAS implementation
 		if (null != sdcTargetInventories && !sdcTargetInventories.isEmpty() && sdcTargetInventories.size() > 0) {
-			resources = sdcTargetInventoryAssembler.toResources(sdcTargetInventories);
+			sdcTargetInventoryResponse = sdcTargetInventoryAssembler.toResources(sdcTargetInventories);
 		}
 
-		return new ResponseEntity<List<SDCTargetInventoryResource>>(resources, HttpStatus.OK);
+		return new ResponseEntity<SDCTargetInventoryResponse>(sdcTargetInventoryResponse, HttpStatus.OK);
 	}
 
 }

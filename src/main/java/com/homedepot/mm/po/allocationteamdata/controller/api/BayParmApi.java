@@ -3,12 +3,10 @@
  */
 package com.homedepot.mm.po.allocationteamdata.controller.api;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 
-import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.response.BayParmResponse;
 
 /**
  * Defines an API for BayParmController. This is used to serve an entry point
@@ -33,6 +31,6 @@ public interface BayParmApi {
 	 * @return
 	 * @throws InvalidQueryParamException
 	 */
-	public ResponseEntity<List<BayParmResource>> findBayParms(final String locationId, final String skuNumber,
+	public ResponseEntity<BayParmResponse> findBayParms(final String locationId, final String skuNumber,
 			final String activeFlag) throws InvalidQueryParamException;
 }

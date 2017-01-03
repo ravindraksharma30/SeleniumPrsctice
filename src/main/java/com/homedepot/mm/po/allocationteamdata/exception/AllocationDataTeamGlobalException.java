@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homedepot.mm.po.allocationteamdata.dto.ErrorDTO;
+import com.homedepot.mm.po.allocationteamdata.response.ErrorResponse;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author axd8472 & @author spv5283
  *
  */
 @ControllerAdvice
+@Slf4j
 public class AllocationDataTeamGlobalException {
 
 	/**
@@ -31,13 +35,15 @@ public class AllocationDataTeamGlobalException {
 	 */
 	@ExceptionHandler(value = NullPointerException.class)
 	@ResponseBody
-	public ResponseEntity<ErrorDTO> handleNullPointerException(final HttpServletRequest request,
+	public ResponseEntity<ErrorResponse> handleNullPointerException(final HttpServletRequest request,
 			final NullPointerException exception) throws IOException {
+		ErrorResponse errorResponse = new ErrorResponse();
 		final ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR,
 				request.getRequestURI().toString(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
 				NullPointerException.class.getName());
-
-		return new ResponseEntity<ErrorDTO>(errorDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+		errorResponse.setError(errorDTO);
+		log.error("Exception Messgae:" + exception.getMessage());
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
 
@@ -50,13 +56,15 @@ public class AllocationDataTeamGlobalException {
 	 */
 	@ExceptionHandler(value = ArrayIndexOutOfBoundsException.class)
 	@ResponseBody
-	public ResponseEntity<ErrorDTO> handleArrayIndexOutOfBoundsException(final HttpServletRequest request,
+	public ResponseEntity<ErrorResponse> handleArrayIndexOutOfBoundsException(final HttpServletRequest request,
 			final ArrayIndexOutOfBoundsException exception) throws IOException {
+		ErrorResponse errorResponse = new ErrorResponse();
 		final ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR,
 				request.getRequestURI().toString(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
 				ArrayIndexOutOfBoundsException.class.getName());
-
-		return new ResponseEntity<ErrorDTO>(errorDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+		errorResponse.setError(errorDTO);
+		log.error("Exception Messgae:" + exception.getMessage());
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
 
@@ -69,13 +77,16 @@ public class AllocationDataTeamGlobalException {
 	 */
 	@ExceptionHandler(value = Exception.class)
 	@ResponseBody
-	public ResponseEntity<ErrorDTO> handleGenericException(final HttpServletRequest request, final Exception exception)
-			throws IOException {
+	public ResponseEntity<ErrorResponse> handleGenericException(final HttpServletRequest request,
+			final Exception exception) throws IOException {
+		ErrorResponse errorResponse = new ErrorResponse();
 		final ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR,
 				request.getRequestURI().toString(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
-				Exception.class.getName());
-
-		return new ResponseEntity<ErrorDTO>(errorDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+				exception.getClass().toString());
+		errorResponse.setError(errorDTO);
+		log.error("Exception Class:" + exception.getClass());
+		log.error("Exception Messgae:" + exception.getMessage());
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
 

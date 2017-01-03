@@ -1,16 +1,18 @@
 package com.homedepot.mm.po.allocationteamdata.assembler;
 
-import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
-import com.homedepot.mm.po.allocationteamdata.controller.OverageDaysController;
-import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
-import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
-import org.springframework.stereotype.Component;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
+import org.springframework.stereotype.Component;
+
+import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
+import com.homedepot.mm.po.allocationteamdata.controller.OverageDaysController;
+import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
+import com.homedepot.mm.po.allocationteamdata.response.OverageDaysResponse;
 
 /**
  * OverageDaysResourceAssembler is for implementing HATEOAS design concept and
@@ -40,8 +42,10 @@ public class OverageDaysResourceAssembler extends ResourceAssemblerSupport<Overa
 	 * @param overageDays
 	 * @return overageDaysResources
 	 */
-	public List<OverageDaysResource> toResources(final List<OverageDays> overageDays) {
+	public OverageDaysResponse toResources(final List<OverageDays> overageDays) {
 		List<OverageDaysResource> overageDaysResources = new ArrayList<>();
+
+		OverageDaysResponse overageDaysResponse = new OverageDaysResponse();
 
 		overageDays.forEach(overageDay -> {
 			OverageDaysResource overageDaysResource = new OverageDaysResource(overageDay.getSequencenumber(),
@@ -52,8 +56,8 @@ public class OverageDaysResourceAssembler extends ResourceAssemblerSupport<Overa
 					.slash(AllocationTeamDataConstants.OVERAGE_DAYS_PATH).withSelfRel());
 			overageDaysResources.add(overageDaysResource);
 		});
-
-		return overageDaysResources;
+		overageDaysResponse.setOverageDaysResources(overageDaysResources);
+		return overageDaysResponse;
 	}
 
 	@Override
