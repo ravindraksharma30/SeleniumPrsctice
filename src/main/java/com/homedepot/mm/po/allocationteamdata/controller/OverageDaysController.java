@@ -70,7 +70,7 @@ public class OverageDaysController implements OverageDaysApi {
 	public ResponseEntity<OverageDaysResponse> findOverageDays(@QueryParam("locationId") final String locationId,
 			@QueryParam("skuNumber") final String skuNumber, @QueryParam("activeFlag") final String activeFlag)
 			throws InvalidQueryParamException {
-		OverageDaysResponse overageDaysResponse = null;
+		OverageDaysResponse overageDaysResponse = new OverageDaysResponse();
 
 		/*
 		 * Validate Query parameters to make sure parameters are mandatorily

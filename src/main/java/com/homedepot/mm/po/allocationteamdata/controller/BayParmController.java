@@ -72,7 +72,7 @@ public class BayParmController implements BayParmApi {
 			@QueryParam("skuNumber") final String skuNumber, @QueryParam("activeFlag") final String activeFlag)
 			throws InvalidQueryParamException {
 
-		BayParmResponse bayParmResponse = null;
+		BayParmResponse bayParmResponse = new BayParmResponse();
 
 		/*
 		 * Validate Query parameters to make sure parameters are mandatorily

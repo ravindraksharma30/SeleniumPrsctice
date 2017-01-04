@@ -66,7 +66,7 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 	public ResponseEntity<AllocationOnBoardResponse> findAllocationOnBoards(
 			@QueryParam("parmTypeCode") final Integer parmTypeCode) throws InvalidQueryParamException {
 
-		AllocationOnBoardResponse allocationOnBoardResponse = null;
+		AllocationOnBoardResponse allocationOnBoardResponse = new AllocationOnBoardResponse();
 
 		/*
 		 * Validate Query parameter to make sure parmTypeCode is mandatory
