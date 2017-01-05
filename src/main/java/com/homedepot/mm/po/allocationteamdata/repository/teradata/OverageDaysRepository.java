@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
 
 /**
+ * OverageDaysRepository is used to do CRUD operations for the table
+ * TLALLOC_OVERAGE_STG.
  * 
  * @see <a href=
  *      "http://docs.spring.io/spring-data/jpa/docs/1.4.1.RELEASE/reference/html/jpa.repositories.html">Spring

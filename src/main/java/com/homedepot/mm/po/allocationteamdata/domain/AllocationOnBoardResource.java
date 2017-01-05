@@ -5,19 +5,17 @@ import java.time.LocalDate;
 
 import org.springframework.hateoas.ResourceSupport;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
+ * Base class for converting dataset into
  * 
  * @author gxk8870
  *
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@JsonRootName(value = "AllocationOnBoard")
 public class AllocationOnBoardResource extends ResourceSupport {
 	private Integer onboardParmId;
 	private Integer parmTypeCode;

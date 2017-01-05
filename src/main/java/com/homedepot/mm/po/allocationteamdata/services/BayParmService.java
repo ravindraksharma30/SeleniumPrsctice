@@ -6,10 +6,11 @@ package com.homedepot.mm.po.allocationteamdata.services;
 import java.util.List;
 
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
+import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmRepository;
 
 /**
- * BayParmService is to do CRUD operations on the data retrieved from
- * BayParmRepository
+ * Defines an API for performing business logic around CRUD operations using
+ * {@link BayParmRepository}.
  * 
  * @author axd8472 & @author spv5283
  *
@@ -17,7 +18,7 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 public interface BayParmService {
 
 	/**
-	 * Retrieves list of BayParm using LocationId, SkuNumber and ActiveFlag
+	 * Retrieves list of BayParms using LocationId, SkuNumber and ActiveFlag
 	 * 
 	 * @see com.homedepot.mm.po.allocationteamdata.services.impl.BayParmServiceImpl#findBayParms()
 	 *

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,15 +42,16 @@ public class AllocationDataTeamException {
 	 */
 	@ExceptionHandler(value = ValidationException.class)
 	@ResponseBody
-	public ResponseEntity<ErrorResponse> validateException(HttpServletRequest request, ValidationException exception,
-			BindingResult result) throws IOException {
+	public ResponseEntity<ErrorResponse> validateException(HttpServletRequest request, ValidationException exception)
+			throws IOException {
 		ErrorResponse errorResponse = new ErrorResponse();
 		List<ErrorDTO> errors = new ArrayList<>();
 
-		for (FieldError error : result.getFieldErrors()) {
-			ErrorDTO errorDTO = new ErrorDTO();
-			errorDTO.setMessage(error.getCode());
-			errorDTO.setStatus(HttpStatus.BAD_REQUEST.value());
+		for (FieldError error : exception.getFieldErrors()) {
+			final ErrorDTO errorDTO = new ErrorDTO(error.getCode(), HttpStatus.BAD_REQUEST,
+					request.getRequestURI().toString(), HttpStatus.BAD_REQUEST.value(),
+					ValidationException.class.getName());
+
 			errors.add(errorDTO);
 		}
 		errorResponse.setErrors(errors);

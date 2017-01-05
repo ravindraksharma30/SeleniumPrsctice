@@ -19,6 +19,8 @@ import com.homedepot.mm.po.allocationteamdata.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * AllocationDataTeamGlobalException is used to handle global/generic exceptions
+ * 
  * @author axd8472 & @author spv5283
  *
  */
@@ -43,6 +45,7 @@ public class AllocationDataTeamGlobalException {
 				NullPointerException.class.getName());
 		errorResponse.setError(errorDTO);
 		log.error("Exception Messgae:" + exception.getMessage());
+		exception.printStackTrace();
 		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
@@ -62,6 +65,7 @@ public class AllocationDataTeamGlobalException {
 		final ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR,
 				request.getRequestURI().toString(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
 				ArrayIndexOutOfBoundsException.class.getName());
+		exception.printStackTrace();
 		errorResponse.setError(errorDTO);
 		log.error("Exception Messgae:" + exception.getMessage());
 		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -84,7 +88,7 @@ public class AllocationDataTeamGlobalException {
 				request.getRequestURI().toString(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
 				exception.getClass().toString());
 		errorResponse.setError(errorDTO);
-		log.error("Exception Class:" + exception.getClass());
+		exception.printStackTrace();
 		log.error("Exception Messgae:" + exception.getMessage());
 		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 

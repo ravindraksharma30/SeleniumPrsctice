@@ -16,6 +16,9 @@ import com.homedepot.mm.po.allocationteamdata.repository.oracle.PeggedOrderRepos
 import com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService;
 
 /**
+ * Implementation of {@link PeggedOrderService} API by retrieving the result set
+ * from the {@link PeggedOrderRepository}.
+ * 
  * @author axd8472
  *
  */
@@ -29,6 +32,10 @@ public class PeggedOrderServiceImpl implements PeggedOrderService {
 	private PeggedOrderRepository peggedOrderRepository;
 
 	/**
+	 * @see com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService#
+	 *      findPeggedOrder(java.lang.String, java.lang.String,
+	 *      java.math.BigDecimal)
+	 * 
 	 * @param asnNumber
 	 * @param poNumber
 	 * @param skuNumber

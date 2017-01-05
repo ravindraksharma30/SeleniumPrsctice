@@ -3,9 +3,11 @@ package com.homedepot.mm.po.allocationteamdata.services;
 import java.util.List;
 
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
+import com.homedepot.mm.po.allocationteamdata.repository.teradata.OverageDaysRepository;
 
 /**
- * Performs CRUD operations on the data retrieved from OverageDaysRepository.
+ * Defines an API for performing business logic around CRUD operations using
+ * {@link OverageDaysRepository}.
  * 
  * @author gxk8870
  *
@@ -14,6 +16,7 @@ public interface OverageDaysService {
 
 	/**
 	 * @see com.homedepot.mm.po.allocationteamdata.services.impl.OverageDaysServiceImpl#findOverageDays()
+	 * 
 	 * @param locationId
 	 * @param skuNumber
 	 * @param activeFlag

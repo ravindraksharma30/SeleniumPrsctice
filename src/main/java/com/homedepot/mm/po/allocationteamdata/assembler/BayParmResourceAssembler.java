@@ -18,9 +18,10 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 import com.homedepot.mm.po.allocationteamdata.response.BayParmResponse;
 
 /**
- * BayParmResourceAssembler is for implementing HATEOAS design concept and
- * converts the resultset/dataset retrieved from database into output JSON
- * response using BayParmResource.
+ * BayParmResourceAssembler is for implementing Spring HATEOAS to ease creating
+ * REST representations that follow the HATEOAS principle . It converts the
+ * resultset/dataset retrieved from database into output JSON response using
+ * {@link BayParmResponse}.
  * 
  * @see <a href= "https://spring.io/guides/gs/rest-hateoas/">Spring-REST HATEOAS
  *      reference link 1</a>
@@ -35,18 +36,18 @@ import com.homedepot.mm.po.allocationteamdata.response.BayParmResponse;
 public class BayParmResourceAssembler extends ResourceAssemblerSupport<BayParm, BayParmResource> {
 
 	/**
-	 * Constructor
+	 * Default Constructor
 	 */
-	BayParmResourceAssembler() {
+	public BayParmResourceAssembler() {
 		super(BayParmController.class, BayParmResource.class);
 	}
 
 	/**
-	 * Returns bayParmResources with HATEOAS selRel reference link in JSON
-	 * response.
+	 * Returns {@link BayParmResponse} with HATEOAS selRel reference link in
+	 * JSON response.
 	 * 
 	 * @param bayParms
-	 * @return bayParmResources
+	 * @return bayParmResponse
 	 */
 	public BayParmResponse toResources(final List<BayParm> bayParms) {
 

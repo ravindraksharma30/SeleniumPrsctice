@@ -5,12 +5,14 @@ package com.homedepot.mm.po.allocationteamdata.controller.api;
 
 import org.springframework.http.ResponseEntity;
 
+import com.homedepot.mm.po.allocationteamdata.controller.AllocationOnBoardController;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
 import com.homedepot.mm.po.allocationteamdata.response.AllocationOnBoardResponse;
+import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
 
 /**
- * Defines an API for AllocationOnBoardController. This is used to serve an
- * entry point for AllocationOnBoard services.
+ * Defines an API for {@link AllocationOnBoardController}. This is used to serve
+ * an entry point for {@link AllocationOnBoardService}.
  * 
  * @author axd8472
  *

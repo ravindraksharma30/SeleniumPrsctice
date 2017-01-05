@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.AllocationDetail;
 
 /**
+ * AllocationDetailRepository is used to do CRUD operations for the table
+ * TLD_ALLOC_DTL.
+ * 
  * @author axd8472
  *
  */

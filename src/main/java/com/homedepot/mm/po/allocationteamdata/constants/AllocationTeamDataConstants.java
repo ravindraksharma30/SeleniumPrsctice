@@ -6,6 +6,8 @@ package com.homedepot.mm.po.allocationteamdata.constants;
 import java.math.BigDecimal;
 
 /**
+ * Defines constants for this project ApplicationTeamData.
+ * 
  * @author gxk8870
  *
  */

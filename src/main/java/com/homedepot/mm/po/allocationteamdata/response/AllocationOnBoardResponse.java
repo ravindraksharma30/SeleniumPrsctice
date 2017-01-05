@@ -13,7 +13,7 @@ import com.homedepot.mm.po.allocationteamdata.domain.AllocationOnBoardResource;
 import lombok.Data;
 
 /**
- * Returns JSON response for AllocationOnBoard
+ * Returns JSON response for {link @AllocationOnBoard}
  * 
  * @author gxk8870
  *
