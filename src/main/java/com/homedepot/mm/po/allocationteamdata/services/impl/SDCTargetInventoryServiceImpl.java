@@ -10,6 +10,8 @@ import com.homedepot.mm.po.allocationteamdata.repository.teradata.SDCTargetInven
 import com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService;
 
 /**
+ * Implementation of {@link SDCTargetInventoryService} API by retrieving the
+ * result set from the {@link SDCTargetInventoryRepository}.
  * 
  * @author axd8472 & @author spv5283
  *
@@ -24,6 +26,9 @@ public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService 
 	private SDCTargetInventoryRepository sdcTargetInventoryRepository;
 
 	/**
+	 * @see com.homedepot.mm.po.allocationteamdata.services.SDCTargetInventoryService
+	 *      #findSDCTargetInventory(java.lang.String, java.lang.String,
+	 *      java.lang.String)
 	 * 
 	 * @param locationId
 	 * @param activeFlag

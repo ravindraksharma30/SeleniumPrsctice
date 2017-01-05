@@ -6,8 +6,12 @@ package com.homedepot.mm.po.allocationteamdata.services;
 import java.math.BigDecimal;
 
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
+import com.homedepot.mm.po.allocationteamdata.repository.oracle.PeggedOrderRepository;
 
 /**
+ * Defines an API for performing business logic around CRUD operations using
+ * {@link PeggedOrderRepository}.
+ * 
  * @author axd8472
  *
  */
@@ -26,7 +30,5 @@ public interface PeggedOrderService {
 	 * @return
 	 */
 	public PeggedOrder findPeggedOrder(final String asnNumber, final String poNumber, final BigDecimal skuNumber);
-
-	
 
 }

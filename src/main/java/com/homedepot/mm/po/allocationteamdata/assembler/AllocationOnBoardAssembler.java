@@ -15,9 +15,11 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoar
 import com.homedepot.mm.po.allocationteamdata.response.AllocationOnBoardResponse;
 
 /**
- * AllocationOnBoardAssembler is for implementing HATEOAS design concept and
- * converts the resultset/dataset retrieved from database into output JSON
- * response using AllocationOnBoardResource.
+ * AllocationOnBoardAssembler is for implementing Spring HATEOAS to ease
+ * creating REST representations that follow the HATEOAS principle . It converts
+ * the resultset/dataset retrieved from database into output JSON response using
+ * {@link AllocationOnBoardResponse}.
+ * 
  * 
  * @see <a href= "https://spring.io/guides/gs/rest-hateoas/">Spring-REST HATEOAS
  *      reference link 1</a>
@@ -26,26 +28,27 @@ import com.homedepot.mm.po.allocationteamdata.response.AllocationOnBoardResponse
  *      reference link 2</a>
  * 
  * 
- * 
  * @author rjc03
  *
  */
 @Component
 public class AllocationOnBoardAssembler extends ResourceAssemblerSupport<AllocationOnBoard, AllocationOnBoardResource> {
-
-	AllocationOnBoardAssembler() {
+	/**
+	 * Default constructor
+	 */
+	public AllocationOnBoardAssembler() {
 		super(AllocationOnBoardController.class, AllocationOnBoardResource.class);
 	}
 
 	/**
-	 * Returns allocationOnBoardResources with HATEOAS selRel reference link in
-	 * JSON response.
+	 * Returns {@link AllocationOnBoardResponse} with HATEOAS selRel reference
+	 * link in JSON response.
 	 * 
 	 * @param allocationsOnBoard
-	 * @return allocationOnBoardResources
+	 * @return allocationOnBoardResponse
 	 */
 	public AllocationOnBoardResponse toResources(final List<AllocationOnBoard> allocationsOnBoard) {
-		
+
 		AllocationOnBoardResponse allocationOnBoardResponse = new AllocationOnBoardResponse();
 		List<AllocationOnBoardResource> allocationOnBoardResources = new ArrayList<>();
 
@@ -66,7 +69,7 @@ public class AllocationOnBoardAssembler extends ResourceAssemblerSupport<Allocat
 				allocationOnBoardResources.add(allocationOnBoardResource);
 			});
 		}
-		
+
 		allocationOnBoardResponse.setAllocationOnBoardResources(allocationOnBoardResources);
 
 		return allocationOnBoardResponse;

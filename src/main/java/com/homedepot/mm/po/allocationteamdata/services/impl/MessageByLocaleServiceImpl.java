@@ -26,7 +26,15 @@ public class MessageByLocaleServiceImpl implements MessageByLocaleService {
 	private MessageSource messageSource;
 
 	/**
+	 * @param messageCode
+	 * @return messageSource
+	 */
+	/*
+	 * (non-Javadoc)
 	 * 
+	 * @see
+	 * com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService#
+	 * getMessage(java.lang.String)
 	 */
 	@Override
 	public String getMessage(final String messageCode) {

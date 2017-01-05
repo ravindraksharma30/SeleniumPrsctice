@@ -6,12 +6,12 @@ package com.homedepot.mm.po.allocationteamdata.util;
 import org.assertj.core.util.Strings;
 
 /**
- * Defines static methods for doing operations on String
+ * Defines static methods for doing operations on {@link String}
  * 
  * @author axd8472
  *
  */
-public class StringUtil {
+public class StringUtils {
 
 	/**
 	 * This method validates the given array of Strings are null or Empty. If it

@@ -9,11 +9,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 
 import lombok.Data;
 
 /**
- * Returns JSON response for BayParm
+ * Returns JSON response for {@link BayParm}
  * 
  * @author gxk8870
  *

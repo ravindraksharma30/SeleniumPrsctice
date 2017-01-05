@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 
 /**
- * BayParmRepository retrieves data from the view TLALLOC_BAYPARM_STG
+ * BayParmRepository is used to do CRUD operations for the table
+ * TLALLOC_BAYPARM_STG
  * 
  * @see <a href=
  *      "http://docs.spring.io/spring-data/jpa/docs/1.4.1.RELEASE/reference/html/jpa.repositories.html">Spring

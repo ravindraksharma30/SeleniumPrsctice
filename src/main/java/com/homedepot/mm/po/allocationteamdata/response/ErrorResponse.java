@@ -13,6 +13,8 @@ import com.homedepot.mm.po.allocationteamdata.dto.ErrorDTO;
 import lombok.Data;
 
 /**
+ * Returns JSON response for {@link ErrorDTO}
+ * 
  * @author gxk8870
  *
  */

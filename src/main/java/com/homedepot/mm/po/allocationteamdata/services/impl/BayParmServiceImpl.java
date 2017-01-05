@@ -13,6 +13,9 @@ import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmReposit
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 
 /**
+ * Implementation of {@link BayParmService} API by retrieving the result set
+ * from the {@link BayParmRepository}.
+ * 
  * @author axd8472 & @author spv5283
  *
  */
@@ -29,6 +32,12 @@ public class BayParmServiceImpl implements BayParmService {
 	 * @param skuNumber
 	 * @return bayparms
 	 * 
+	 */
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.homedepot.mm.po.allocationteamdata.services.BayParmService#
+	 * findBayParms(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public List<BayParm> findBayParms(final String locationId, final String skuNumber, final String activeFlag) {

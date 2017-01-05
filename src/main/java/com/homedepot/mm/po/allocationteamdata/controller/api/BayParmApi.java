@@ -5,12 +5,14 @@ package com.homedepot.mm.po.allocationteamdata.controller.api;
 
 import org.springframework.http.ResponseEntity;
 
+import com.homedepot.mm.po.allocationteamdata.controller.BayParmController;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
 import com.homedepot.mm.po.allocationteamdata.response.BayParmResponse;
+import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 
 /**
- * Defines an API for BayParmController. This is used to serve an entry point
- * for BayParm services.
+ * Defines an API for {@link BayParmController}. This is used to serve an entry
+ * point for {@link BayParmService}.
  * 
  * @author axd8472
  *

@@ -10,9 +10,10 @@ import com.homedepot.mm.po.allocationteamdata.repository.teradata.AllocationOnBo
 import com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService;
 
 /**
+ * Implementation of {@link AllocationOnBoardService} API by retrieving the
+ * result set from the {@link AllocationOnBoardRepository}.
  * 
- * @author rjc03
- *
+ * @author gxk8870
  */
 @Service("AllocationOnBoardServiceImpl")
 public class AllocationOnBoardServiceImpl implements AllocationOnBoardService {
@@ -24,9 +25,13 @@ public class AllocationOnBoardServiceImpl implements AllocationOnBoardService {
 	private AllocationOnBoardRepository allocationOnBoardRepository;
 
 	/**
+	 * @see com.homedepot.mm.po.allocationteamdata.services.AllocationOnBoardService#
+	 *      findAllocationOnBoards(java.lang.Integer)
+	 * 
 	 * @param transloadAllocationParmTypeCode
 	 * @return allocationOnBoards
 	 */
+
 	@Override
 	public List<AllocationOnBoard> findAllocationOnBoards(final Integer transloadAllocationParmTypeCode) {
 

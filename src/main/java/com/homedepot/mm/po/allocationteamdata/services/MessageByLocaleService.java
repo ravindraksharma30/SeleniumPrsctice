@@ -4,8 +4,8 @@
 package com.homedepot.mm.po.allocationteamdata.services;
 
 /**
- * MessageByLocaleService defines an API to retrieve messages from
- * message_properties for Internationalization.
+ * Defines an API to retrieve messages from message_properties for
+ * Internationalization.
  * 
  * @see <a href=
  *      "http://codedevstuff.blogspot.com/2015/05/spring-boot-internationalization-with.html/">Spring

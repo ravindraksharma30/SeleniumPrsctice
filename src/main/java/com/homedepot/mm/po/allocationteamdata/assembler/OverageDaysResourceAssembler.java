@@ -15,9 +15,10 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
 import com.homedepot.mm.po.allocationteamdata.response.OverageDaysResponse;
 
 /**
- * OverageDaysResourceAssembler is for implementing HATEOAS design concept and
- * converts the resultset/dataset retrieved from database into output JSON
- * response using OverageDaysResource.
+ * OverageDaysResourceAssembler is for implementing Spring HATEOAS to ease
+ * creating REST representations that follow the HATEOAS principle . It converts
+ * the resultset/dataset retrieved from database into output JSON response using
+ * {@link OverageDaysResource}.
  * 
  * @see <a href= "https://spring.io/guides/gs/rest-hateoas/">Spring-REST HATEOAS
  *      reference link 1</a>
@@ -31,16 +32,19 @@ import com.homedepot.mm.po.allocationteamdata.response.OverageDaysResponse;
 @Component
 public class OverageDaysResourceAssembler extends ResourceAssemblerSupport<OverageDays, OverageDaysResource> {
 
-	OverageDaysResourceAssembler() {
+	/**
+	 * Default constructor
+	 */
+	public OverageDaysResourceAssembler() {
 		super(OverageDaysController.class, OverageDaysResource.class);
 	}
 
 	/**
-	 * Returns OverageDaysResource with HATEOAS reference selRel link in JSON
-	 * response.
+	 * Returns {@link OverageDaysResponse} with HATEOAS reference selRel link in
+	 * JSON response.
 	 * 
 	 * @param overageDays
-	 * @return overageDaysResources
+	 * @return overageDaysResponse
 	 */
 	public OverageDaysResponse toResources(final List<OverageDays> overageDays) {
 		List<OverageDaysResource> overageDaysResources = new ArrayList<>();

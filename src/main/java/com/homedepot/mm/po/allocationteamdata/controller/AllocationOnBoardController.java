@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,31 +27,39 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 /**
+ * AllocationOnBoardController utilizes the {@link AllocationOnBoardApi}
+ * interface to act as a director for retrieving information from the
+ * {@link AllocationOnBoardService}
  * 
- * @author rjc03
+ * @author gxk8870
  *
  */
 @RestController
 public class AllocationOnBoardController implements AllocationOnBoardApi {
 	/**
+	 * Utilized in performing the SELECT operation for retrieving the data.
 	 * 
 	 */
 	@Autowired
 	private AllocationOnBoardService allocationOnBoardService;
+
 	/**
-	 * 
+	 * Utilized in converting the result dataset to a JSON representation.
 	 */
 	@Autowired
 	private AllocationOnBoardAssembler allocationOnBoardAssembler;
 
 	/**
-	 * 
+	 * Utilized in providing internationalization for message responses.
 	 */
 	@Autowired
 	private MessageByLocaleService messageSource;
 
 	/**
-	 *
+	 * 
+	 * @see com.homedepot.mm.po.allocationteamdata.controller.api.
+	 *      AllocationOnBoardApi#findAllocationOnBoards(java.lang.Integer)
+	 * 
 	 * @param parmTypeCode
 	 * @return
 	 * @throws InvalidQueryParamException
@@ -61,12 +70,12 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "parmTypeCode", value = "Parm TypeCode", required = false, dataType = "string", paramType = "query", defaultValue = "1") })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
-			@ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
-			@ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
+			@ApiResponse(code = 403, message = "Forbidden"), @ApiResponse(code = 404, message = "Not Found"),
+			@ApiResponse(code = 500, message = "Internal Server Error") })
 	public ResponseEntity<AllocationOnBoardResponse> findAllocationOnBoards(
 			@QueryParam("parmTypeCode") final Integer parmTypeCode) throws InvalidQueryParamException {
 
-		AllocationOnBoardResponse allocationOnBoardResponse = null;
+		AllocationOnBoardResponse allocationOnBoardResponse = new AllocationOnBoardResponse();
 
 		/*
 		 * Validate Query parameter to make sure parmTypeCode is mandatory
@@ -74,8 +83,7 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 		 */
 		if (null == parmTypeCode) {
 
-			throw new InvalidQueryParamException(
-					messageSource.getMessage("allocationteamdata.invalid.query.parameter"));
+			throw new InvalidQueryParamException(messageSource.getMessage("allocationteamdata.invalid.queryParameter"));
 		}
 
 		// Service call to perform database SELECT operation
@@ -83,7 +91,7 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 				.findAllocationOnBoards(parmTypeCode);
 
 		// HATEOAS implementation
-		if (null != allocationOnBoards && !allocationOnBoards.isEmpty() && allocationOnBoards.size() > 0) {
+		if (!CollectionUtils.isEmpty(allocationOnBoards)) {
 			allocationOnBoardResponse = allocationOnBoardAssembler.toResources(allocationOnBoards);
 		}
 

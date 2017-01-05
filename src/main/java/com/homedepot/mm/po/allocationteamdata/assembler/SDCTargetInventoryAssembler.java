@@ -16,9 +16,10 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInvento
 import com.homedepot.mm.po.allocationteamdata.response.SDCTargetInventoryResponse;
 
 /**
- * SDCTargetInventoryAssembler is for implementing HATEOAS design concept and
- * converts the resultset/dataset retrieved from database into output JSON
- * response using SDCTargetInventoryResource.
+ * SDCTargetInventoryAssembler is for implementing Spring HATEOAS to ease
+ * creating REST representations that follow the HATEOAS principle . It converts
+ * the resultset/dataset retrieved from database into output JSON response using
+ * {@link SDCTargetInventoryResponse}.
  * 
  * @see <a href= "https://spring.io/guides/gs/rest-hateoas/">Spring-REST HATEOAS
  *      reference link 1</a>
@@ -35,18 +36,18 @@ public class SDCTargetInventoryAssembler
 		extends ResourceAssemblerSupport<SDCTargetInventory, SDCTargetInventoryResource> {
 
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public SDCTargetInventoryAssembler() {
 		super(SDCTargetInventoryController.class, SDCTargetInventoryResource.class);
 	}
 
 	/**
-	 * Returns sdcTargetInventoryResources with HATEOAS selRel reference link in
-	 * JSON response.
+	 * Returns {@link SDCTargetInventoryResponse} with HATEOAS selRel reference
+	 * link in JSON response.
 	 * 
 	 * @param sdcTargetInventorys
-	 * @return sdcTargetInventoryResources
+	 * @return sdcTargetInventoryResponse
 	 */
 	public SDCTargetInventoryResponse toResources(final List<SDCTargetInventory> sdcTargetInventorys) {
 		SDCTargetInventoryResponse sdcTargetInventoryResponse = new SDCTargetInventoryResponse();

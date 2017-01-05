@@ -7,12 +7,14 @@ import java.math.BigDecimal;
 
 import org.springframework.http.ResponseEntity;
 
+import com.homedepot.mm.po.allocationteamdata.controller.PeggedOrderController;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
 import com.homedepot.mm.po.allocationteamdata.response.PeggedOrderResponse;
+import com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService;
 
 /**
- * Defines an API for PeggedOrderController. This is used to serve an entry
- * point for PeggedOrder services.
+ * Defines an API for {@link PeggedOrderController}. This is used to serve an
+ * entry point for {@link PeggedOrderService}.
  * 
  * @author axd8472
  *
