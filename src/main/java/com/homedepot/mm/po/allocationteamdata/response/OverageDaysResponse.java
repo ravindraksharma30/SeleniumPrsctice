@@ -8,13 +8,13 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
+import com.homedepot.mm.po.allocationteamdata.domain.OverageDayResource;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDay;
 
 import lombok.Data;
 
 /**
- * Returns JSON response for {@link OverageDays}
+ * Returns JSON response for {@link OverageDay}
  * 
  * @author gxk8870
  *
@@ -26,6 +26,6 @@ public class OverageDaysResponse {
 	 * 
 	 */
 	@JsonProperty("overageDays")
-	private List<OverageDaysResource> overageDaysResources;
+	private List<OverageDayResource> overageDaysResources;
 
 }

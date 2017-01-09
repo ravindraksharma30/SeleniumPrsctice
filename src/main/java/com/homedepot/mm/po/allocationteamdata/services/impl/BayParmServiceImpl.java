@@ -3,8 +3,6 @@
  */
 package com.homedepot.mm.po.allocationteamdata.services.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,12 +38,9 @@ public class BayParmServiceImpl implements BayParmService {
 	 * findBayParms(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<BayParm> findBayParms(final String locationId, final String skuNumber, final String activeFlag) {
+	public BayParm findBayParm(final String locationId, final String skuNumber, final String activeFlag) {
 
-		final List<BayParm> bayparms = bayParmRepository.findByLocationidAndProductcodeAndActiveflag(locationId,
-				skuNumber, activeFlag);
-
-		return bayparms;
+		return bayParmRepository.findByLocationidAndProductcodeAndActiveflag(locationId, skuNumber, activeFlag);
 	}
 
 }

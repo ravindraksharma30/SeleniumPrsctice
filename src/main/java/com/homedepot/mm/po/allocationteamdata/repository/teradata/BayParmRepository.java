@@ -1,7 +1,5 @@
 package com.homedepot.mm.po.allocationteamdata.repository.teradata;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +25,6 @@ public interface BayParmRepository extends JpaRepository<BayParm, Long> {
 	 * @param activeFlag
 	 * @return
 	 */
-	public List<BayParm> findByLocationidAndProductcodeAndActiveflag(String locationId, String skuNumber,
-			String activeFlag);
+	public BayParm findByLocationidAndProductcodeAndActiveflag(String locationId, String skuNumber, String activeFlag);
 
 }

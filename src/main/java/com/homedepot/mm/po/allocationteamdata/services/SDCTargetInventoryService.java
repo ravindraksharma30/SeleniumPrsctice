@@ -1,7 +1,5 @@
 package com.homedepot.mm.po.allocationteamdata.services;
 
-import java.util.List;
-
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.SDCTargetInventory;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.SDCTargetInventoryRepository;
 
@@ -26,6 +24,6 @@ public interface SDCTargetInventoryService {
 	 * @param activeFlag
 	 * @return
 	 */
-	public List<SDCTargetInventory> findSDCTargetInventory(final String locationId, final String skuNumber,
+	public SDCTargetInventory findSDCTargetInventory(final String locationId, final String skuNumber,
 			final String activeFlag);
 }

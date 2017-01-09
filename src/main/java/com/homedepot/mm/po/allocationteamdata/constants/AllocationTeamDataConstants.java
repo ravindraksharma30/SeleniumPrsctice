@@ -29,15 +29,15 @@ public class AllocationTeamDataConstants {
 	/**
 	 * 
 	 */
-	public static final String ALLOCATION_ON_BOARD_PATH = "/findAllocationOnBoards";
+	public static final String ALLOCATION_ON_BOARD_PATH = "/findAllocationOnBoard";
 	/**
 	 * 
 	 */
-	public static final String BAY_PARM_PATH = "/findBayParms";
+	public static final String BAY_PARM_PATH = "/findBayParm";
 	/**
 	 * 
 	 */
-	public static final String OVERAGE_DAYS_PATH = "/findOverageDays";
+	public static final String OVERAGE_DAYS_PATH = "/findOverageDay";
 	/**
 	 * 
 	 */
@@ -45,6 +45,10 @@ public class AllocationTeamDataConstants {
 	/**
 	 * 
 	 */
-	public static final String SDC_TARGET_INVENTORY_PATH = "/findSDCTargetInventories";
+	public static final String SDC_TARGET_INVENTORY_PATH = "/findSDCTargetInventory";
+	/**
+	 * 
+	 */
+	public static final String ERROR_INVALID_QUERY = "allocationteamdata.invalid.queryParameter";
 
 }

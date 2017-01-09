@@ -1,7 +1,5 @@
 package com.homedepot.mm.po.allocationteamdata.repository.teradata;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +26,6 @@ public interface SDCTargetInventoryRepository extends JpaRepository<SDCTargetInv
 	 * @param activeflag
 	 * @return
 	 */
-	public List<SDCTargetInventory> findByLocationidAndProductcodeAndActiveflag(final String loacationid,
+	public SDCTargetInventory findByLocationidAndProductcodeAndActiveflag(final String loacationid,
 			final String skuNumber, final String activeflag);
 }

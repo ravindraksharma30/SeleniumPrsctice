@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,19 +37,9 @@ public class BayParmRepositoryTest {
 	 * 
 	 */
 	public void testBayParmRepository() {
-		List<BayParm> bayParms = null;
-		bayParms = bayParmRepo.findByLocationidAndProductcodeAndActiveflag("0551", "1000005316", "Y");
-		assertEquals(1, bayParms.size());
-		assertNotNull(bayParms);
-
-		for (BayParm bayParm : bayParms) {
-			switch (bayParm.getSequencenumber().intValue()) {
-			case 149:
-				assertEquals(new BigDecimal("1490.000"), bayParm.getBay_parm_val());
-				break;
-
-			}
-		}
+		BayParm bayParm = bayParmRepo.findByLocationidAndProductcodeAndActiveflag("0551", "1000005316", "Y");
+		assertNotNull(bayParm);
+		assertEquals(new BigDecimal("1490.000"), bayParm.getBay_parm_val());
 	}
 
 }

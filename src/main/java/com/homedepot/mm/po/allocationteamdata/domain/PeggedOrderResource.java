@@ -22,7 +22,6 @@ import lombok.EqualsAndHashCode;
 public class PeggedOrderResource extends ResourceSupport {
 
 	private BigDecimal peggedOrderQty;
-
 	private String destLocationNumber;
 	private String destLocationTypeCode;
 	private BigDecimal peggedTypeCode;
@@ -46,7 +45,6 @@ public class PeggedOrderResource extends ResourceSupport {
 
 		this.destLocationTypeCode = destLocationTypeCode;
 		this.destLocationNumber = destLocationId;
-
 		this.peggedOrderQty = peggedOrderQty;
 		this.peggedTypeCode = peggedTypeCode;
 

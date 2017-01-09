@@ -9,16 +9,16 @@ import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
 import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
-import com.homedepot.mm.po.allocationteamdata.controller.OverageDaysController;
-import com.homedepot.mm.po.allocationteamdata.domain.OverageDaysResource;
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
+import com.homedepot.mm.po.allocationteamdata.controller.OverageDayController;
+import com.homedepot.mm.po.allocationteamdata.domain.OverageDayResource;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDay;
 import com.homedepot.mm.po.allocationteamdata.response.OverageDaysResponse;
 
 /**
  * OverageDaysResourceAssembler is for implementing Spring HATEOAS to ease
  * creating REST representations that follow the HATEOAS principle . It converts
  * the resultset/dataset retrieved from database into output JSON response using
- * {@link OverageDaysResource}.
+ * {@link OverageDayResource}.
  * 
  * @see <a href= "https://spring.io/guides/gs/rest-hateoas/">Spring-REST HATEOAS
  *      reference link 1</a>
@@ -30,13 +30,13 @@ import com.homedepot.mm.po.allocationteamdata.response.OverageDaysResponse;
  *
  */
 @Component
-public class OverageDaysResourceAssembler extends ResourceAssemblerSupport<OverageDays, OverageDaysResource> {
+public class OverageDayResourceAssembler extends ResourceAssemblerSupport<OverageDay, OverageDayResource> {
 
 	/**
 	 * Default constructor
 	 */
-	public OverageDaysResourceAssembler() {
-		super(OverageDaysController.class, OverageDaysResource.class);
+	public OverageDayResourceAssembler() {
+		super(OverageDayController.class, OverageDayResource.class);
 	}
 
 	/**
@@ -46,17 +46,17 @@ public class OverageDaysResourceAssembler extends ResourceAssemblerSupport<Overa
 	 * @param overageDays
 	 * @return overageDaysResponse
 	 */
-	public OverageDaysResponse toResources(final List<OverageDays> overageDays) {
-		List<OverageDaysResource> overageDaysResources = new ArrayList<>();
+	public OverageDaysResponse toResources(final List<OverageDay> overageDays) {
+		List<OverageDayResource> overageDaysResources = new ArrayList<>();
 
 		OverageDaysResponse overageDaysResponse = new OverageDaysResponse();
 
 		overageDays.forEach(overageDay -> {
-			OverageDaysResource overageDaysResource = new OverageDaysResource(overageDay.getSequencenumber(),
+			OverageDayResource overageDaysResource = new OverageDayResource(overageDay.getSequencenumber(),
 					overageDay.getUploadid(), overageDay.getLocationid(), overageDay.getProductcode(),
 					overageDay.getOverage_days(), overageDay.getActiveflag());
 
-			overageDaysResource.add(linkTo(OverageDaysController.class)
+			overageDaysResource.add(linkTo(OverageDayController.class)
 					.slash(AllocationTeamDataConstants.OVERAGE_DAYS_PATH).withSelfRel());
 			overageDaysResources.add(overageDaysResource);
 		});
@@ -65,7 +65,7 @@ public class OverageDaysResourceAssembler extends ResourceAssemblerSupport<Overa
 	}
 
 	@Override
-	public OverageDaysResource toResource(final OverageDays entity) {
+	public OverageDayResource toResource(final OverageDay entity) {
 		return null;
 	}
 

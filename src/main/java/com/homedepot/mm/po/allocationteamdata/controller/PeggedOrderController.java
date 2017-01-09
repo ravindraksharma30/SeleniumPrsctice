@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.PeggedOrderResourceAssembler;
+import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.api.PeggedOrderApi;
 import com.homedepot.mm.po.allocationteamdata.domain.PeggedOrderResource;
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
-import com.homedepot.mm.po.allocationteamdata.response.PeggedOrderResponse;
 import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 import com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService;
 import com.homedepot.mm.po.allocationteamdata.util.StringUtils;
@@ -77,19 +77,19 @@ public class PeggedOrderController implements PeggedOrderApi {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = PeggedOrderController.class),
 			@ApiResponse(code = 403, message = "Forbidden"), @ApiResponse(code = 404, message = "Not Found"),
 			@ApiResponse(code = 500, message = "Internal Server Error") })
-	public ResponseEntity<PeggedOrderResponse> findPeggedOrder(@QueryParam("asnNumber") final String asnNumber,
+	public ResponseEntity<PeggedOrderResource> findPeggedOrder(@QueryParam("asnNumber") final String asnNumber,
 			@QueryParam("poNumber") final String poNumber, @QueryParam("skuNumber") final BigDecimal skuNumber)
 			throws InvalidQueryParamException {
 
-		PeggedOrderResource peggedOrderResource = null;
-		PeggedOrderResponse peggedOrderResponse = new PeggedOrderResponse();
+		PeggedOrderResource peggedOrderResource = new PeggedOrderResource();
 
 		/*
 		 * Validate Query parameters to make sure parameters are mandatorily
 		 * present in the request in-order to retrieve values from database.
 		 */
 		if (StringUtils.isNullOrEmpty(asnNumber, poNumber) || null == skuNumber) {
-			throw new InvalidQueryParamException(messageSource.getMessage("allocationteamdata.invalid.queryParameter"));
+			throw new InvalidQueryParamException(
+					messageSource.getMessage(AllocationTeamDataConstants.ERROR_INVALID_QUERY));
 		}
 
 		// Service call to perform database SELECT operation
@@ -98,11 +98,9 @@ public class PeggedOrderController implements PeggedOrderApi {
 		// HATEOAS implementation
 		if (null != peggedOrder) {
 			peggedOrderResource = peggedOrderResourceAssembler.toResource(peggedOrder);
-			peggedOrderResponse.setPeggedOrderResource(peggedOrderResource);
-
 		}
 
-		return new ResponseEntity<PeggedOrderResponse>(peggedOrderResponse, HttpStatus.OK);
+		return new ResponseEntity<PeggedOrderResource>(peggedOrderResource, HttpStatus.OK);
 	}
 
 }

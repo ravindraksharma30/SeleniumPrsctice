@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 import org.springframework.http.ResponseEntity;
 
 import com.homedepot.mm.po.allocationteamdata.controller.PeggedOrderController;
+import com.homedepot.mm.po.allocationteamdata.domain.PeggedOrderResource;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
-import com.homedepot.mm.po.allocationteamdata.response.PeggedOrderResponse;
 import com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService;
 
 /**
@@ -35,7 +35,7 @@ public interface PeggedOrderApi {
 	 * @throws InvalidQueryParamException
 	 */
 
-	public ResponseEntity<PeggedOrderResponse> findPeggedOrder(final String asnNumber, final String poNumber,
+	public ResponseEntity<PeggedOrderResource> findPeggedOrder(final String asnNumber, final String poNumber,
 			final BigDecimal skuNumber) throws InvalidQueryParamException;
 
 }

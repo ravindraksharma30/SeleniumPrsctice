@@ -3,8 +3,6 @@
 */
 package com.homedepot.mm.po.allocationteamdata.services;
 
-import java.util.List;
-
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 import com.homedepot.mm.po.allocationteamdata.repository.teradata.BayParmRepository;
 
@@ -28,6 +26,6 @@ public interface BayParmService {
 	 * @param activeFlag
 	 * @return
 	 */
-	public List<BayParm> findBayParms(final String locationId, final String skuNumber, final String activeFlag);
+	public BayParm findBayParm(final String locationId, final String skuNumber, final String activeFlag);
 
 }

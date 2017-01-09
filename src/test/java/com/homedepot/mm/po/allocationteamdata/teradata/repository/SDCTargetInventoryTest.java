@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,21 +37,10 @@ public class SDCTargetInventoryTest {
 	 * 
 	 */
 	public void testSDCTargetInventoryRepository() {
-		List<SDCTargetInventory> sdcTargetInventories = sDCTargetInventoryRepository
+		SDCTargetInventory sdcTargetInventory = sDCTargetInventoryRepository
 				.findByLocationidAndProductcodeAndActiveflag("0551", "5965", "Y");
-
-		assertEquals(1, sdcTargetInventories.size());
-		assertNotNull(sdcTargetInventories);
-
-		for (SDCTargetInventory sdcTargetInventory : sdcTargetInventories) {
-			switch (sdcTargetInventory.getSequencenumber().intValue()) {
-			case 651:
-				assertEquals(new BigDecimal("10.000"), sdcTargetInventory.getTgt_inv_qty());
-				break;
-
-			}
-		}
-
+		assertNotNull(sdcTargetInventory);
+		assertEquals(new BigDecimal("10.000"), sdcTargetInventory.getTgt_inv_qty());
 	}
 
 }

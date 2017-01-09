@@ -1,22 +1,20 @@
 package com.homedepot.mm.po.allocationteamdata.controller;
 
-import java.util.List;
-
 import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.BayParmResourceAssembler;
+import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.api.BayParmApi;
+import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.BayParm;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
-import com.homedepot.mm.po.allocationteamdata.response.BayParmResponse;
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 import com.homedepot.mm.po.allocationteamdata.util.StringUtils;
@@ -73,29 +71,30 @@ public class BayParmController implements BayParmApi {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 403, message = "Forbidden"), @ApiResponse(code = 404, message = "Not Found"),
 			@ApiResponse(code = 500, message = "Internal Server Error") })
-	public ResponseEntity<BayParmResponse> findBayParms(@QueryParam("locationId") final String locationId,
+	public ResponseEntity<BayParmResource> findBayParm(@QueryParam("locationId") final String locationId,
 			@QueryParam("skuNumber") final String skuNumber, @QueryParam("activeFlag") final String activeFlag)
 			throws InvalidQueryParamException {
 
-		BayParmResponse bayParmResponse = new BayParmResponse();
+		BayParmResource bayParmResource = new BayParmResource();
 
 		/*
 		 * Validate Query parameters to make sure parameters are mandatorily
 		 * present in the request in-order to retrieve values from database.
 		 */
 		if (StringUtils.isNullOrEmpty(locationId, skuNumber, activeFlag)) {
-			throw new InvalidQueryParamException(messageSource.getMessage("allocationteamdata.invalid.queryParameter"));
+			throw new InvalidQueryParamException(
+					messageSource.getMessage(AllocationTeamDataConstants.ERROR_INVALID_QUERY));
 		}
 
 		// Service call to perform database SELECT operation
-		final List<BayParm> bayParms = bayParmService.findBayParms(locationId, skuNumber, activeFlag);
+		final BayParm bayParm = bayParmService.findBayParm(locationId, skuNumber, activeFlag);
 
 		// HATEOAS implementation
-		if (!CollectionUtils.isEmpty(bayParms)) {
-			bayParmResponse = bayParmResourceAssembler.toResources(bayParms);
+		if (bayParm != null) {
+			bayParmResource = bayParmResourceAssembler.toResource(bayParm);
 		}
 
-		return new ResponseEntity<BayParmResponse>(bayParmResponse, HttpStatus.OK);
+		return new ResponseEntity<BayParmResource>(bayParmResource, HttpStatus.OK);
 
 	}
 

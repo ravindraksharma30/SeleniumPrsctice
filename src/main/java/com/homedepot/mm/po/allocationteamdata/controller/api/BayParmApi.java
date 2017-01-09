@@ -6,8 +6,8 @@ package com.homedepot.mm.po.allocationteamdata.controller.api;
 import org.springframework.http.ResponseEntity;
 
 import com.homedepot.mm.po.allocationteamdata.controller.BayParmController;
+import com.homedepot.mm.po.allocationteamdata.domain.BayParmResource;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
-import com.homedepot.mm.po.allocationteamdata.response.BayParmResponse;
 import com.homedepot.mm.po.allocationteamdata.services.BayParmService;
 
 /**
@@ -23,7 +23,7 @@ public interface BayParmApi {
 	 * The path used to access the method getBayParm() of
 	 * AllocationOnBoardController
 	 */
-	public static final String SEARCH_PATH = "/findBayParms";
+	public static final String SEARCH_PATH = "/findBayParm";
 
 	/**
 	 * @see com.homedepot.mm.po.allocationteamdata.controller.BayParmController#findBayParms()
@@ -33,6 +33,6 @@ public interface BayParmApi {
 	 * @return
 	 * @throws InvalidQueryParamException
 	 */
-	public ResponseEntity<BayParmResponse> findBayParms(final String locationId, final String skuNumber,
+	public ResponseEntity<BayParmResource> findBayParm(final String locationId, final String skuNumber,
 			final String activeFlag) throws InvalidQueryParamException;
 }

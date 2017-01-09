@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TLALLOC_OVERAGE_STG")
-public class OverageDays {
+public class OverageDay {
 	@Id
 	private Long sequencenumber;
 	

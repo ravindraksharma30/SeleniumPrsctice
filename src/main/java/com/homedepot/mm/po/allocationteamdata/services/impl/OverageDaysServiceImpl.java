@@ -1,17 +1,15 @@
 package com.homedepot.mm.po.allocationteamdata.services.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
-import com.homedepot.mm.po.allocationteamdata.repository.teradata.OverageDaysRepository;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDay;
+import com.homedepot.mm.po.allocationteamdata.repository.teradata.OverageDayRepository;
 import com.homedepot.mm.po.allocationteamdata.services.OverageDaysService;
 
 /**
  * Implementation of {@link OverageDaysService} API by retrieving the result set
- * from the {@link OverageDaysRepository}.
+ * from the {@link OverageDayRepository}.
  * 
  * @author axd8472
  *
@@ -23,7 +21,7 @@ public class OverageDaysServiceImpl implements OverageDaysService {
 	 * 
 	 */
 	@Autowired
-	private OverageDaysRepository overageDaysRepository;
+	private OverageDayRepository overageDaysRepository;
 
 	/**
 	 * 
@@ -38,9 +36,7 @@ public class OverageDaysServiceImpl implements OverageDaysService {
 	 */
 
 	@Override
-	public List<OverageDays> findOverageDays(final String locationId, final String skuNumber, final String activeFlag) {
-		final List<OverageDays> overageDays = overageDaysRepository
-				.findByLocationidAndProductcodeAndActiveflag(locationId, skuNumber, activeFlag);
-		return overageDays;
+	public OverageDay findOverageDay(final String locationId, final String skuNumber, final String activeFlag) {
+		return overageDaysRepository.findByLocationidAndProductcodeAndActiveflag(locationId, skuNumber, activeFlag);
 	}
 }

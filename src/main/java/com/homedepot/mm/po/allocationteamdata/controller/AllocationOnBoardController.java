@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homedepot.mm.po.allocationteamdata.assembler.AllocationOnBoardAssembler;
+import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.api.AllocationOnBoardApi;
 import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoard;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
@@ -83,7 +84,8 @@ public class AllocationOnBoardController implements AllocationOnBoardApi {
 		 */
 		if (null == parmTypeCode) {
 
-			throw new InvalidQueryParamException(messageSource.getMessage("allocationteamdata.invalid.queryParameter"));
+			throw new InvalidQueryParamException(
+					messageSource.getMessage(AllocationTeamDataConstants.ERROR_INVALID_QUERY));
 		}
 
 		// Service call to perform database SELECT operation

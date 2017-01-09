@@ -1,11 +1,9 @@
 package com.homedepot.mm.po.allocationteamdata.repository.teradata;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
+import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDay;
 
 /**
  * OverageDaysRepository is used to do CRUD operations for the table
@@ -19,7 +17,7 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.OverageDays;
  *
  */
 @Repository("OverageDaysRepository")
-public interface OverageDaysRepository extends JpaRepository<OverageDays, Long> {
+public interface OverageDayRepository extends JpaRepository<OverageDay, Long> {
 	/**
 	 * 
 	 * @param locationId
@@ -27,6 +25,6 @@ public interface OverageDaysRepository extends JpaRepository<OverageDays, Long> 
 	 * @param activeFlag
 	 * @return
 	 */
-	public List<OverageDays> findByLocationidAndProductcodeAndActiveflag(String locationId, String skuNumber,
+	public OverageDay findByLocationidAndProductcodeAndActiveflag(String locationId, String skuNumber,
 			String activeFlag);
 }

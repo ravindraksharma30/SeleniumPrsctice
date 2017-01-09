@@ -1,7 +1,5 @@
 package com.homedepot.mm.po.allocationteamdata.services.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +35,13 @@ public class SDCTargetInventoryServiceImpl implements SDCTargetInventoryService 
 	 * 
 	 */
 	@Override
-	public List<SDCTargetInventory> findSDCTargetInventory(final String locationId, final String skuNumber,
+	public SDCTargetInventory findSDCTargetInventory(final String locationId, final String skuNumber,
 			final String activeFlag) {
 
-		final List<SDCTargetInventory> sdcTargetInventories = sdcTargetInventoryRepository
+		final SDCTargetInventory sdcTargetInventory = sdcTargetInventoryRepository
 				.findByLocationidAndProductcodeAndActiveflag(locationId, skuNumber, activeFlag);
 
-		return sdcTargetInventories;
+		return sdcTargetInventory;
 	}
 
 }

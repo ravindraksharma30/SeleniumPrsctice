@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @JsonRootName(value = "OverageDays")
-public class OverageDaysResource extends ResourceSupport {
+public class OverageDayResource extends ResourceSupport {
 
 	private Long sequencenumber;
 
@@ -28,7 +28,7 @@ public class OverageDaysResource extends ResourceSupport {
 	/**
 	 *
 	 */
-	public OverageDaysResource() {
+	public OverageDayResource() {
 
 	}
 
@@ -41,7 +41,7 @@ public class OverageDaysResource extends ResourceSupport {
 	 * @param overageDays
 	 * @param activeFlag
 	 */
-	public OverageDaysResource(Long sequencenumber, Integer uploadId, String locationId, String productCode,
+	public OverageDayResource(Long sequencenumber, Integer uploadId, String locationId, String productCode,
 			Integer overageDays, String activeFlag) {
 		this.sequencenumber = sequencenumber;
 		this.uploadId = uploadId;

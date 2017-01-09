@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,10 +20,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Component
+@JsonRootName("bayParm")
 public class BayParmResource extends ResourceSupport {
 
 	private Long sequencenumber;
-
 	private int uploadId;
 	private String locationId;
 	private String productCode;

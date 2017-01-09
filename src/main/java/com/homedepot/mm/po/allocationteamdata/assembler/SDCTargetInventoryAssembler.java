@@ -2,9 +2,6 @@ package com.homedepot.mm.po.allocationteamdata.assembler;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -43,31 +40,23 @@ public class SDCTargetInventoryAssembler
 	}
 
 	/**
-	 * Returns {@link SDCTargetInventoryResponse} with HATEOAS selRel reference
+	 * Returns {@link SDCTargetInventoryResource} with HATEOAS selRel reference
 	 * link in JSON response.
 	 * 
-	 * @param sdcTargetInventorys
-	 * @return sdcTargetInventoryResponse
+	 * @param sdcTargetInventory
+	 * @return sdcTargetInventoryResource
 	 */
-	public SDCTargetInventoryResponse toResources(final List<SDCTargetInventory> sdcTargetInventorys) {
-		SDCTargetInventoryResponse sdcTargetInventoryResponse = new SDCTargetInventoryResponse();
-		List<SDCTargetInventoryResource> sdcTargetInventoryResources = new ArrayList<SDCTargetInventoryResource>();
-		sdcTargetInventorys.forEach(sdc -> {
-			SDCTargetInventoryResource sdcTargetInventoryResource = new SDCTargetInventoryResource(
-					sdc.getSequencenumber(), sdc.getUploadid(), sdc.getLocationid(), sdc.getProductcode(),
-					sdc.getTgt_inv_qty(), sdc.getActiveflag());
-			sdcTargetInventoryResource.add(linkTo(BayParmController.class)
-					.slash(AllocationTeamDataConstants.SDC_TARGET_INVENTORY_PATH).withSelfRel());
-
-			sdcTargetInventoryResources.add(sdcTargetInventoryResource);
-		});
-		sdcTargetInventoryResponse.setSdcTargetInventoryResources(sdcTargetInventoryResources);
-		return sdcTargetInventoryResponse;
-	}
-
 	@Override
-	public SDCTargetInventoryResource toResource(final SDCTargetInventory entity) {
-		return null;
+	public SDCTargetInventoryResource toResource(final SDCTargetInventory sdcTargetInventory) {
+		SDCTargetInventoryResource sdcTargetInventoryResource = new SDCTargetInventoryResource(
+				sdcTargetInventory.getSequencenumber(), sdcTargetInventory.getUploadid(),
+				sdcTargetInventory.getLocationid(), sdcTargetInventory.getProductcode(),
+				sdcTargetInventory.getTgt_inv_qty(), sdcTargetInventory.getActiveflag());
+
+		sdcTargetInventoryResource.add(linkTo(BayParmController.class)
+				.slash(AllocationTeamDataConstants.SDC_TARGET_INVENTORY_PATH).withSelfRel());
+
+		return sdcTargetInventoryResource;
 	}
 
 }
