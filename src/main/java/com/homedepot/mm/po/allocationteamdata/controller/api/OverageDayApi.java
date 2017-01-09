@@ -21,7 +21,7 @@ public interface OverageDayApi {
 	/**
 	 * 
 	 */
-	public static final String SEARCH_PATH = "/findOverageDays";
+	public static final String SEARCH_PATH = "/findOverageDay";
 
 	/*
 	 * 

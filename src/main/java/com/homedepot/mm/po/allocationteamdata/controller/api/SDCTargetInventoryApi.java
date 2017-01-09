@@ -22,7 +22,7 @@ public interface SDCTargetInventoryApi {
 	/**
 	 * 
 	 */
-	public static final String SEARCH_PATH = "/findSDCTargetInventories";
+	public static final String SEARCH_PATH = "/findSDCTargetInventory";
 
 	/**
 	 * @see com.homedepot.mm.po.allocationteamdata.controller.SDCTargetInventoryController#findSdcTargetInventory()
