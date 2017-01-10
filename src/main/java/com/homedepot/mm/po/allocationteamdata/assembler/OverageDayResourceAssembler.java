@@ -2,9 +2,6 @@ package com.homedepot.mm.po.allocationteamdata.assembler;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -43,30 +40,19 @@ public class OverageDayResourceAssembler extends ResourceAssemblerSupport<Overag
 	 * Returns {@link OverageDaysResponse} with HATEOAS reference selRel link in
 	 * JSON response.
 	 * 
-	 * @param overageDays
-	 * @return overageDaysResponse
+	 * @param overageDay
+	 * @return overageDayResource
 	 */
-	public OverageDaysResponse toResources(final List<OverageDay> overageDays) {
-		List<OverageDayResource> overageDaysResources = new ArrayList<>();
-
-		OverageDaysResponse overageDaysResponse = new OverageDaysResponse();
-
-		overageDays.forEach(overageDay -> {
-			OverageDayResource overageDaysResource = new OverageDayResource(overageDay.getSequencenumber(),
-					overageDay.getUploadid(), overageDay.getLocationid(), overageDay.getProductcode(),
-					overageDay.getOverage_days(), overageDay.getActiveflag());
-
-			overageDaysResource.add(linkTo(OverageDayController.class)
-					.slash(AllocationTeamDataConstants.OVERAGE_DAYS_PATH).withSelfRel());
-			overageDaysResources.add(overageDaysResource);
-		});
-		overageDaysResponse.setOverageDaysResources(overageDaysResources);
-		return overageDaysResponse;
-	}
-
 	@Override
-	public OverageDayResource toResource(final OverageDay entity) {
-		return null;
+	public OverageDayResource toResource(final OverageDay overageDay) {
+		OverageDayResource overageDayResource = new OverageDayResource(overageDay.getSequencenumber(),
+				overageDay.getUploadid(), overageDay.getLocationid(), overageDay.getProductcode(),
+				overageDay.getOverage_days(), overageDay.getActiveflag());
+
+		overageDayResource.add(
+				linkTo(OverageDayController.class).slash(AllocationTeamDataConstants.OVERAGE_DAYS_PATH).withSelfRel());
+
+		return overageDayResource;
 	}
 
 }
