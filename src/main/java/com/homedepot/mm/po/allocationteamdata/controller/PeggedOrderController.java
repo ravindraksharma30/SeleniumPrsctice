@@ -81,7 +81,7 @@ public class PeggedOrderController implements PeggedOrderApi {
 			@QueryParam("poNumber") final String poNumber, @QueryParam("skuNumber") final BigDecimal skuNumber)
 			throws InvalidQueryParamException {
 
-		PeggedOrderResource peggedOrderResource = new PeggedOrderResource();
+		PeggedOrderResource peggedOrderResource = null;
 
 		/*
 		 * Validate Query parameters to make sure parameters are mandatorily
