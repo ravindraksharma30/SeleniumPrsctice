@@ -41,7 +41,7 @@ public class AllocationTeamDataConstants {
 	/**
 	 * 
 	 */
-	public static final String PEGGED_ORDER_PATH = "/findPeggedOrder";
+	public static final String PEGGED_ORDER_PATH = "/findPeggedOrders";
 	/**
 	 * 
 	 */

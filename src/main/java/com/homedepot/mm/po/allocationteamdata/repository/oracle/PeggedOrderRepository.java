@@ -33,7 +33,7 @@ public interface PeggedOrderRepository extends JpaRepository<PeggedOrder, BigDec
 	 * @return
 	 */
 
-	@Query(value = "select a from PeggedOrder a where a.bol_nbr = ?1 and a.inb_ord_nbr = ?2 and a.sku_nbr = ?3 ")
+	@Query(value = "select a from PeggedOrder a where a.bol_nbr = ?1 and a.inb_ord_nbr = ?2 and a.sku_nbr = ?3 and a.src_loc_typ_cd = 'DC' and a.dest_loc_typ_cd = 'DC' order by a.dest_loc_nbr")
 	public List<PeggedOrder> findPeggedOrders(final String asnNumber, final String poNumber,
 			final BigDecimal skuNumber);
 

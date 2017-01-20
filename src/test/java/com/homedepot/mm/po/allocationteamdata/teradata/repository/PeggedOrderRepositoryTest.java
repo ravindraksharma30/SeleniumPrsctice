@@ -30,19 +30,20 @@ public class PeggedOrderRepositoryTest {
 
 	@Test
 	public void testPeggedOrderRepository() {
-		List<PeggedOrder> peggedOrders = peggedOrderRepository.findPeggedOrders("10", "58158922",
-				new BigDecimal("1000014724"));
-		assertEquals(1, peggedOrders.size());
+		List<PeggedOrder> peggedOrders = peggedOrderRepository.findPeggedOrders("EGLV14369", "58180345",
+				new BigDecimal("1000358177"));
+		assertEquals(3, peggedOrders.size());
 		assertNotNull(peggedOrders);
 		for (PeggedOrder peggedOrder : peggedOrders) {
 			switch (peggedOrder.getVirt_peg_ord_id().toString()) {
 
-			case "68742":
-				assertEquals(new BigDecimal("12"), peggedOrder.getPeg_ord_qty());
+			case "84256":
+				assertEquals(new BigDecimal("200"), peggedOrder.getPeg_ord_qty());
 				break;
 
 			}
 		}
 
 	}
+
 }

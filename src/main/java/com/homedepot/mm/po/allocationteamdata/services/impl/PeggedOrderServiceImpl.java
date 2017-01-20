@@ -4,7 +4,7 @@
 package com.homedepot.mm.po.allocationteamdata.services.impl;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,25 +39,59 @@ public class PeggedOrderServiceImpl implements PeggedOrderService {
 	 * @param asnNumber
 	 * @param poNumber
 	 * @param skuNumber
-	 * @return peggedOrders.get(0)
+	 * @return peggedOrders
 	 */
 	@Override
-	public PeggedOrder findPeggedOrder(final String asnNumber, final String poNumber, final BigDecimal skuNumber) {
+	public List<PeggedOrder> findPeggedOrders(final String asnNumber, final String poNumber,
+			final BigDecimal skuNumber) {
 
-		final List<PeggedOrder> peggedOrders = peggedOrderRepository.findPeggedOrders(asnNumber, poNumber, skuNumber);
+		List<PeggedOrder> peggedOrders = peggedOrderRepository.findPeggedOrders(asnNumber, poNumber, skuNumber);
+
+		List<PeggedOrder> resultSet = new ArrayList<>();
 
 		if (!peggedOrders.isEmpty() && peggedOrders.size() > 0) {
-			if (AllocationTeamDataConstants.THREE.equals(peggedOrders.get(0).getPeg_typ_cd())) {
-				BigDecimal peggedOrdersSum = new BigDecimal(
-						peggedOrders.stream().mapToInt(i -> i.getPeg_ord_qty().intValue()).sum());
-				peggedOrders.get(0).setPeg_ord_qty(peggedOrdersSum);
-				return peggedOrders.get(0);
-			} else {
-				return peggedOrders.stream().max(Comparator.comparing(PeggedOrder::getVirt_peg_ord_id)).get();
-			}
+			// TODO: follow up that this is the correct criteria / get a code
+			// review
+			if (null == peggedOrders.get(0).getPeg_typ_cd()) {
 
+				boolean addToList = true;
+
+				for (PeggedOrder peggedOrder : peggedOrders) {
+					for (PeggedOrder result : resultSet) {
+						if (result.getDest_loc_nbr().equalsIgnoreCase(peggedOrder.getDest_loc_nbr())) {
+							result.setPeg_ord_qty(result.getPeg_ord_qty().add(peggedOrder.getPeg_ord_qty()));
+							addToList = false;
+						}
+					}
+
+					if (addToList)
+						resultSet.add(peggedOrder);
+
+					addToList = true;
+				}
+			} else if (AllocationTeamDataConstants.THREE.equals(peggedOrders.get(0).getPeg_typ_cd())) {
+
+				boolean addToList = true;
+
+				for (PeggedOrder peggedOrder : peggedOrders) {
+					for (PeggedOrder result : resultSet) {
+						if (result.getDest_loc_nbr().equalsIgnoreCase(peggedOrder.getDest_loc_nbr())) {
+							if (-1 == result.getVirt_peg_ord_id().compareTo(peggedOrder.getVirt_peg_ord_id())) {
+								result.setPeg_ord_qty(peggedOrder.getPeg_ord_qty());
+							}
+							addToList = false;
+						}
+					}
+
+					if (addToList)
+						resultSet.add(peggedOrder);
+
+					addToList = true;
+				}
+			}
 		}
-		return null;
+
+		return resultSet;
 	}
 
 }

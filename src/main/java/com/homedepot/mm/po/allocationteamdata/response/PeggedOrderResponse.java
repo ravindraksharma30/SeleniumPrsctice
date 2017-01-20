@@ -3,6 +3,8 @@
  */
 package com.homedepot.mm.po.allocationteamdata.response;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,7 +25,7 @@ public class PeggedOrderResponse {
 	/**
 	 * 
 	 */
-	@JsonProperty("peggedOrder")
-	private PeggedOrderResource peggedOrderResource;
+	@JsonProperty("peggedOrders")
+	private List<PeggedOrderResource> peggedOrderResource;
 
 }

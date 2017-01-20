@@ -4,6 +4,7 @@
 package com.homedepot.mm.po.allocationteamdata.services;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
 import com.homedepot.mm.po.allocationteamdata.repository.oracle.PeggedOrderRepository;
@@ -29,6 +30,7 @@ public interface PeggedOrderService {
 	 * @param skuNumber
 	 * @return
 	 */
-	public PeggedOrder findPeggedOrder(final String asnNumber, final String poNumber, final BigDecimal skuNumber);
+	public List<PeggedOrder> findPeggedOrders(final String asnNumber, final String poNumber,
+			final BigDecimal skuNumber);
 
 }

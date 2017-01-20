@@ -4,6 +4,7 @@
 package com.homedepot.mm.po.allocationteamdata.controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.ws.rs.QueryParam;
 
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.homedepot.mm.po.allocationteamdata.assembler.PeggedOrderResourceAssembler;
 import com.homedepot.mm.po.allocationteamdata.constants.AllocationTeamDataConstants;
 import com.homedepot.mm.po.allocationteamdata.controller.api.PeggedOrderApi;
-import com.homedepot.mm.po.allocationteamdata.domain.PeggedOrderResource;
 import com.homedepot.mm.po.allocationteamdata.entities.oracle.PeggedOrder;
 import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamException;
+import com.homedepot.mm.po.allocationteamdata.response.PeggedOrderResponse;
 import com.homedepot.mm.po.allocationteamdata.services.MessageByLocaleService;
 import com.homedepot.mm.po.allocationteamdata.services.PeggedOrderService;
 import com.homedepot.mm.po.allocationteamdata.util.StringUtils;
@@ -77,11 +78,11 @@ public class PeggedOrderController implements PeggedOrderApi {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = PeggedOrderController.class),
 			@ApiResponse(code = 403, message = "Forbidden"), @ApiResponse(code = 404, message = "Not Found"),
 			@ApiResponse(code = 500, message = "Internal Server Error") })
-	public ResponseEntity<PeggedOrderResource> findPeggedOrder(@QueryParam("asnNumber") final String asnNumber,
+	public ResponseEntity<PeggedOrderResponse> findPeggedOrder(@QueryParam("asnNumber") final String asnNumber,
 			@QueryParam("poNumber") final String poNumber, @QueryParam("skuNumber") final BigDecimal skuNumber)
 			throws InvalidQueryParamException {
 
-		PeggedOrderResource peggedOrderResource = null;
+		PeggedOrderResponse peggedOrderResponse = null;
 
 		/*
 		 * Validate Query parameters to make sure parameters are mandatorily
@@ -93,14 +94,14 @@ public class PeggedOrderController implements PeggedOrderApi {
 		}
 
 		// Service call to perform database SELECT operation
-		final PeggedOrder peggedOrder = peggedOrderService.findPeggedOrder(asnNumber, poNumber, skuNumber);
+		final List<PeggedOrder> peggedOrder = peggedOrderService.findPeggedOrders(asnNumber, poNumber, skuNumber);
 
 		// HATEOAS implementation
 		if (null != peggedOrder) {
-			peggedOrderResource = peggedOrderResourceAssembler.toResource(peggedOrder);
+			peggedOrderResponse = peggedOrderResourceAssembler.toResources(peggedOrder);
 		}
 
-		return new ResponseEntity<PeggedOrderResource>(peggedOrderResource, HttpStatus.OK);
+		return new ResponseEntity<PeggedOrderResponse>(peggedOrderResponse, HttpStatus.OK);
 	}
 
 }
