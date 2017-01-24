@@ -17,6 +17,7 @@ public class AllocationTeamDataConstants {
 	 * 
 	 */
 	public static final BigDecimal THREE = new BigDecimal("3");
+
 	/**
 	 * 
 	 */
@@ -26,26 +27,37 @@ public class AllocationTeamDataConstants {
 	 * 
 	 */
 	public static final String ALLOCATE_PATH = "/createAllocation";
+
 	/**
 	 * 
 	 */
 	public static final String ALLOCATION_ON_BOARD_PATH = "/findAllocationOnBoard";
+
 	/**
 	 * 
 	 */
 	public static final String BAY_PARM_PATH = "/findBayParm";
+
 	/**
 	 * 
 	 */
 	public static final String OVERAGE_DAYS_PATH = "/findOverageDay";
+
 	/**
 	 * 
 	 */
 	public static final String PEGGED_ORDER_PATH = "/findPeggedOrders";
+
 	/**
 	 * 
 	 */
 	public static final String SDC_TARGET_INVENTORY_PATH = "/findSDCTargetInventory";
+
+	/**
+	 * 
+	 */
+	public static final String SKU_CACHE_PATH = "/findSkuCache";
+
 	/**
 	 * 
 	 */
