@@ -13,8 +13,8 @@ import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.Allo
  * @author gxk8870
  *
  */
-@Transactional("transactionManager")
 @Repository("AllocationHeaderRepository")
+@Transactional("transactionManager")
 public interface AllocationHeaderRepository extends JpaRepository<AllocationHeader, Integer> {
 
 }
