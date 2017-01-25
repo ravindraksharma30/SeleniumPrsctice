@@ -8,11 +8,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homedepot.mm.po.allocationteamdata.dto.TransloadSkuDTO;
 import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.AllocationDetail;
 import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.AllocationHeader;
+import com.homedepot.mm.po.allocationteamdata.repository.tldallocation.oracle.AllocationHeaderRepository;
 import com.homedepot.mm.po.allocationteamdata.services.AllocationService;
 
 /**
@@ -22,9 +24,8 @@ import com.homedepot.mm.po.allocationteamdata.services.AllocationService;
 @Service("AllocationServiceImpl")
 public class AllocationServiceImpl implements AllocationService {
 
-	//@Autowired
-	//@Qualifier("AllocationHeaderRepository")
-	//AllocationHeaderRepository allocationHeaderRepository;
+	@Autowired
+	AllocationHeaderRepository allocationHeaderRepository;
 
 	/**
 	 * 
@@ -66,6 +67,6 @@ public class AllocationServiceImpl implements AllocationService {
 
 		});
 		allocationHeader.setAllocationDetails(allocationDetails);
-		//allocationHeaderRepository.save(allocationHeader);
+		allocationHeaderRepository.save(allocationHeader);
 	}
 }

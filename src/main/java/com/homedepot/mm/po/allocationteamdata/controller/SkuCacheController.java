@@ -31,12 +31,15 @@ public class SkuCacheController implements SkuCacheApi {
 	@Autowired
 	private MessageByLocaleService messageSource;
 
+	/**
+	 * 
+	 */
 	@Override
-	@GetMapping(value = SkuCacheApi.SEARCH_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Retrieve SkuCache based on transload dc number and sku number", nickname = "SkuCache")
+	@GetMapping(value = SkuCacheApi.SEARCH_PATH_GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Retrieve SkuCache based on transload dc number and sku number", nickname = "SkuCacheGet")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "transloadDcNumber", value = "Transload DC Number", required = false, dataType = "string", paramType = "query", defaultValue = "5097"),
-			@ApiImplicitParam(name = "skuNumber", value = "SKU Number", required = false, dataType = "Integer", paramType = "query", defaultValue = "1000358177") })
+			@ApiImplicitParam(name = "transloadDcNumber", value = "Transload DC Number", required = false, dataType = "string", paramType = "query", defaultValue = "0"),
+			@ApiImplicitParam(name = "skuNumber", value = "SKU Number", required = false, dataType = "Integer", paramType = "query", defaultValue = "0") })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
 			@ApiResponse(code = 403, message = "Forbidden"), @ApiResponse(code = 404, message = "Not Found"),
 			@ApiResponse(code = 500, message = "Internal Server Error") })
@@ -48,9 +51,33 @@ public class SkuCacheController implements SkuCacheApi {
 					messageSource.getMessage(AllocationTeamDataConstants.ERROR_INVALID_QUERY));
 		}
 
-		final SkuCache skuCache = skuCacheService.getSkuCache(transloadDcNumber, skuNumber);
+		final SkuCache skuCache = skuCacheService.findSkuCache(transloadDcNumber, skuNumber);
 
 		return new ResponseEntity<SkuCache>(skuCache, HttpStatus.OK);
 
+	}
+
+	@Override
+	@GetMapping(value = SkuCacheApi.SEARCH_PATH_PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Inserts SkuCache based on transload dc number and sku number", nickname = "SkuCachePut")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "transloadDcNumber", value = "Transload DC Number", required = false, dataType = "string", paramType = "query", defaultValue = "0"),
+			@ApiImplicitParam(name = "skuNumber", value = "SKU Number", required = false, dataType = "Integer", paramType = "query", defaultValue = "0"),
+			@ApiImplicitParam(name = "createProgramId", value = "SKU Number", required = false, dataType = "String", paramType = "query", defaultValue = "0") })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = BayParmController.class),
+			@ApiResponse(code = 403, message = "Forbidden"), @ApiResponse(code = 404, message = "Not Found"),
+			@ApiResponse(code = 500, message = "Internal Server Error") })
+	public ResponseEntity<String> insertSkuCache(@QueryParam("transloadDcNumber") final String transloadDcNumber,
+			@QueryParam("skuNumber") final Integer skuNumber,
+			@QueryParam("createProgramId") final String createProgramId) throws InvalidQueryParamException {
+
+		if (null == skuNumber || transloadDcNumber.isEmpty()) {
+			throw new InvalidQueryParamException(
+					messageSource.getMessage(AllocationTeamDataConstants.ERROR_INVALID_QUERY));
+		}
+
+		skuCacheService.insertSkuCache(transloadDcNumber, skuNumber, createProgramId);
+
+		return new ResponseEntity<String>("Success", HttpStatus.OK);
 	}
 }

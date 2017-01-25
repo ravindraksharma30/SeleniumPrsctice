@@ -1,5 +1,7 @@
 package com.homedepot.mm.po.allocationteamdata.repository.tldallocation.oracle;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,7 @@ import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.SkuC
  *
  */
 @Repository("SkuCacheRepository")
+@Transactional
 public interface SkuCacheRepository extends JpaRepository<SkuCache, Integer> {
 
 	/**

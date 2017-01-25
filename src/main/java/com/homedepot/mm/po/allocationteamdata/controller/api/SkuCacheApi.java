@@ -12,9 +12,11 @@ import com.homedepot.mm.po.allocationteamdata.exception.InvalidQueryParamExcepti
  */
 public interface SkuCacheApi {
 
-	public static final String SEARCH_PATH = "/findSkuCache";
+	public static final String SEARCH_PATH_GET = "/findSkuCache";
+	public static final String SEARCH_PATH_PUT = "/insertSkuCache";
 
 	/**
+	 * Returns the cached record in the database.
 	 * 
 	 * @param transloadDcNumber
 	 * @param skuNumber
@@ -23,4 +25,15 @@ public interface SkuCacheApi {
 	 */
 	public ResponseEntity<SkuCache> findSkuCache(final String transloadDcNumber, final Integer skuNumber)
 			throws InvalidQueryParamException;
+
+	/**
+	 * Inserts a record to be cached into the database.
+	 * 
+	 * @param transloadDcNumber
+	 * @param skuNumber
+	 * @return
+	 * @throws InvalidQueryParamException
+	 */
+	public ResponseEntity<String> insertSkuCache(final String transloadDcNumber, final Integer skuNumber,
+			final String createProgramId) throws InvalidQueryParamException;
 }

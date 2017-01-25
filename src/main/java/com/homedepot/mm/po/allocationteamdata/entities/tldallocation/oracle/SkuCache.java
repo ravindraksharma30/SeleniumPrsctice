@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.PrePersist;
 
 import lombok.Data;
 
@@ -34,4 +35,12 @@ public class SkuCache implements Serializable {
 	@Column(name = "CRT_TS")
 	private Timestamp createTimestamp;
 
+	public SkuCache() {
+
+	}
+
+	@PrePersist
+	public void prePersist() {
+		this.setCreateTimestamp(new Timestamp(System.currentTimeMillis()));
+	}
 }

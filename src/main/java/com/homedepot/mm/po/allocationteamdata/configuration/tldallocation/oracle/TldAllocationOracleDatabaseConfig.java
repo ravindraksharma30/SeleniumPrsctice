@@ -6,14 +6,17 @@ package com.homedepot.mm.po.allocationteamdata.configuration.tldallocation.oracl
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -22,7 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "tldAllocationOracleEntityManagerFactory", basePackages = {
+@EnableJpaRepositories(entityManagerFactoryRef = "tldAllocationOracleEntityManagerFactory", transactionManagerRef = "h2TransactionManager", basePackages = {
 		"com.homedepot.mm.po.allocationteamdata.repository.tldallocation.oracle" })
 public class TldAllocationOracleDatabaseConfig {
 
@@ -50,6 +53,12 @@ public class TldAllocationOracleDatabaseConfig {
 		lef.setPersistenceUnitName("tldAllocationOraclePersistenceUnit");
 		lef.afterPropertiesSet();
 		return lef.getObject();
+	}
+
+	@Bean(name = "transactionManager")
+	public PlatformTransactionManager transactionManager(
+			@Qualifier("tldAllocationOracleEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+		return new JpaTransactionManager(entityManagerFactory);
 	}
 
 }

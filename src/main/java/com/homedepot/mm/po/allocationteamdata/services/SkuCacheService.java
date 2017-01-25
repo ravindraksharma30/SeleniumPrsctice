@@ -17,7 +17,7 @@ public interface SkuCacheService {
 	 * @param skuNumber
 	 * @return
 	 */
-	public SkuCache getSkuCache(final String transloadNumber, final Integer skuNumber);
+	public SkuCache findSkuCache(final String transloadNumber, final Integer skuNumber);
 
 	/**
 	 * Inserts cached data based on the transload and SKU numbers.
@@ -26,5 +26,5 @@ public interface SkuCacheService {
 	 * @param transloadNumber
 	 * @param skuNumber
 	 */
-	public void setSkuCache(final String transloadDcNumber, final Integer skuNumber);
+	public SkuCache insertSkuCache(String transloadDcNumber, Integer skuNumber, String createProgramId);
 }
