@@ -22,7 +22,6 @@ import com.homedepot.mm.po.allocationteamdata.entities.teradata.AllocationOnBoar
  *
  */
 @Repository("AllocationOnBoardRepository")
-
 public interface AllocationOnBoardRepository extends JpaRepository<AllocationOnBoard, AllocationOnBoardPK> {
 	/**
 	 * 
