@@ -17,7 +17,7 @@ import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.Allo
  *
  */
 @Repository("AllocationDetailRepository")
-@Transactional
+@Transactional("transactionManager")
 public interface AllocationDetailRepository extends JpaRepository<AllocationDetail, Integer> {
 
 }

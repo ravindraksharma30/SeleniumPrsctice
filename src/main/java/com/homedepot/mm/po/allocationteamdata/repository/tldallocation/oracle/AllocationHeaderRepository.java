@@ -1,9 +1,8 @@
 package com.homedepot.mm.po.allocationteamdata.repository.tldallocation.oracle;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.AllocationHeader;
 
@@ -14,7 +13,7 @@ import com.homedepot.mm.po.allocationteamdata.entities.tldallocation.oracle.Allo
  * @author gxk8870
  *
  */
-@Transactional
+@Transactional("transactionManager")
 @Repository("AllocationHeaderRepository")
 public interface AllocationHeaderRepository extends JpaRepository<AllocationHeader, Integer> {
 
