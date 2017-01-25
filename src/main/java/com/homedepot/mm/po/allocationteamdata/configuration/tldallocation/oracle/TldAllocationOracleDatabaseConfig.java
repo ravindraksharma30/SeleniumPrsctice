@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "tldAllocationOracleEntityManagerFactory", transactionManagerRef = "h2TransactionManager", basePackages = {
+@EnableJpaRepositories(entityManagerFactoryRef = "tldAllocationOracleEntityManagerFactory", transactionManagerRef = "transactionManager", basePackages = {
 		"com.homedepot.mm.po.allocationteamdata.repository.tldallocation.oracle" })
 public class TldAllocationOracleDatabaseConfig {
 
